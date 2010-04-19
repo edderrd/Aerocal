@@ -1,0 +1,347 @@
+/** Resseting layout **/
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-family: arial, san-serif;
+    font-size: 0.9em;
+}
+
+/** Header layout **/
+.header {
+    padding: 7px;
+    margin: 0px 0px 10px 0px;
+}
+
+.header h1 {
+    padding: 0px;
+    margin: 0px;
+}
+
+/** Navigation layout **/
+.menu {
+    margin-top: 10px;
+}
+
+.menu ul {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 19px;
+    padding-left: 10px;
+    margin: 0px;
+}
+
+.menu li {
+    display: inline;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.menu li a:link, .menu a:visited {
+    background: #FFF;
+    border: 1px solid #ccc;
+    -moz-border-radius-topleft: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-right-radius: 6px;
+    color: #AFAFAF;
+    float: left;
+    font-size: small;
+    font-weight: normal;
+    line-height: 14px;
+    margin-right: 8px;
+    padding: 2px 10px 2px 10px;
+    text-decoration: none;
+}
+
+.menu li.active a {
+    display: block;
+    color: #000;
+    background-color: #EDEDED;
+}
+
+.menu a:hover { color: #AFAFAF; }
+
+.menu li a:hover {
+    text-decoration: underline;
+    display: block;
+    background-color: #F7F7F6;
+}
+
+.breadcrumbs {
+    margin-left: 20px;
+}
+
+.breadcrumbs .crumb {
+    background: url('/img/arrow_right.png') no-repeat center left;
+}
+
+/** Content layout **/
+.content {
+    margin: 19px 5px 10px 2px;
+    padding: 0px 10px 30px 10px;
+}
+
+/** Footer layout **/
+.footer {
+    padding: 10px;
+    margin-top: 20px;
+    border-top: 1px #ccc solid;
+    font-size: 0.7em;
+    color: #838383;
+}
+
+.footer .align-left {
+    float: left;
+}
+
+.footer .align-center {
+    float: none;
+}
+
+.footer .align-right {
+    float: right;
+}
+
+/** Table layouts **/
+
+
+table.datagrid {
+    border: 1px solid #ccc;
+    font-size: 12px;
+    width: 80%;
+    text-align: center;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    margin: 10px auto;
+    padding: 0px;
+}
+
+table.datagrid th {
+    background-color: #eee;
+    border-collapse: collapse;
+    padding: 2px;
+}
+
+table.datagrid td {
+    margin: 0px;
+}
+
+.datagrid-no-result {
+    font-size: 14px;
+    width: 30%;
+    text-align: center;
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.container {
+    -webkit-box-shadow: 1px 3px 8px #B2B6B9;
+    -moz-box-shadow: 1px 3px 8px #B2B6B9;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    margin: 12px 10px 30px;
+    padding: 0px;
+}
+
+.container .header {
+    font-size: 145%;
+    background-color: #DCDCDC;
+    -moz-border-radius-topleft: 6px;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    margin: -2px 0px 10px;
+}
+
+.container .header span.right, .list-actividades .actividad span.right {
+    float: right;
+}
+
+.container .content-data {
+    text-align: left;
+    table-layout: fixed;
+    border-collapse: collapse;
+    padding: 1px;
+    margin: 2px;
+}
+
+.container .content-data td:first-child {
+    font-weight: bold;
+    text-align: right;
+    width: 100px;
+}
+
+.container .content-data pre{
+    font-size: 12px;
+    font-family: arial, lucida;
+    text-align: left;
+    font-weight: normal;
+    padding: 6px 5px 10px 10px;
+    margin: 0px 20px 2px 15px;
+    background-color: #EDEDE2;
+}
+
+.container .no-result {
+    text-align: center;
+    font-size: 110%;
+    margin: 30px;
+}
+
+.container .toolbar {
+    background-color: #E8E8E8;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    padding: 5px 5px 5px 10px;
+    margin-top: 10px;
+}
+
+.container .toolbar span {
+    margin-right: 16px;
+    font-size: 90%;
+    color: #505050;
+}
+
+.container .toolbar span a, .container .toolbar span a:link, .container .toolbar span a:visited {
+    color: #505050;
+    text-decoration: none;
+}
+
+
+.container .toolbar span a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.container table {
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+    margin: -10px -10px 5px -2px;
+}
+
+.container table th {
+    background-color: #eee;
+    border-collapse: collapse;
+    padding: 2px;
+}
+
+container table td {
+    margin: 0px;
+}
+
+.list-actividades {
+    border-top: 1px solid #ccc;
+}
+
+.list-actividades h1 {
+    font-size: 17px;
+}
+
+.list-actividades .actividad {
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: 1px 3px 8px #B2B6B9;
+    -moz-box-shadow: 1px 3px 8px #B2B6B9;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 40px;
+    width: 70%;
+}
+
+
+.list-actividades .actividad .header {
+    margin: 0px;
+    padding: 5px;
+}
+
+.list-actividades .actividad .content {
+    margin: 0px;
+    padding: 0px;
+}
+
+.list-actividades .actividad .content pre {
+    padding: 1px 8px 6px;
+    font-size: 12px;
+    font-family: arial, lucida;
+}
+
+
+
+table.form {
+    width: 200px;
+    margin: 10px auto;
+    padding-bottom: 10px;
+}
+
+table.form td {
+    text-align: left;
+    vertical-align: top;
+}
+
+table.form td:first-child {
+    text-align: right;
+}
+
+a {
+    color: #232AF5;
+    text-decoration: none;
+}
+
+a:link , a:visited {
+    color: #232AF5;
+}
+
+/** jq ui dialog hacks **/
+.ui-dialog {
+    -webkit-box-shadow: 1px 4px 6px #C7CACE;
+    -moz-box-shadow: 1px 4px 6px #C7CACE;
+    -moz-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: none;
+}
+    
+.ui-dialog-titlebar {
+    margin: -3px -3px auto -3px;
+    -moz-border-radius-bottomleft: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border: none;
+}
+
+span.login {
+    float: right;
+    position: relative;
+    top: -20px;
+}
+
+.highlight {
+    background-color: #F0EED0;
+    cursor: pointer;
+}
+
+.x-hidden {
+    display: none;
+}
+
+/** icons **/
+
+.new-icon {
+    background: url('/img/add.png') no-repeat center left;
+    padding-left: 20px;
+}
+
+.delete-icon {
+    background: url('/img/cross.png') no-repeat center left;
+    padding-left: 20px;
+}
+
+.edit-icon {
+    background: url('/img/pencil.png') no-repeat center left;
+    padding-left: 20px;
+}
