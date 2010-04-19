@@ -1,0 +1,36 @@
+<?= $this->doctype() ?>
+<html>
+    <head>
+        <?= $this->headTitle() ?>
+        <?= $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8') ?>
+
+        <?php $this->headLink()->appendStylesheet($this->baseUrl("/css/default.css")) ?>
+        
+        <?php $this->JQuery()->setLocalPath($this->baseUrl("/js/jquery-1.4.2.min.js")) ?>
+        <?php $this->JQuery()->addStylesheet($this->baseUrl("/css/smoothness/jquery-ui-1.8.custom.css")) ?>
+        <?php $this->JQuery()->setUILocalPath($this->baseUrl("/js/jquery-ui-1.8.custom.min.js")) ?>
+        <?php $this->JQuery()->addStylesheet($this->baseUrl("/css/fullcalendar.css")) ?>
+        <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/fullcalendar.min.js")) ?>
+
+        <?= $this->headLink() ?>
+        <?= $this->headStyle() ?>
+        <?= $this->headScript() ?>
+        <?= $this->JQuery() ?>
+    </head>
+    <body>
+        <div class="header">
+            <h1><?= $this->app['header'] ?></h1>
+        </div>
+        <div class="content">
+            <?= $this->layout()->content ?>
+        </div>
+        <div class="footer">
+            <span class="align-left">Version <?= $this->app['version'] ?></span>
+            <span class="align-right"><?= ucfirst($this->app['environment']) ?> Environment</span><br>
+            <?php if($this->app['environment'] == 'development'): ?>
+                <span class="align-left">Zend Framework Version: <?= Zend_Version::VERSION ?></span><br>
+                <span class="align-left">Doctrine Version: <?= Doctrine_Core::VERSION ?></span><br>
+            <?php endif; ?>
+        </div>
+    </body>
+</html>
