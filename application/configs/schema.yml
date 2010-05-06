@@ -1,0 +1,19 @@
+User:
+  columns:
+    id:
+      type: integer
+      autoincrement: true
+      primary: true
+    first_name:
+      type: varchar(200)
+      notnull: true
+    last_name:
+      type: varchar(200)
+      notnull: true
+    username:
+      type: varchar(200)
+      notnull: true
+    password:
+      type: varchar(200)
+      notnull: true
+        

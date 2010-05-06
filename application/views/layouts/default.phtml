@@ -20,6 +20,16 @@
     <body>
         <div class="header">
             <h1><?= $this->app['header'] ?></h1>
+            <?= $this->login() ?>
+        </div>
+        <div class="messages">
+            <?php if($this->messages): ?>
+                <ul>
+                <?php foreach($this->messages as $message):?>
+                    <li><?= $message ?></li>    
+                <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
         </div>
         <div class="content">
             <?= $this->layout()->content ?>

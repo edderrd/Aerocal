@@ -1,0 +1,16 @@
+<form method="post" action="<?= $this->url(array("login")) ?>">
+    <fieldset>
+        <legend>User login</legend>
+        <p>        
+            <?= $this->formLabel("username", "Username:") ?>
+            <?= $this->formText("username") ?>
+        </p>
+        <p>
+            <?= $this->formLabel("password", "Password:") ?>
+            <?= $this->formPassword("password") ?>
+        </p>        
+        <p>
+            <?= $this->formSubmit("submit", "Login")?>
+        </p>
+    </fieldset>
+</form>
