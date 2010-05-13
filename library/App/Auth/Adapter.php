@@ -8,10 +8,10 @@ class App_Auth_Adapter
 	const BAD_PASSWORD_MSG = "Username or password invalid";
 	
 	/**
-	 * @var Model_User
+	 * @var User
 	 */
 	protected $user;
-	
+
 	/**
 	 * @var password
 	 */
@@ -34,15 +34,17 @@ class App_Auth_Adapter
 	{
 		try
 		{
-		  $this->user = Model_User::authenticate($this->_username, $this->_password);
+		  $user = User::authenticate($this->_username, $this->_password);
+                  $this->user = new App_Acl($user);
+
 		  return $this->result(Zend_Auth_Result::SUCCESS);	
 		} 
 		catch (Exception $e)
 		{
-			if ($e->getMessage() == Model_User::WRONG_PW)
+			if ($e->getMessage() == User::WRONG_PW)
 			    return $this->result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, self::BAD_PASSWORD_MSG);
 			
-			if ($e->getMessage() == Model_User::NOT_FOUND)
+			if ($e->getMessage() == User::NOT_FOUND)
 			    return $this->result(Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND, self::NOT_FOUND_MSG);
 		}
 	}

@@ -1,3 +1,57 @@
+AclResource:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name:
+      type: varchar(200)
+      notnull: true
+    description:
+      type: varchar(400)
+      notnull: false
+
+AclPermission:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    resource_id:
+      type: integer
+      notnull: true
+    role_id:
+      type: integer
+      notnull: true
+  relations:
+    AclResource:
+      type: many
+      local: resource_id
+    AclRole:
+      type: many
+      local: role_id
+
+AclRole:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name:
+      type: varchar(200)
+      notnull: true
+    parent_role:
+      type: integer
+      notnull: false
+    description:
+      type: varchar(400)
+      notnull: false
+  relations:
+    AclRole:
+      foreignType: one
+      local: parent_role
+      foreign: id
+
 User:
   columns:
     id:
@@ -16,4 +70,11 @@ User:
     password:
       type: varchar(200)
       notnull: true
-        
+    role_id:
+      type: integer
+      notnull: true
+  relations:
+    AclRole:
+      foreignType: one
+      local: role_id
+

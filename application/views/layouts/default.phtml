@@ -23,6 +23,7 @@
             <?= $this->login() ?>
         </div>
         <div class="messages">
+            <?= $this->messages() ?>
             <?php if($this->messages): ?>
                 <ul>
                 <?php foreach($this->messages as $message):?>
@@ -31,7 +32,15 @@
                 </ul>
             <?php endif; ?>
         </div>
+        <?php if(Zend_Auth::getInstance()->hasIdentity()): ?>
+        <div class="menu">
+            <?= $this->navigation()->menu()->setMaxDepth(0) ?>
+        </div>
+        <?php endif; ?>
         <div class="content">
+            <div class="breadcrumbs">
+                <?= $this->navigation()->breadcrumbs()->setMinDepth(1) ?>
+            </div>
             <?= $this->layout()->content ?>
         </div>
         <div class="footer">

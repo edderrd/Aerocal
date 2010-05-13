@@ -1,0 +1,92 @@
+AclResource:
+  AclResource_1:
+    name: index:index
+    description: "Main Page"
+  AclResource_2:
+    name: index:reserve
+    description: "Reserve Aircraft action"
+  AclResource_3:
+    name: user:index
+    description: "Edit user profile"
+  AclResource_4:
+    name: user:list
+    description: "List all users"
+  AclResource_5:
+    name: user:create
+    description: "Create a user"
+  AclResource_6:
+    name: user:delete
+    description: "Delete a user"
+  AclResource_7:
+    name: aircraft:index
+    description: "List all aircraft"
+  AclResource_8:
+    name: aircraft:create
+    description: "Create a aircraft"
+  AclResource_9:
+    name: aircraft:delete
+    description: "Delete a aircraft"
+  AclResource_10:
+    name: acl:index
+    description: "List roles and resources"
+  AclResource_11:
+    name: acl:create_resource
+    description: "Create a resource"
+  AclResource_12:
+    name: acl:update_resourece
+    description: "Update a resource"
+  AclResource_13:
+    name: acl:delete_resourece
+    description: "Delete a resource"
+  AclResource_14:
+    name: acl:create_role
+    description: "Create a role"
+  AclResource_15:
+    name: acl:update_role
+    description: "Update a role"
+  AclResource_16:
+    name: acl:delete_role
+    description: "Delete a role"
+  AclResource_17:
+    name: acl:create_permission
+    description: "Create a permission"
+  AclResource_18:
+    name: acl:update_permission
+    description: "Update a permission"
+  AclResource_19:
+    name: acl:delete_permission
+    description: "Delete a permission"
+
+AclRole:
+  AclRole_1:
+    name: normal
+    description: "Normal user role"
+  AclRole_2:
+    name: administrator
+    description: "Application Administrator"
+    parent_role: 1
+
+AclPermission:
+  AclPermission_1:
+    resource_id: 1
+    role_id: 1
+  AclPermission_2:
+    resource_id: 2
+    role_id: 1
+  AclPermission_3:
+    resource_id: 3
+    role_id: 1
+    
+User:
+  User_1:
+    first_name: Aerocal
+    last_name: Administrator
+    username: admin
+    password: admin
+    role_id: 2
+  User_2:
+    first_name: Edder
+    last_name: Rojas
+    username: edder
+    password: edder
+    role_id: 1
