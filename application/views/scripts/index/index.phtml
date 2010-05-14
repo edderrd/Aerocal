@@ -4,8 +4,22 @@
        var d = date.getDate();
        var m = date.getMonth();
        var y = date.getFullYear();
+       calendarOptions = <?= $this->calendarOptions ?>;
+       calendarOptions.select = function(start, end, allDay, view) {
+            if (confirm(
+                        "clear the selection?\n" +
+                        '---- selection ----\n' +
+                        'start: ' + start + '\n' +
+                        'end: ' + end + '\n' + // exclusive!!
+                        'allDay: ' + allDay))
+            {
+                $('#calendar').fullCalendar('unselect'); // 'unselect' method to manually clear selection
+                // a 'select' method coming soon...
+            }
+       };
 
-       $("#calendar").fullCalendar(<?= $this->calendarOptions ?>);
+       $('#calendar').fullCalendar(calendarOptions);
+		
     }
 </script>
 <?php $this->JQuery()->addOnLoad("showCalendar();"); ?>

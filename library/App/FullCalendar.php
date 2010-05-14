@@ -14,10 +14,16 @@ class App_FullCalendar
      */
     public function __construct()
     {
-        //defaults
-        $this->setHeaders("prev,next today", "title", "agendaWeek, month, agendaDay");
-        $this->setOption("editable", true);
         $this->_data['events'] = array();
+        //defaults
+        $this->setHeaders("prev,next today", "title", "month, agendaWeek, agendaDay")
+             ->setOption("editable", true)
+             ->setOption("defaultView", "agendaWeek")
+             ->setOption("selectable", true)
+             ->setOption("unselectable", false)
+             ->setOption("selectHelper", true)
+             ->setOption("theme", true);
+
     }
 
     /**
