@@ -5,33 +5,8 @@
        var m = date.getMonth();
        var y = date.getFullYear();
 
-       $("#calendar").fullCalendar({
-          editable: true,
-          events: [
-              {
-                  title: 'All Day Event',
-                  start: new Date(y, m, 1)
-              },
-              {
-                  title: 'Log Event',
-                  start: new Date(y, m, d-5),
-                  end: new Date(y, m, d-2)
-              },
-              {
-                  id: 999,
-                  title: "Repeating Event",
-                  start: new Date(y,m, d-3, 16, 0),
-                  allDay: false
-              },
-              {
-                  id: 999,
-                  title: 'Repeating Event',
-                  start: new Date(y, m, d+4, 16, 0),
-                  allDay: false
-              }
-          ]
-       });
-    };
+       $("#calendar").fullCalendar(<?= $this->calendarOptions ?>);
+    }
 </script>
 <?php $this->JQuery()->addOnLoad("showCalendar();"); ?>
 <div id="calendar" style="width: 900px; margin: 0 auto;"></div>

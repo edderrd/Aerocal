@@ -10,7 +10,8 @@ class IndexController extends App_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $fc = new App_FullCalendar();
+        $this->view->calendarOptions = $fc->getConfig();
     }
 
 
