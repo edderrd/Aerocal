@@ -78,3 +78,35 @@ User:
       foreignType: one
       local: role_id
 
+AircraftType:
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    type:
+      type: varchar(200)
+      notnull: true
+  relations:
+    Aircraft:
+      foreignType: one
+      local: id
+      foreign: type_id
+
+Aircraft:
+  columns:
+    id:
+      type: integer
+      autoincrement: true
+      primary: true
+    type_id:
+      type: integer
+      notnull: true
+    name:
+      type: varchar(300)
+      notnull: true
+  relations:
+    AircraftType:
+      foreignType: one
+      local: type_id
+      foreign: id

@@ -90,3 +90,17 @@ User:
     username: edder
     password: edder
     role_id: 1
+
+AircraftType:
+  AircraftType_1:
+    type: Airplane
+  AircraftType_2:
+    type: Helicopter
+
+Aircraft:
+  Aircraft_1:
+    name: Boeing 373
+    type_id: 1
+  Aircraft_2:
+    name: Shopper
+    type_id: 2
