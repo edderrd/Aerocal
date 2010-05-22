@@ -1,1 +1,7 @@
-<h1>User Index</h1>
+<h1>Users Index action</h1>
+
+<?php if ($this->acl()->isValid("user", "list")): ?>
+    <ul>
+        <li><a href="<?= $this->baseUrl("/user/list")?>" >List user</a></li>
+    </ul>
+<?php endif; ?>

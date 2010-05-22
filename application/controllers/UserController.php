@@ -1,10 +1,14 @@
 <?php
 class UserController extends App_Controller_Action
 {
-
     public function indexAction()
     {
-            
+        //TODO: Add logic here
+    }
+    
+    public function listAction()
+    {
+        $this->view->users = User::findAll();
     }
 	
     public function loginAction()

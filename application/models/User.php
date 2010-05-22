@@ -43,4 +43,12 @@ class User extends BaseUser
 
         throw new Exception(self::NOT_FOUND);
     }
+    
+    public static function findAll()
+    {
+        return Doctrine_Query::create()
+                    ->from("User u")
+                    ->leftJoin("u.AclRole r")
+                    ->fetchArray(true);
+    }
 }
