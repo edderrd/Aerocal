@@ -1,1 +1,15 @@
-<h1>Aircraft index page</h1>
+<div class="container">
+    <div class="header">Aircraft list</div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+        <?php foreach($this->aircrafts as $aircraft): ?>
+            <tr>
+                <td><?= $aircraft['name'] ?></td>
+                <td><?= $aircraft['AircraftType']['type'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

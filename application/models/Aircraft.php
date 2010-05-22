@@ -13,4 +13,16 @@
 class Aircraft extends BaseAircraft
 {
 
+    /**
+     * Get all aircraft with his types
+     * @return array
+     */
+    public static function findAll()
+    {
+        return Doctrine_Query::create()
+                    ->from("Aircraft a")
+                    ->leftJoin("a.AircraftType t")
+                    ->fetchArray(true);
+    }
+
 }
