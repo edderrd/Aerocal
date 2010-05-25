@@ -1,6 +1,6 @@
 <form method="post" action="<?= $this->url(array("login", "controller" => "user")) ?>">
     <fieldset>
-        <legend>User login</legend>
+        <legend><?= $this->translate->_("User login") ?></legend>
         <p>        
             <?= $this->formLabel("username", "Username:") ?>
             <?= $this->formText("username") ?>

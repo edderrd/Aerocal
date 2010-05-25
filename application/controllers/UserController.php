@@ -4,7 +4,7 @@ class UserController extends App_Controller_Action
 
     public function indexAction()
     {
-            
+        parent::init();
     }
 	
     public function loginAction()
