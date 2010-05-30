@@ -8,6 +8,11 @@ class App_Acl extends Zend_Acl
 {
 
     /**
+     * @var Zend_Acl_Role
+     */
+    protected $_role;
+
+    /**
      * @var User
      */
     public $user;
@@ -25,6 +30,13 @@ class App_Acl extends Zend_Acl
             foreach($roles as $rol)
             {
                 //TODO: Implement inheritance
+                if ($this->user['AclRole']['name'] == $rol['name'])
+                {
+                    $this->_role = new Zend_Acl_Role($rol['name']);
+                    $this->addRole($this->_role);
+                    continue;
+                }
+
                 $this->addRole(new Zend_Acl_Role($rol['name']));
             }
         }
@@ -48,7 +60,7 @@ class App_Acl extends Zend_Acl
             {
                 $this->add(new Zend_Acl_Resource($resource['name']));
             }
-            $this->add(new Zend_Acl_Resource("user:logout"));
+            $this->add(new Zend_Acl_Resource("mvc:default.user.logout"));
         }
         else
         {
@@ -100,11 +112,22 @@ class App_Acl extends Zend_Acl
      */
     public function isValidResource($controller, $action)
     {
-        $resource = "$controller:$action";
+        $resource = "mvc:default.$controller.$action";
         if ($this->isAllowed($this->user['AclRole']['name'], $resource))
             return true;
         else
             return false;
+    }
+
+    /**
+     * Return user role
+     * @return mixed
+     */
+    public function getRole()
+    {
+        if(!empty($this->_role))
+            return $this->_role;
+        return null;
     }
 
 }

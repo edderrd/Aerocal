@@ -20,15 +20,10 @@ class App_Controller_Action extends Zend_Controller_Action
      */
     protected function _isUserLoggedIn()
     {
-
         if (Zend_Auth::getInstance()->hasIdentity())
-        {
             return true;
-        }
         else
-        {
             return false;
-        }
     }
 
     /**
@@ -77,6 +72,10 @@ class App_Controller_Action extends Zend_Controller_Action
                     $this->_redirect("/index/index");
                 }
             }
+            // set navigation acl
+            $acl = Zend_Auth::getInstance()->getIdentity();
+            $this->view->navigation()->setDefaultAcl($acl);
+            $this->view->navigation()->setRole($acl->getRole());
         }
     }
 

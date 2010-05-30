@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">User's list</div>
+    <table>
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Username</th>
+            <th>Role</th>
+        <tr>
+        <?php foreach($this->users as $user): ?>
+            <tr>
+                <td><?= $user['first_name'] ?></td>
+                <td><?= $user['last_name'] ?></td>
+                <td><?= $user['username'] ?></td>
+                <td><?= ucfirst($user['AclRole']['name']) ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
