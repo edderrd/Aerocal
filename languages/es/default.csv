@@ -1,2 +1,21 @@
-User login;User login
+User login;Inicio de Sesión
+Username;Usuario
+Users list;Lista de usuarios
+Name;Nombre
+Welcome Back;Bienvenido
+Last name;Apellidos
+Not logged in;Sin iniciar sesión
+List users;Lista de Usuarios
+First name;Nombre
+Role;Rol
+Aircrafts list;Lista de aeronaves
+Logout;Cerrar sesión
+Login;Iniciar sesión
+Password;Contraseña
+Type;Tipo
 Hello World;hola mundo
+Home;Inicio
+Users;Usuarios
+Aircraft;Aeronaves
+Permissions;Permisos
+Aircraft list;Lista de aeronaves

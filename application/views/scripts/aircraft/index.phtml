@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="header">Aircraft list</div>
+    <div class="header"><?= $this->translate->_("Aircrafts list") ?></div>
     <table>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
+            <th><?= $this->translate->_("Name") ?></th>
+            <th><?= $this->translate->_("Type") ?></th>
         </tr>
         <?php foreach($this->aircrafts as $aircraft): ?>
             <tr>

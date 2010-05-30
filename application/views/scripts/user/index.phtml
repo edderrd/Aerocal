@@ -2,6 +2,6 @@
 
 <?php if ($this->acl()->isValid("user", "list")): ?>
     <ul>
-        <li><a href="<?= $this->baseUrl("/user/list")?>" >List user</a></li>
+        <li><a href="<?= $this->baseUrl("/user/list")?>" ><?= $this->translate->_("List users") ?></a></li>
     </ul>
 <?php endif; ?>

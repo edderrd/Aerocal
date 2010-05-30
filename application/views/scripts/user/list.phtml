@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="header">User's list</div>
+    <div class="header"><?= $this->translate->_("Users list") ?></div>
     <table>
         <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Username</th>
-            <th>Role</th>
+            <th><?= $this->translate->_("First name") ?></th>
+            <th><?= $this->translate->_("Last name") ?></th>
+            <th><?= $this->translate->_("Username") ?></th>
+            <th><?= $this->translate->_("Role") ?></th>
         <tr>
         <?php foreach($this->users as $user): ?>
             <tr>

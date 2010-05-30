@@ -73,7 +73,8 @@ class App_Controller_Action extends Zend_Controller_Action
                 // will redirect if isn't a action exception
                 if (!$this->_isActionException($controller, $action))
                 {
-                    $this->setMessage("You dont have permission to see $controller\\$action");
+                    $msg = $this->_translate->_("You dont have permission to browse");
+                    $this->setMessage($msg . " $controller\\$action");
                     $this->_redirect("/index/index");
                 }
             }

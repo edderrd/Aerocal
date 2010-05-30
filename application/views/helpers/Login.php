@@ -25,15 +25,19 @@ class My_View_Helper_Login extends App_View_Helper_Abstract
         if (Zend_Auth::getInstance()->hasIdentity())
         {
             $identity = Zend_Auth::getInstance()->getIdentity();
-            $message = "Welcome Back, {$identity->user['first_name']} {$identity->user['last_name']} |";
-            $content = " Logout";
+            $welcomeMsg = $this->view->translate->_("Welcome Back");
+            $message = "$welcomeMsg, {$identity->user['first_name']} {$identity->user['last_name']} |";
+            $logoutMsg = $this->view->translate->_("Logout");
+            $content = " $logoutMsg";
             $url = $this->view->url(array("action" => "logout", "controller" => "user"));
         }
         else
         {
-        	$content =  "Login";
-        	$message = "Not logged in | ";
-        	$url = $this->view->url(array("action" => "login", "controller" => "user"));
+            $notLoggedMsg = $this->view->translate->_("Not logged in");
+            $loginMsg = $this->view->translate->_("Login");
+            $content =  $loginMsg;
+            $message = "$notLoggedMsg | ";
+            $url = $this->view->url(array("action" => "login", "controller" => "user"));
         }
         
         return sprintf(

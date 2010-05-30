@@ -2,15 +2,15 @@
     <fieldset>
         <legend><?= $this->translate->_("User login") ?></legend>
         <p>        
-            <?= $this->formLabel("username", "Username:") ?>
+            <?= $this->formLabel("username", $this->translate->_("Username").":") ?>
             <?= $this->formText("username") ?>
         </p>
         <p>
-            <?= $this->formLabel("password", "Password:") ?>
+            <?= $this->formLabel("password", $this->translate->_("Password").":") ?>
             <?= $this->formPassword("password") ?>
         </p>        
         <p>
-            <?= $this->formSubmit("submit", "Login")?>
+            <?= $this->formSubmit("submit", $this->translate->_("Login"))?>
         </p>
     </fieldset>
 </form>
