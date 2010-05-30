@@ -15,6 +15,11 @@ class App_Controller_Action extends Zend_Controller_Action
     );
 
     /**
+     * @var Zend_Translate
+     */
+    protected static $_translate = null;
+
+    /**
      * Check if the user is currently logged in
      * @return bool
      */
@@ -90,9 +95,13 @@ class App_Controller_Action extends Zend_Controller_Action
         $notification->messages = $messages;
     }
 
+    public function init()
+    {
+        self::$_translate = Zend_Registry::get("translate");
+    }
+
     public function preDispatch()
     {
         $this->_validateSession();
     }
-	
 }

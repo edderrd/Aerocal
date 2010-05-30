@@ -5,7 +5,7 @@ class IndexController extends App_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        parent::init();
     }
 
     public function indexAction()
@@ -14,7 +14,7 @@ class IndexController extends App_Controller_Action
         $end = date("Y-m-d H:i:s", strtotime("+1hour", time()));
         
         $fc = new App_FullCalendar();
-        $fc->addEvent("Hello World", $start, $end);
+        $fc->addEvent(self::$_translate->_("Hello World"), $start, $end);
 
 
         $this->view->calendarOptions = $fc->getConfig();

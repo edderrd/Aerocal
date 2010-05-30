@@ -12,6 +12,54 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
     /**
+     * Creates a Zend_Translate object using configuration paratemeters, and
+     * also uses gettext as adapter
+     *
+     * @param array $config
+     * @return Zend_Translate
+     */
+    protected function _createTranslate($config = array())
+    {
+        if (!empty($config)) {
+            $path = realpath($config['path']) . "/%s/default.csv";
+
+            $translate = new Zend_Translate(
+                                'csv',
+                                sprintf($path, $config['default']),
+                                $config['default'],
+                                $config['options']
+                         );
+
+            foreach($config['languages'] as $lang) {
+                if ($lang != $config['default']) {
+                    $translate->addTranslation(sprintf($path, $lang), $lang);
+                }
+            }
+            $translate->setLocale($config['default']);
+
+            return $translate;
+        }
+
+        return false;
+    }
+
+    /**
+     * Initialize translate using gettext
+     *
+     * @return Zend_Translate
+     */
+    protected function _initTranslate()
+    {
+        $translateConfig = $this->getOption('translate');
+        $translate = $this->_createTranslate($translateConfig);
+
+        $registry = Zend_Registry::getInstance();
+        $registry->set('translate', $translate);
+
+        return $translate;
+    }
+
+    /**
      * Initialize navigation helper
      *
      * @return Zend_Navigation
@@ -41,6 +89,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             'ViewRenderer'
         );
 
+        // translate
+        $view->translate = $translate = Zend_Registry::get("translate");
+
         $viewRenderer->setView($view);
         // college default info parameters
         $config = $this->getOption('app');
@@ -54,7 +105,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         // Navigation
         $navigation = Zend_Registry::get('navigation');
-        $view->navigation($navigation);
+        $view->navigation($navigation)->setTranslator($translate);
 
         // Return it, so that it can be stored by the bootstrap
         return $view;
