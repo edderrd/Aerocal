@@ -84,12 +84,14 @@ User:
     username: admin
     password: admin
     role_id: 2
+    language: en
   User_2:
     first_name: Edder
     last_name: Rojas
     username: edder
     password: edder
     role_id: 1
+    language: es
 
 AircraftType:
   AircraftType_1:

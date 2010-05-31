@@ -32,7 +32,7 @@ class Form_Preferences
         $firstName->setLabel("First Name:");
         $this->addElement($firstName);
 
-        $lastName = new Zend_Form_Element_Text("lastName");
+        $lastName = new Zend_Form_Element_Text("lastname");
         $lastName->setLabel("Last Name:");
         $this->addElement($lastName);
 
@@ -40,6 +40,12 @@ class Form_Preferences
         $language->setLabel("Language")
                  ->setMultiOptions($this->_getLanguageList());
         $this->addElement($language);
+
+        $roleId = new Zend_Form_Element_Hidden("roleid");
+        $this->addElement($roleId);
+
+        $password = new Zend_Form_Element_Hidden("password");
+        $this->addElement($password);
 
         $submit = new Zend_Form_Element_Submit("submit");
         $submit->setLabel("Update");

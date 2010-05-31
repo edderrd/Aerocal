@@ -82,6 +82,9 @@ class App_Controller_Action extends Zend_Controller_Action
             $acl = Zend_Auth::getInstance()->getIdentity();
             $this->view->navigation()->setDefaultAcl($acl);
             $this->view->navigation()->setRole($acl->getRole());
+            $translate = Zend_Registry::get("translate");
+            $translate->setLocale($acl->user->language);
+            Zend_Registry::set("translate", $translate);
         }
     }
 

@@ -11,6 +11,7 @@
  * @property varchar $username
  * @property varchar $password
  * @property integer $role_id
+ * @property string $language
  * @property AclRole $AclRole
  * 
  * @package    ##PACKAGE##
@@ -50,6 +51,10 @@ abstract class BaseUser extends Doctrine_Record
              ));
         $this->hasColumn('role_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
+             ));
+        $this->hasColumn('language', 'string', null, array(
+             'type' => 'string',
              'notnull' => true,
              ));
     }

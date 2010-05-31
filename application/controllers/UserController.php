@@ -19,12 +19,19 @@ class UserController extends App_Controller_Action
     {
         $this->view->form = new Form_Preferences();
 
-        if ($this->getRequest()->isPost &&
+        if ($this->getRequest()->isPost() &&
                 $this->view->form->isValid($this->_getAllParams()))
         {
             $this->setMessage(array("Save not implemented Yet!"));
-            var_dump($this->getAllParams());
+            var_dump($this->_getAllParams());
         }
+        $user = Zend_Auth::getInstance()->getIdentity()->user;
+        $this->view->form->firstname->setValue($user->first_name);
+        $this->view->form->lastname->setValue($user->last_name);
+        $this->view->form->roleid->setValue($user->role_id);
+        //TODO: Implement password change
+        $this->view->form->password->setValue($user->password);
+        $this->view->form->language->setValue($user->language);
     }
     
     public function listAction()
