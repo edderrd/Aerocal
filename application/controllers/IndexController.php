@@ -19,7 +19,5 @@ class IndexController extends App_Controller_Action
 
         $this->view->calendarOptions = $fc->getConfig();
     }
-
-
 }
 
