@@ -1,0 +1,29 @@
+Aerocal
+=======
+
+Flight planner
+
+REQUIREMENTS
+------------
+
+ - PHP 5.2 or newer version
+ - PDO PHP Extension
+
+INSTALATION
+-----------
+
+### DATABASE ###
+
+1.  For developtment environment database is called aerocal, will need full access to the user aerocal and password will be also aerocal.
+
+A example for Mysql database and user creation:
+
+`mysql> CREATE DATABASE aerocal character set utf8;`
+
+`mysql> GRANT ALL PRIVILEGES ON aerocal.* to aerocal@localhost IDENTIFIED BY 'aerocal';`
+
+2.  Create database schema: on aerocal folder there is a folder called scripts, there you need to run doctrine script.
+
+`$ ./doctrine build-all-reload`
+
+
