@@ -41,12 +41,6 @@ class Form_Preferences
                  ->setMultiOptions($this->_getLanguageList());
         $this->addElement($language);
 
-        $roleId = new Zend_Form_Element_Hidden("roleid");
-        $this->addElement($roleId);
-
-        $password = new Zend_Form_Element_Hidden("password");
-        $this->addElement($password);
-
         $submit = new Zend_Form_Element_Submit("submit");
         $submit->setLabel("Update");
         $this->addElement($submit);
