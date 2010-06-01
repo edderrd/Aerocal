@@ -13,4 +13,18 @@
 class Reservation extends BaseReservation
 {
 
+    public static function findByUser($userId)
+    {
+        $now = date("Y-m-d G:i:s", time());
+
+        return Doctrine_Query::create()
+                    ->from("Reservation r")
+                    ->leftJoin("r.User u")
+                    ->leftJoin("r.Aircraft a")
+                    ->leftJoin("r.ReservationStatus s")
+                    ->leftJoin("s.ReservationType t")
+                    ->addWhere("r.end_date > '$now'")
+                    ->fetchArray(true);
+    }
+
 }

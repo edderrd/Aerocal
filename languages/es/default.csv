@@ -16,7 +16,7 @@ Type;Tipo
 Hello World;hola mundo
 Home;Inicio
 Users;Usuarios
-Aircraft;Aeronaves
+Aircraft;Aeronave
 Permissions;Permisos
 Aircraft list;Lista de aeronaves
 Preferences;Preferencias
@@ -32,3 +32,10 @@ Resource;Recurso
 Aircraft administration;Administración de aeronaves
 Permissions and Roles;Roles y permisos
 Language;Lenguaje
+Start date;Fecha de inicio
+End date;Fecha de finalización
+Message;Mensaje
+Accepted;Aceptado
+My reservations;Mis reservaciones
+No reservations;No hay reservaciones
+Preferences saved successfully;Preferencias salvadas satisfactoriamente

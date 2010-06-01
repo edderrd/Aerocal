@@ -25,10 +25,10 @@ AclPermission:
       notnull: true
   relations:
     AclResource:
-      foreignType: one
+      type: many
       local: resource_id
     AclRole:
-      foreignType: one
+      type: many
       local: role_id
 
 AclRole:
@@ -157,28 +157,45 @@ Reservation:
       notnull: true
     aircraft_id:
       type: integer
-      notnull: true
-    status_id:
-      type: integer
-      notnull: true
+      notnull: true    
   relations:
     User:
       foreignType: one
     Aircraft:
       foreignType: one
     ReservationStatus:
-      foreignType: one
-      local: status_id
+      type: many
+      local: id
+      foreign: reservation_id
 
-RerservationStatus:
+ReservationStatus:
   columns:
     id:
       type: integer
       primary: true
       autoincrement: true
-    status:
-      type: varchar(200)
+    reservation_id:
+      type: integer
+      notnull: true
+    type_id:
+      type: integer
       notnull: true
     message:
       type: varchar(200)
       notnull: false
+  relations:
+    Reservation:
+      foreignType: one
+    ReservationType:
+      foreignType: one
+      local: type_id
+
+ReservationType:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    type:
+      type: varchar(200)
+      notnull: true

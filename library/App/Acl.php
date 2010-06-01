@@ -76,9 +76,11 @@ class App_Acl extends Zend_Acl
         if ($this->user['AclRole']['name'] == "administrator")
         {
             $this->allow($user['AclRole']['name']);
+            echo "admin";
         }
         else
         {
+            $user = $this->user->toArray(true);
             foreach($this->user['AclRole']['AclPermission']['AclResource'] as $resource)
             {
                 $this->allow($this->user['AclRole']['name'], $resource['name']);
@@ -98,7 +100,6 @@ class App_Acl extends Zend_Acl
             throw new Exception("There is a error on Roles and permissions");
 
         $this->user = $user;
-
         $this->_addRoles(AclRole::findAll());
         $this->_addResources(AclResource::findAll());
         $this->_addPermissions();

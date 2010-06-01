@@ -32,7 +32,6 @@ class User extends BaseUser
                     ->addWhere("u.username = '$username'")
                     ->fetchOne();
 
-//        echo "<pre>";print_r($user->toArray()); exit();
         if ($user)
         {
             if ($user->password == $password)

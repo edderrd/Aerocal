@@ -8,8 +8,8 @@
             </tr>
             <?php foreach($this->permissions as $permission): ?>
             <tr>
-                <td><?= $permission['AclResource']['description'] ?></td>
-                <td><?= $permission['AclRole']['name'] ?></td>
+                <td><?= $permission['AclResource'][0]['description'] ?></td>
+                <td><?= $permission['AclRole'][0]['name'] ?></td>
             </tr>
             <?php endforeach ?>
         </table>

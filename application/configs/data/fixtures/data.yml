@@ -120,3 +120,9 @@ Aircraft:
     name: TI-GER (Piper Cherokee)
     type_id: 1
     status_id: 1
+
+ReservationType:
+  ReservationType_1:
+    type: Accepted
+  ReservationType_2:
+    type: Cancelled

@@ -16,8 +16,10 @@ class IndexController extends App_Controller_Action
         $fc = new App_FullCalendar();
         $fc->addEvent(self::$_translate->_("Hello World"), $start, $end);
 
-
         $this->view->calendarOptions = $fc->getConfig();
+
+        $user = Zend_Auth::getInstance()->getIdentity()->user;
+        $this->view->reservations = Reservation::findByUser($user->id);
     }
 }
 

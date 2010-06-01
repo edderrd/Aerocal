@@ -1,3 +1,37 @@
+<div class="container">
+    <div class="header"><?= $this->translate->_("My reservations") ?></div>
+    <?php if(empty($this->reservations)): ?>
+        <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
+    <?php else: ?>
+        <table>
+            <tr>
+                <th><?= $this->translate->_("Id") ?></th>
+                <th><?= $this->translate->_("Aircraft") ?></th>
+                <th><?= $this->translate->_("Start date") ?></th>
+                <th><?= $this->translate->_("End date") ?></th>
+                <th><?= $this->translate->_("Status") ?></th>
+                <th><?= $this->translate->_("Message") ?></th>
+            </tr>
+            <?php foreach($this->reservations as $reservation): ?>
+                <tr>
+                    <td><?= $reservation['id'] ?></td>
+                    <td><?= $reservation['Aircraft']['name'] ?></td>
+                    <td><?= $reservation['start_date'] ?></td>
+                    <td><?= $reservation['end_date'] ?></td>
+                    <?php if(!empty($reservation['ReservationStatus'])): ?>
+                        <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
+                        <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
+                        <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
+                    <?php else: ?>
+                        <td>-</td>
+                        <td>-</td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+</div>
+
 <script type="text/javascript">
     function showCalendar(){
        var date = new Date();
@@ -22,5 +56,5 @@
 		
     }
 </script>
-<?php $this->JQuery()->addOnLoad("showCalendar();"); ?>
-<div id="calendar" style="width: 900px; margin: 0 auto;"></div>
+<?php //$this->JQuery()->addOnLoad("showCalendar();"); ?>
+<!--<div id="calendar" style="width: 900px; margin: 0 auto;"></div>-->
