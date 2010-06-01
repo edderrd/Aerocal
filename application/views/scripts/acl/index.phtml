@@ -1,15 +1,37 @@
 <div class="container">
+    <div class="header"><?= $this->translate->_("Permissions") ?></div>
+    <?php if(!empty($this->permissions)): ?>
+        <table>
+            <tr>
+                <th><?= $this->translate->_("Resource") ?></th>
+                <th><?= $this->translate->_("Role") ?></th>
+            </tr>
+            <?php foreach($this->permissions as $permission): ?>
+            <tr>
+                <td><?= $permission['AclResource']['description'] ?></td>
+                <td><?= $permission['AclRole']['name'] ?></td>
+            </tr>
+            <?php endforeach ?>
+        </table>
+    <?php endif; ?>
+</div>
+<div class="container">
     <div class="header"><?= $this->translate->_("Resources") ?></div>
     <?php if(!empty($this->resources)): ?>
         <table>
             <tr>
-                <th><?= $this->translate->_("Name") ?></th>
                 <th><?= $this->translate->_("Description") ?></th>
+                <th><?= $this->translate->_("Path") ?></th>
             </tr>
             <?php foreach($this->resources as $resource): ?>
             <tr>
-                <td><?= $resource['name'] ?></td>
                 <td><?= $resource['description'] ?></td>
+                <td>
+                    <?php
+                        $path = str_replace(".", "/", str_replace("mvc:default.", "", $resource['name']));
+                        echo $path;
+                    ?>
+                </td>
             </tr>
             <?php endforeach ?>
         </table>

@@ -8,8 +8,8 @@
  * @property integer $id
  * @property integer $resource_id
  * @property integer $role_id
- * @property Doctrine_Collection $AclResource
- * @property Doctrine_Collection $AclRole
+ * @property AclResource $AclResource
+ * @property AclRole $AclRole
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -39,11 +39,11 @@ abstract class BaseAclPermission extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('AclResource', array(
+        $this->hasOne('AclResource', array(
              'local' => 'resource_id',
              'foreign' => 'id'));
 
-        $this->hasMany('AclRole', array(
+        $this->hasOne('AclRole', array(
              'local' => 'role_id',
              'foreign' => 'id'));
     }

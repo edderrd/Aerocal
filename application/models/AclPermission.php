@@ -13,4 +13,13 @@
 class AclPermission extends BaseAclPermission
 {
 
+    public static function findAll()
+    {
+        return Doctrine_Query::create()
+                    ->from("AclPermission ap")
+                    ->leftJoin("ap.AclResource ar")
+                    ->leftJoin("ap.AclRole aro")
+                    ->fetchArray();
+    }
+
 }

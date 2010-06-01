@@ -4,11 +4,13 @@
         <tr>
             <th><?= $this->translate->_("Name") ?></th>
             <th><?= $this->translate->_("Type") ?></th>
+            <th><?= $this->translate->_("Status") ?></th>
         </tr>
         <?php foreach($this->aircrafts as $aircraft): ?>
             <tr>
                 <td><?= $aircraft['name'] ?></td>
                 <td><?= $aircraft['AircraftType']['type'] ?></td>
+                <td><?= $aircraft['AircraftStatus']['status'] ?></td>
             </tr>
         <?php endforeach; ?>
     </table>

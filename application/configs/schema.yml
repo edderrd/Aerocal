@@ -25,10 +25,10 @@ AclPermission:
       notnull: true
   relations:
     AclResource:
-      type: many
+      foreignType: one
       local: resource_id
     AclRole:
-      type: many
+      foreignType: one
       local: role_id
 
 AclRole:
@@ -96,6 +96,21 @@ AircraftType:
       local: id
       foreign: type_id
 
+AircraftStatus:
+  columns:
+    id:
+      primary: true
+      autoincrement: true
+      type: integer
+    status:
+      type: varchar(200)
+      notnull: true
+  relations:
+    Aircraft:
+      foreignType: one
+      local: id
+      foreign: status_id
+
 Aircraft:
   columns:
     id:
@@ -108,8 +123,15 @@ Aircraft:
     name:
       type: varchar(300)
       notnull: true
+    status_id:
+      type: integer
+      notnull: true
   relations:
     AircraftType:
       foreignType: one
       local: type_id
+      foreign: id
+    AircraftStatus:
+      foreignType: one
+      local: status_id
       foreign: id

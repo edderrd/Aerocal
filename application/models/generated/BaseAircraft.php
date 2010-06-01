@@ -8,7 +8,9 @@
  * @property integer $id
  * @property integer $type_id
  * @property varchar $name
+ * @property integer $status_id
  * @property AircraftType $AircraftType
+ * @property AircraftStatus $AircraftStatus
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -34,6 +36,10 @@ abstract class BaseAircraft extends Doctrine_Record
              'notnull' => true,
              'length' => '300',
              ));
+        $this->hasColumn('status_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             ));
     }
 
     public function setUp()
@@ -41,6 +47,10 @@ abstract class BaseAircraft extends Doctrine_Record
         parent::setUp();
         $this->hasOne('AircraftType', array(
              'local' => 'type_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('AircraftStatus', array(
+             'local' => 'status_id',
              'foreign' => 'id'));
     }
 }

@@ -22,6 +22,7 @@ class Aircraft extends BaseAircraft
         return Doctrine_Query::create()
                     ->from("Aircraft a")
                     ->leftJoin("a.AircraftType t")
+                    ->leftJoin("a.AircraftStatus s")
                     ->fetchArray(true);
     }
 

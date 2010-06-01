@@ -99,10 +99,24 @@ AircraftType:
   AircraftType_2:
     type: Helicopter
 
+AircraftStatus:
+  AircraftStatus_1:
+    status: Available
+  AircraftStatus_2:
+    status: Unavailable
+  AircraftStatus_3:
+    status: Maintanance
+
 Aircraft:
   Aircraft_1:
-    name: Boeing 373
-    type_id: 1
-  Aircraft_2:
-    name: Shopper
+    name: TI-BBA (R44)
     type_id: 2
+    status_id: 1
+  Aircraft_2:
+    name: TI-BAZ (R22)
+    type_id: 2
+    status_id: 1
+  Aircraft_3:
+    name: TI-GER (Piper Cherokee)
+    type_id: 1
+    status_id: 1
