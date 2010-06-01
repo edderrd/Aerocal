@@ -11,6 +11,7 @@
  * @property integer $status_id
  * @property AircraftType $AircraftType
  * @property AircraftStatus $AircraftStatus
+ * @property Doctrine_Collection $Reservation
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -51,6 +52,10 @@ abstract class BaseAircraft extends Doctrine_Record
 
         $this->hasOne('AircraftStatus', array(
              'local' => 'status_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('Reservation', array(
+             'local' => 'reservation_id',
              'foreign' => 'id'));
     }
 }

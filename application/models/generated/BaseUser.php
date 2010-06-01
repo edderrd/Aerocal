@@ -13,6 +13,7 @@
  * @property integer $role_id
  * @property string $language
  * @property AclRole $AclRole
+ * @property Doctrine_Collection $Reservation
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -64,6 +65,10 @@ abstract class BaseUser extends Doctrine_Record
         parent::setUp();
         $this->hasOne('AclRole', array(
              'local' => 'role_id',
+             'foreign' => 'id'));
+
+        $this->hasMany('Reservation', array(
+             'local' => 'reservation_id',
              'foreign' => 'id'));
     }
 }
