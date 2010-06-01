@@ -7,6 +7,7 @@
 class Form_Preferences
     extends Zend_Form
 {
+
     protected function _getLanguageList()
     {
         $config = new Zend_Config_Ini(APPLICATION_PATH . "/configs/application.ini", APPLICATION_ENV);
@@ -27,13 +28,14 @@ class Form_Preferences
     public function init()
     {
         $this->setMethod("post");
+        $this->setDefaultTranslator(Zend_Registry::get("translate"));
 
         $firstName = new Zend_Form_Element_Text("firstname");
-        $firstName->setLabel("First Name:");
+        $firstName->setLabel("First name");
         $this->addElement($firstName);
 
         $lastName = new Zend_Form_Element_Text("lastname");
-        $lastName->setLabel("Last Name:");
+        $lastName->setLabel("Last name");
         $this->addElement($lastName);
 
         $language = new Zend_Form_Element_Select("language");

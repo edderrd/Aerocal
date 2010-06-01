@@ -9,15 +9,17 @@ class Form_Login
 {
     public function init()
     {
+        $this->setDefaultTranslator(Zend_Registry::get("translate"));
+
         $elements = array();
         $this->setMethod("post");
 
         $username = new Zend_Form_Element_Text("username");
-        $username->setLabel("Name:")->setRequired(true);
+        $username->setLabel("Name")->setRequired(true);
         $elements[] = $username;
 
         $password = new Zend_Form_Element_Password("password");
-        $password->setLabel("Password:")->setRequired(true);
+        $password->setLabel("Password")->setRequired(true);
         $elements[] = $password;
 
         $submit = new Zend_Form_Element_Submit("login");
