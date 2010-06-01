@@ -1,1 +1,17 @@
-<h1>Acl Index page</h1>
+<div class="container">
+    <div class="header"><?= $this->translate->_("Resources") ?></div>
+    <?php if(!empty($this->resources)): ?>
+        <table>
+            <tr>
+                <th><?= $this->translate->_("Name") ?></th>
+                <th><?= $this->translate->_("Description") ?></th>
+            </tr>
+            <?php foreach($this->resources as $resource): ?>
+            <tr>
+                <td><?= $resource['name'] ?></td>
+                <td><?= $resource['description'] ?></td>
+            </tr>
+            <?php endforeach ?>
+        </table>
+    <?php endif; ?>
+</div>
