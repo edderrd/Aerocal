@@ -9,8 +9,8 @@
         <?php foreach($this->aircrafts as $aircraft): ?>
             <tr>
                 <td><?= $aircraft['name'] ?></td>
-                <td><?= $aircraft['AircraftType']['type'] ?></td>
-                <td><?= $aircraft['AircraftStatus']['status'] ?></td>
+                <td><?= $this->translate->_($aircraft['AircraftType']['type']) ?></td>
+                <td><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
