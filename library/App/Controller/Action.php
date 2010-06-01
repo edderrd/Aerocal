@@ -18,6 +18,7 @@ class App_Controller_Action extends Zend_Controller_Action
      * @var Zend_Translate
      */
     protected static $_translate = null;
+    protected static $_acl;
 
     /**
      * Check if the user is currently logged in

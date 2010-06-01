@@ -6,6 +6,11 @@ class IndexController extends App_Controller_Action
     public function init()
     {
         parent::init();
+
+        $this->_helper
+             ->ajaxContext()
+             ->addActionContexts(array("html", "json"))
+             ->initContext();
     }
 
     public function indexAction()
@@ -19,7 +24,15 @@ class IndexController extends App_Controller_Action
         $this->view->calendarOptions = $fc->getConfig();
 
         $user = Zend_Auth::getInstance()->getIdentity()->user;
-        $this->view->reservations = Reservation::findByUser($user->id);
+        if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
+            $this->view->reservations = Reservation::findAll();
+        else
+            $this->view->reservations = Reservation::findByUser($user->id);
+    }
+
+    public function reserveAction()
+    {
+        //TODO: Add logic here!
     }
 }
 

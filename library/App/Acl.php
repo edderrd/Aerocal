@@ -17,6 +17,8 @@ class App_Acl extends Zend_Acl
      */
     public $user;
 
+    public $isAmin = false;
+
     /**
      * Add roles to self ACL
      *
@@ -73,10 +75,9 @@ class App_Acl extends Zend_Acl
      */
     protected function _addPermissions()
     {
-        if ($this->user['AclRole']['name'] == "administrator")
+        if ($this->isAdmin)
         {
             $this->allow($user['AclRole']['name']);
-            echo "admin";
         }
         else
         {
@@ -100,6 +101,7 @@ class App_Acl extends Zend_Acl
             throw new Exception("There is a error on Roles and permissions");
 
         $this->user = $user;
+        $this->isAdmin = $user['AclRole']['name'] == "administrator" ? true : false;
         $this->_addRoles(AclRole::findAll());
         $this->_addResources(AclResource::findAll());
         $this->_addPermissions();

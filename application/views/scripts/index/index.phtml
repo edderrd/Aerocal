@@ -1,36 +1,80 @@
-<div class="container">
-    <div class="header"><?= $this->translate->_("My reservations") ?></div>
-    <?php if(empty($this->reservations)): ?>
-        <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
-    <?php else: ?>
-        <table>
-            <tr>
-                <th><?= $this->translate->_("Id") ?></th>
-                <th><?= $this->translate->_("Aircraft") ?></th>
-                <th><?= $this->translate->_("Start date") ?></th>
-                <th><?= $this->translate->_("End date") ?></th>
-                <th><?= $this->translate->_("Status") ?></th>
-                <th><?= $this->translate->_("Message") ?></th>
-            </tr>
-            <?php foreach($this->reservations as $reservation): ?>
+<?php if($this->acl()->isAdmin()): ?>
+    <div class="container">
+        <div class="header"><?= $this->translate->_("All reservations") ?></div>
+        <?php if(empty($this->reservations)): ?>
+            <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
+        <?php else: ?>
+            <table>
                 <tr>
-                    <td><?= $reservation['id'] ?></td>
-                    <td><?= $reservation['Aircraft']['name'] ?></td>
-                    <td><?= $reservation['start_date'] ?></td>
-                    <td><?= $reservation['end_date'] ?></td>
-                    <?php if(!empty($reservation['ReservationStatus'])): ?>
-                        <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
-                        <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
-                        <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
-                    <?php else: ?>
-                        <td>-</td>
-                        <td>-</td>
-                    <?php endif; ?>
+                    <th><?= $this->translate->_("Id") ?></th>
+                    <th><?= $this->translate->_("User") ?></th>
+                    <th><?= $this->translate->_("Aircraft") ?></th>
+                    <th><?= $this->translate->_("Start date") ?></th>
+                    <th><?= $this->translate->_("End date") ?></th>
+                    <th><?= $this->translate->_("Status") ?></th>
+                    <th><?= $this->translate->_("Message") ?></th>
                 </tr>
-            <?php endforeach; ?>
-        </table>
-    <?php endif; ?>
-</div>
+                <?php foreach($this->reservations as $reservation): ?>
+                    <tr>
+                        <td><?= $reservation['id'] ?></td>
+                        <td>
+                            <?= $reservation['User']['first_name'] ?> 
+                            <?= $reservation['User']['last_name'] ?>
+                        </td>
+                        <td><?= $reservation['Aircraft']['name'] ?></td>
+                        <td><?= $reservation['start_date'] ?></td>
+                        <td><?= $reservation['end_date'] ?></td>
+                        <?php if(!empty($reservation['ReservationStatus'])): ?>
+                            <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
+                            <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
+                            <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
+                        <?php else: ?>
+                            <td>-</td>
+                            <td>-</td>
+                        <?php endif; ?>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+        <div class="toolbar"><a href="#"><?= $this->translate->_("Add Reservation") ?></a></div>
+    </div>
+<?php else: ?>
+    <div class="container">
+        <div class="header"><?= $this->translate->_("My reservations") ?></div>
+        <?php if(empty($this->reservations)): ?>
+            <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
+        <?php else: ?>
+            <table>
+                <tr>
+                    <th><?= $this->translate->_("Id") ?></th>
+                    <th><?= $this->translate->_("Aircraft") ?></th>
+                    <th><?= $this->translate->_("Start date") ?></th>
+                    <th><?= $this->translate->_("End date") ?></th>
+                    <th><?= $this->translate->_("Status") ?></th>
+                    <th><?= $this->translate->_("Message") ?></th>
+                </tr>
+                <?php foreach($this->reservations as $reservation): ?>
+                    <tr>
+                        <td><?= $reservation['id'] ?></td>
+                        <td><?= $reservation['Aircraft']['name'] ?></td>
+                        <td><?= $reservation['start_date'] ?></td>
+                        <td><?= $reservation['end_date'] ?></td>
+                        <?php if(!empty($reservation['ReservationStatus'])): ?>
+                            <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
+                            <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
+                            <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
+                        <?php else: ?>
+                            <td>-</td>
+                            <td>-</td>
+                        <?php endif; ?>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
+        <div class="toolbar"><a href="#"><?= $this->translate->_("Add Reservation") ?></a></div>
+    </div>
+<?php endif; ?>
+
 
 <script type="text/javascript">
     function showCalendar(){
