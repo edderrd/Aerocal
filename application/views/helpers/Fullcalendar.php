@@ -31,10 +31,9 @@ class My_View_Helper_Fullcalendar
                                     }
                             </script>';
 
-    public function fullcalendar($name, App_Fullcalendar_Options $options = null, $attributes = array())
+    public function fullcalendar($name, App_Fullcalendar $fc, $attributes = array())
     {
-        $attributes = array("style" => "width: 80%; margin: 0 auto;");
-        $fc = new App_Fullcalendar($options);
+        $attributes = array("style" => "width: 90%; margin: 0 auto;");
         $functionName = "fullCalendar". ucfirst($name);
         $fcFunction = sprintf(
                 $this->fcFunction,

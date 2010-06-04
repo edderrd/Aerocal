@@ -14,6 +14,8 @@ class App_Fullcalendar_Options
         $this->setHeaders("prev,next today", "title", "month, agendaWeek, agendaDay")
              ->setOption("editable", true)
              ->setOption("defaultView", "agendaWeek")
+             ->setOption("aspectRatio", 1.0)
+             ->setOption("height", 650)
              ->setOption("selectable", true)
              ->setOption("unselectable", false)
              ->setOption("selectHelper", true)

@@ -18,9 +18,9 @@ class IndexController extends App_Controller_Action
         $start = date("Y-m-d H:i:s", time());
         $end = date("Y-m-d H:i:s", strtotime("+1hour", time()));
         
-        $fc = new App_Fullcalendar_Options();
-        $fc->addEvent(self::$_translate->_("Hello World"), $start, $end);
-        $this->view->calendarOptions = $fc;
+        $fc = new App_Fullcalendar();
+        $fc->options->addEvent(self::$_translate->_("Hello World"), $start, $end);
+        $this->view->fc = $fc;
 
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
