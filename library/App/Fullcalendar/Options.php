@@ -1,12 +1,7 @@
 <?php
-/**
- * Configuration generator for FullCalendar JQuery plugin
- *
- * @author Edder Rojas <edder.rojas@gmail.com>
- */
-class App_FullCalendar
-{
 
+class App_Fullcalendar_Options
+{
     protected $_data = array();
 
     /**
@@ -43,7 +38,7 @@ class App_FullCalendar
         // center
         if(!empty($center))
             $this->_data['header']['center'] = $center;
-        
+
         // right header
         if(!empty($right))
             $this->_data['header']['right'] = $right;
@@ -117,6 +112,4 @@ class App_FullCalendar
         else
             return $this->_data;
     }
-
 }
-?>

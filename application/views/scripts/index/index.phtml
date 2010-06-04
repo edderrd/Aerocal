@@ -75,30 +75,5 @@
     </div>
 <?php endif; ?>
 
-
-<script type="text/javascript">
-    function showCalendar(){
-       var date = new Date();
-       var d = date.getDate();
-       var m = date.getMonth();
-       var y = date.getFullYear();
-       calendarOptions = <?= $this->calendarOptions ?>;
-       calendarOptions.select = function(start, end, allDay, view) {
-            if (confirm(
-                        "clear the selection?\n" +
-                        '---- selection ----\n' +
-                        'start: ' + start + '\n' +
-                        'end: ' + end + '\n' + // exclusive!!
-                        'allDay: ' + allDay))
-            {
-                $('#calendar').fullCalendar('unselect'); // 'unselect' method to manually clear selection
-                // a 'select' method coming soon...
-            }
-       };
-
-       $('#calendar').fullCalendar(calendarOptions);
-		
-    }
-</script>
-<?php //$this->JQuery()->addOnLoad("showCalendar();"); ?>
-<!--<div id="calendar" style="width: 900px; margin: 0 auto;"></div>-->
+<br>
+<?= $this->Fullcalendar("reservations", $this->calendarOptions) ?>
