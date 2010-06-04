@@ -2,7 +2,6 @@
 
 class IndexController extends App_Controller_Action
 {
-
     public function init()
     {
         parent::init();
@@ -15,18 +14,22 @@ class IndexController extends App_Controller_Action
 
     public function indexAction()
     {
-        $start = date("Y-m-d H:i:s", time());
-        $end = date("Y-m-d H:i:s", strtotime("+1hour", time()));
-        
         $fc = new App_Fullcalendar();
-        $fc->options->addEvent(self::$_translate->_("Hello World"), $start, $end);
-        $this->view->fc = $fc;
+        $fc->selectable(false)->editable(false);
 
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
+        {
             $this->view->reservations = Reservation::findAll();
+            $fc->addEvents(Reservation::toEvents($this->view->reservations, true));
+        }
         else
+        {
             $this->view->reservations = Reservation::findByUser($user->id);
+            $fc->addEvents(Reservation::toEvents($this->view->reservations));
+        }
+
+        $this->view->fc = $fc;
     }
 
     public function reserveAction()

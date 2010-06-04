@@ -31,6 +31,13 @@ class My_View_Helper_Fullcalendar
                                     }
                             </script>';
 
+    /**
+     * Init view helper function
+     * @param string $name
+     * @param App_Fullcalendar $fc
+     * @param array $attributes
+     * @return string
+     */
     public function fullcalendar($name, App_Fullcalendar $fc, $attributes = array())
     {
         $attributes = array("style" => "width: 90%; margin: 0 auto;");

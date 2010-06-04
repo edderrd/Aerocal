@@ -21,6 +21,7 @@ class Reservation extends BaseReservation
                     ->from("Reservation r")
                     ->leftJoin("r.User u")
                     ->leftJoin("r.Aircraft a")
+                    ->leftJoin("a.AircraftType at")
                     ->leftJoin("r.ReservationStatus s")
                     ->leftJoin("s.ReservationType t");
 
@@ -38,11 +39,44 @@ class Reservation extends BaseReservation
                     ->from("Reservation r")
                     ->leftJoin("r.User u")
                     ->leftJoin("r.Aircraft a")
+                    ->leftJoin("a.AircraftType at")
                     ->leftJoin("r.ReservationStatus s")
                     ->leftJoin("s.ReservationType t")
                     ->addWhere("u.id = $userId")
                     ->addWhere("r.end_date > '$now'")
                     ->fetchArray(true);
+    }
+
+    /**
+     * Converts reservations array into Fullcalendar events
+     * @param array $reservations
+     * @param bool addNames add names to title?
+     * @return array
+     */
+    public static function toEvents($reservations, $addName = false)
+    {
+        $rv = array();
+
+        if (!empty($reservations))
+        {
+            foreach($reservations as $reservation)
+            {
+                $tmp = array();
+
+                if($addName)
+                    $tmp['title'] = $reservation['User']['first_name'] ." "
+                                    .$reservation['User']['last_name'] .": "
+                                    .$reservation['Aircraft']['name'];
+                else
+                    $tmp['title'] = $reservation['Aircraft']['name'];
+                $tmp['title'] .= " - " . $reservation['Aircraft']['AircraftType']['type'];
+                $tmp['start_date'] = $reservation['start_date'];
+                $tmp['end_date'] = $reservation['end_date'];
+
+                $rv[] = $tmp;
+            }
+        }
+        return $rv;
     }
 
 }
