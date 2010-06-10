@@ -1,0 +1,139 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Aerocal\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-10 10:54-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Edder Rojas <edder.rojas@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+
+msgid "Logged as"
+msgstr "Logged as"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Not logged in"
+msgstr "Not logged in"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Preferences saved successfully"
+msgstr "Preferences saved successfully"
+
+msgid "User login"
+msgstr "User login"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Users list"
+msgstr "Users list"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+msgid "Last name"
+msgstr "Last name"
+
+msgid "List users"
+msgstr "List users"
+
+msgid "First name"
+msgstr "First name"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Aircrafts list"
+msgstr "Aircrafts list"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Hello World"
+msgstr "Hello World"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Aircraft"
+msgstr "Aircraft"
+
+msgid "Permissions"
+msgstr "Permissions"
+
+msgid "Aircraft list"
+msgstr "Aircraft list"
+
+msgid "Preferences"
+msgstr "Preferences"
+
+msgid "User preferences"
+msgstr "User preferences"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "Available"
+msgstr "Available"
+
+msgid "Maintanance"
+msgstr "Maintanance"
+
+msgid "Unavailable"
+msgstr "Unavailable"
+
+msgid "Helicopter"
+msgstr "Helicopter"
+
+msgid "Airplane"
+msgstr "Airplane"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Resource"
+msgstr "Resource"
+
+msgid "Aircraft administration"
+msgstr "Aircraft administration"
+
+msgid "Permissions and Roles"
+msgstr "Permissions and Roles"
+
+msgid "Language"
+msgstr "Language"
+
+msgid "Start date"
+msgstr "Start date"
+
+msgid "End date"
+msgstr "End date"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Accepted"
+msgstr "Accepted"
+
+msgid "My reservations"
+msgstr "My reservations"
+
+msgid "No reservations"
+msgstr "No reservations"
+

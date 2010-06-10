@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Aerocal\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-10 10:54-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Edder Rojas <edder.rojas@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: Costa Rica\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Logged as"
+msgstr "Iniciado como"
+
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+msgid "Not logged in"
+msgstr "Sesión no iniciada"
+
+msgid "Login"
+msgstr "Iniciar sesión"
+
+msgid "Preferences saved successfully"
+msgstr "Preferencias salvadas correctamente"
+
+msgid "User login"
+msgstr "Sesión de Usuario"
+
+msgid "Username"
+msgstr "Nombre de usuario"
+
+msgid "Users list"
+msgstr "Lista de Usuarios"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Welcome Back"
+msgstr "Bienvenido"
+
+msgid "Last name"
+msgstr "Apellidos"
+
+msgid "List users"
+msgstr "Lista de usuarios"
+
+msgid "First name"
+msgstr "Nombre"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Aircrafts list"
+msgstr "Lista de aeronaves"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Hello World"
+msgstr "Hola mundo"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Users"
+msgstr "Usuarios"
+
+msgid "Aircraft"
+msgstr "Aeronaves"
+
+msgid "Permissions"
+msgstr "Permisos"
+
+msgid "Aircraft list"
+msgstr "Lista de aeronaves"
+
+msgid "Preferences"
+msgstr "Preferencias"
+
+msgid "User preferences"
+msgstr "Preferencias de Usuario"
+
+msgid "Update"
+msgstr "Actualizar"
+
+msgid "Available"
+msgstr "Disponible"
+
+msgid "Maintanance"
+msgstr "Mantenimiento"
+
+msgid "Unavailable"
+msgstr "No disponible"
+
+msgid "Helicopter"
+msgstr "Helicoptero"
+
+msgid "Airplane"
+msgstr "Aeroplano"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Resource"
+msgstr "Recurso"
+
+msgid "Aircraft administration"
+msgstr "Administración de aeronaves"
+
+msgid "Permissions and Roles"
+msgstr "Permisos y roles"
+
+msgid "Language"
+msgstr "Lenguaje"
+
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+msgid "End date"
+msgstr "Fecha final"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Accepted"
+msgstr "Aceptado"
+
+msgid "My reservations"
+msgstr "Mis reservaciones"
+
+msgid "No reservations"
+msgstr "Sin reservaciones"
+
+msgid "Add Reservation"
+msgstr "Agregar reservación"
+

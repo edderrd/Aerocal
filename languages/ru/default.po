@@ -1,0 +1,142 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Aerocal\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-10 10:54-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Edder Rojas <edder.rojas@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+
+msgid "Logged as"
+msgstr "Клиент"
+
+msgid "Logout"
+msgstr "Выйти"
+
+msgid "Not logged in"
+msgstr "Не вошли в систему"
+
+msgid "Login"
+msgstr "Войти"
+
+msgid "Preferences saved successfully"
+msgstr "Настройки успешно сохранены"
+
+msgid "User login"
+msgstr "Пользователь"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Users list"
+msgstr "Список пользователей"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Welcome Back"
+msgstr "Приветствовать"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "List users"
+msgstr "Список пользователей"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Role"
+msgstr "Роль"
+
+msgid "Aircrafts list"
+msgstr "Список самолетв"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Hello World"
+msgstr "Привет Мир"
+
+msgid "Home"
+msgstr "Дом"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Aircraft"
+msgstr "Воздушных судо"
+
+msgid "Permissions"
+msgstr "Разрешения"
+
+msgid "Aircraft list"
+msgstr "Список самолетов"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "User preferences"
+msgstr "Пользовательские настройки"
+
+msgid "Update"
+msgstr "Обновление"
+
+msgid "Available"
+msgstr "Доступен"
+
+msgid "Maintanance"
+msgstr "УХОД"
+
+msgid "Unavailable"
+msgstr "Недоступен"
+
+msgid "Helicopter"
+msgstr "Вертолет"
+
+msgid "Airplane"
+msgstr "Самолет"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Resource"
+msgstr "Ресурсы"
+
+msgid "Aircraft administration"
+msgstr "Aдминистрации Самолетов"
+
+msgid "Permissions and Roles"
+msgstr "Разрешения и Роли"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Start date"
+msgstr "День начало"
+
+msgid "End date"
+msgstr "День окончания"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Accepted"
+msgstr "Принято"
+
+msgid "My reservations"
+msgstr "Мои заказы"
+
+msgid "No reservations"
+msgstr "Никаких заказов"
+
+msgid "Add Reservation"
+msgstr "добавлять заказы"
+

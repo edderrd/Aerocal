@@ -1,0 +1,141 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Aerocal\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-06-10 10:54-0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Edder Rojas <edder.rojas@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Logged as"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Not logged in"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Preferences saved successfully"
+msgstr ""
+
+msgid "User login"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Users list"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Welcome Back"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "List users"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Aircrafts list"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Hello World"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "Aircraft"
+msgstr ""
+
+msgid "Permissions"
+msgstr ""
+
+msgid "Aircraft list"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "User preferences"
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Available"
+msgstr ""
+
+msgid "Maintanance"
+msgstr ""
+
+msgid "Unavailable"
+msgstr ""
+
+msgid "Helicopter"
+msgstr ""
+
+msgid "Airplane"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Resource"
+msgstr ""
+
+msgid "Aircraft administration"
+msgstr ""
+
+msgid "Permissions and Roles"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Start date"
+msgstr ""
+
+msgid "End date"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Accepted"
+msgstr ""
+
+msgid "My reservations"
+msgstr ""
+
+msgid "No reservations"
+msgstr ""
+
+msgid "Add Reservation"
+msgstr ""

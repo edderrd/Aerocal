@@ -21,10 +21,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _createTranslate($config = array())
     {
         if (!empty($config)) {
-            $path = realpath($config['path']) . "/%s/default.csv";
+            $path = realpath($config['path']) . "/%s/default.mo";
 
             $translate = new Zend_Translate(
-                                'csv',
+                                'gettext',
                                 sprintf($path, $config['default']),
                                 $config['default'],
                                 $config['options']
