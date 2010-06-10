@@ -1,7 +1,23 @@
-Aerocal
-=======
+ .__..___.__ .__. __ .__..
+ [__][__ [__)|  |/  `[__]|
+ |  |[___|  \|__|\__.|  ||___
+  AEROTOUR Reservation System
+=============================
 
-Flight planner
+ Application used to make online reservation for available aircraft.
+ Designed for a small to medium size aviation school.
+
+ Features:
+ - User is assigned a username/password, and defined which aircrafts able to rent by administrator
+ - User is given 3 state calendar displayed in either month, week or day.
+ - Administrator is able to block aircrafts for specific days and hours.
+ - User selects a time slot between 6:00am & 3:00pm with 1hr min, and specifies aircraft to rent.
+
+ Details:
+ - User only able to make reservations for the days preceding today
+ - At 15:00 application will lock and email admin reservation schedule for the next day.
+ - Slots can only be selected by hours.  (Cannot make reservation for 1hr 25min)
+
 
 REQUIREMENTS
 ------------
