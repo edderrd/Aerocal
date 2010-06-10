@@ -1,0 +1,127 @@
+/* 
+    Document   : ui
+    Created on : Jun 9, 2010, 6:53:42 PM
+    Author     : websites
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: #6fb2e5;
+/*    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAG1BMVEXS4erj7PHf6O3g6O729vby8vLx8fHh6u%2Fz8%2FOBUUhCAAAAIElEQVQIHWNgFFJkMAlJYShzaWMQS3Nh0EhzY1BxSQMAM84Ew1msm%2BsAAAAASUVORK5CYII%3D"); */
+}
+#page {
+    box-shadow: 0 1px 5px #0061aa, inset 0 10px 20px #b6f9ff;
+    -o-box-shadow: 0 1px 5px #0061aa, inset 0 10px 20px #b6f9ff;
+    -webkit-box-shadow: 0 1px 5px #0061aa, inset 0 10px 20px #b6f9ff;
+    -moz-box-shadow: 0 1px 5px #0061aa, inset 0 10px 20px #b6f9ff;
+}
+header.header {
+    width: 400px;
+}
+header.header span {
+    position: absolute;
+    top:0;
+    right:0;
+    margin-right: 10px;
+}
+header.header h1 {
+    line-height: 40px;
+    text-indent: -9999px;
+    background-image: url('../img/logo-aerotour40.png');
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.menu {
+    position:absolute;
+    top:0;
+    right:0;
+    margin-right: 10px;
+}
+.menu li {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-transition: .3s all;
+  -webkit-transition: .3s all;
+  -moz-transition: .3s all;
+
+  border-radius: 4px;
+  box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -o-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -webkit-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -moz-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+}
+.menu li:hover {
+    background-color: rgba(255,255,255,0.25);
+}
+.menu li a {
+    padding: 13px;
+    display: inline-block;
+}
+.menu li.active {
+    background-color: rgba(0,0,0,0.10);
+}
+
+.btn {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-transition: .3s all;
+  -webkit-transition: .3s all;
+  -moz-transition: .3s all;
+
+  height: 38px;
+  border: 1px solid rgba(0,0,0,0.8);
+  border-radius: 4px;
+  background: rgba(14,59,103,0.25);
+  box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -o-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -webkit-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  -moz-box-shadow: inset 0 0 1px #fff, inset 4px 4px 20px rgba(255,255,255,0.33), inset -2px -2px 10px rgba(255,255,255,0.25);
+  position: relative;
+  bottom: 1px;
+}
+
+.btn:hover {
+  background-color: rgba(255,255,255,0.25);
+}
+.container {
+    background-color: white;
+}
+.footer {
+    clear: both;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+form dl {padding: 32px;}
+form input[type=password], form input[type=text] {
+  font-size: 1em;
+  display: inline-block;
+  margin: 5px 0 10px 0;
+  border: 1px solid rgba(0,0,0,0.5);
+  padding: 4px 8px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  background: rgba(255,255,255,0.75);
+  width: 200px;
+  box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+  -o-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+  -webkit-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+  -moz-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+}
+
+form label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin: 2px 4px 6px 4px;
+    text-align: right;
+}

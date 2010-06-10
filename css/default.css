@@ -28,19 +28,19 @@ html, body {
 }
 
 .menu ul {
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; 
     padding-bottom: 19px;
     padding-left: 10px;
-    margin: 0px;
+    margin: 0px;*/
 }
 
 .menu li {
-    display: inline;
+    display: inline-block;
     list-style-type: none;
     margin: 0px;
     padding: 0px;
 }
-
+/*
 .menu li a:link, .menu a:visited {
     background: #FFF;
     border: 1px solid #ccc;
@@ -71,7 +71,7 @@ html, body {
     display: block;
     background-color: #F7F7F6;
 }
-
+*/
 .breadcrumbs {
     margin-left: 20px;
 }
@@ -221,9 +221,10 @@ table.datagrid td {
 
 .container table {
     font-size: 12px;
-    text-align: center;
+    text-align: left;
     width: 100%;
     margin: -10px -10px 5px -2px;
+    padding: 13px;
 }
 
 .container table th {
