@@ -1,9 +1,14 @@
+@import url("helpers.css");
+@import url("ui.css");
+
+
 /** Resseting layout **/
 html, body {
     padding: 0px;
     margin: 0px;
     font-family: arial, san-serif;
     font-size: 0.9em;
+    overflow-x: hidden;
 }
 
 /** Header layout **/

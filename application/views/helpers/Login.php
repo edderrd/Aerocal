@@ -25,7 +25,7 @@ class My_View_Helper_Login extends App_View_Helper_Abstract
         if (Zend_Auth::getInstance()->hasIdentity())
         {
             $identity = Zend_Auth::getInstance()->getIdentity();
-            $welcomeMsg = $this->view->translate->_("Welcome Back");
+            $welcomeMsg = $this->view->translate->_("Logged as");
             $message = "$welcomeMsg, {$identity->user['first_name']} {$identity->user['last_name']} |";
             $logoutMsg = $this->view->translate->_("Logout");
             $content = " $logoutMsg";
