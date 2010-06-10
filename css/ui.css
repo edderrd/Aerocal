@@ -101,7 +101,7 @@ header.header h1 {
     right: 0px;
 }
 form dl {padding: 32px;}
-form input[type=text] {
+form input[type=password], form input[type=text] {
   font-size: 1em;
   display: inline-block;
   margin: 5px 0 10px 0;
@@ -116,4 +116,12 @@ form input[type=text] {
   -o-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
   -webkit-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
   -moz-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+}
+
+form label {
+    display: block;
+    width: 150px;
+    float: left;
+    margin: 2px 4px 6px 4px;
+    text-align: right;
 }
