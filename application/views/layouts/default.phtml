@@ -17,6 +17,7 @@
         <?= $this->JQuery() ?>
     </head>
     <body>
+        <div id="page">
         <header class="header">
             <?= $this->login() ?>
             <h1><?= $this->app['header'] ?></h1>
@@ -49,6 +50,7 @@
                 <span class="align-left">Zend Framework Version: <?= Zend_Version::VERSION ?></span><br>
                 <span class="align-left">Doctrine Version: <?= Doctrine_Core::VERSION ?></span><br>
             <?php endif; ?>
+        </div>
         </div>
     </body>
 </html>
