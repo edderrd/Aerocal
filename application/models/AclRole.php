@@ -18,6 +18,8 @@ class AclRole extends BaseAclRole
     {
         return Doctrine_Query::create()
                     ->from("AclRole r")
+                    ->leftJoin('r.AclPermission p')
+                    ->leftJoin('p.AclResource re')
                     ->fetchArray();
 
     }

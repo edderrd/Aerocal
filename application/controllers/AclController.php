@@ -9,6 +9,7 @@ class AclController extends App_Controller_Action
     {
         $this->view->permissions = AclPermission::findAll();
         $this->view->resources = AclResource::findAll();
+        $this->view->roles = AclRole::findAll();
     }
 }
 ?>

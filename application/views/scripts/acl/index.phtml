@@ -1,38 +1,35 @@
 <div class="container">
-    <div class="header"><?= $this->translate->_("Permissions") ?></div>
-    <?php if(!empty($this->permissions)): ?>
+    <div class="header"><?= $this->translate->_("Roles") ?></div>
+    <?php if(!empty($this->roles)): ?>
         <table>
             <tr>
-                <th><?= $this->translate->_("Resource") ?></th>
+                <th><?= $this->translate->_("Id") ?></th>
                 <th><?= $this->translate->_("Role") ?></th>
+                <th><?= $this->translate->_("Accepted permission") ?></th>
             </tr>
-            <?php foreach($this->permissions as $permission): ?>
-            <tr>
-                <td><?= $permission['AclResource'][0]['description'] ?></td>
-                <td><?= $permission['AclRole'][0]['name'] ?></td>
-            </tr>
-            <?php endforeach ?>
-        </table>
-    <?php endif; ?>
-</div>
-<div class="container">
-    <div class="header"><?= $this->translate->_("Resources") ?></div>
-    <?php if(!empty($this->resources)): ?>
-        <table>
-            <tr>
-                <th><?= $this->translate->_("Description") ?></th>
-                <th><?= $this->translate->_("Path") ?></th>
-            </tr>
-            <?php foreach($this->resources as $resource): ?>
-            <tr>
-                <td><?= $resource['description'] ?></td>
-                <td>
-                    <?php
-                        $path = str_replace(".", "/", str_replace("mvc:default.", "", $resource['name']));
-                        echo $path;
-                    ?>
-                </td>
-            </tr>
+            <?php foreach($this->roles as $rol): ?>
+                <?php if($rol['name'] == 'administrator'): ?>
+                    <tr>
+                        <td><?= $rol['id'] ?></td>
+                        <td><?= ucfirst($rol['name']) ?></td>
+                        <td><span class="button-option">*<?= $this->translate->_("Full access") ?></span></td>
+                    </tr>
+                <?php else: ?>
+                    <tr>
+                        <td><?= $rol['id'] ?></td>
+                        <td><?= ucfirst($rol['name']) ?></td>
+                        <?php if (isset($rol['AclPermission']['AclResource'])): ?>
+                            <td>
+                                <?php foreach($rol['AclPermission']['AclResource'] as $rolResource): ?>
+                                    <span class="button-option"><?= $rolResource['description'] ?></span>&nbsp;
+                                <?php endforeach; ?>
+                            </td>
+                        <?php else: ?>
+                            <td></td>
+                        <?php endif; ?>
+                        
+                    </tr>
+                <?php endif; ?>
             <?php endforeach ?>
         </table>
     <?php endif; ?>
