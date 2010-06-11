@@ -1,0 +1,33 @@
+<?= $this->doctype() ?>
+<html>
+    <head>
+        <?= $this->headTitle() ?>
+        <?= $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8') ?>
+
+        <?php $this->headLink()->appendStylesheet($this->baseUrl("/css/default.css")) ?>
+        <?php $this->JQuery()->setLocalPath($this->baseUrl("/js/jquery-1.4.2.min.js")) ?>
+        <?php $this->JQuery()->addStylesheet($this->baseUrl("/css/smoothness/jquery-ui-1.8.1.custom.css")) ?>
+        <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery-ui-1.7.3.custom.min.js")) ?>
+        <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.layout.min-1.2.0.js")) ?>
+        <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery.custom.js")) ?>
+
+        <?= $this->headLink() ?>
+        <?= $this->headStyle() ?>
+        <?= $this->headScript() ?>
+        <?= $this->JQuery() ?>
+
+        <?= $this->JQuery()->addOnLoad("applyLayout();") ?>
+    </head>
+    <body>
+        <div class="ui-layout-center">
+            <?php if($this->messages): ?>
+                <ul>
+                    <?php foreach($this->messages as $message):?>
+                        <li><?= $message ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <?= $this->layout()->content ?>
+        </div>
+    </body>
+</html>

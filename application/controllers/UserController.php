@@ -45,6 +45,7 @@ class UserController extends App_Controller_Action
 	
     public function loginAction()
     {
+        $this->_helper->layout()->setLayout("login");
         $this->view->form = new Form_Login();
         if ($this->getRequest()->isPost() &&
             $this->view->form->isValid($this->_getAllParams()))
