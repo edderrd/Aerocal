@@ -13,7 +13,7 @@
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.layout.min-1.2.0.js")) ?>
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery.custom.js")) ?>
 
-        <?php $this->JQuery()->addOnLoad("var myLayout = applyLayout();") ?>
+        <?php $this->JQuery()->addOnLoad("var myLayout = applyLayout(); navigationPanels();") ?>
 
         <?= $this->headLink() ?>
         <?= $this->headStyle() ?>
@@ -37,7 +37,16 @@
             </div>
         </div>
         <div class="ui-layout-west">
-            <?= $this->navigation()->menu()->setMaxDepth(0) ?>
+            <div class="side-pane">
+                <h1><?= $this->translate->_("Navigation") ?></h1>
+                <?= $this->navigation()->menu()->setMaxDepth(0) ?>
+            </div>
+            <div class="side-pane">
+                <h1><?= $this->translate->_("Messages") ?></h1>
+                <ul>
+                    <li><?= $this->translate->_("Unread") ?> <span class="counter">0</span></li>
+                </ul>
+            </div>
         </div>
         <div class="ui-layout-center">
             <?= $this->layout()->content ?>

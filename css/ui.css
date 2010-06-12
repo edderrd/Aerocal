@@ -157,11 +157,82 @@ form label {
 .west-pane {
     background: #D6DDE5;
     color: #000;
+    padding: 0px;
+    margin: 0px;
 }
 
 .west-pane a, .west-pane a:visited, .west-pane a:link  {
     color: #000;
 }
+
+.west-pane h1 {
+    font-family: arial;
+    font-size: 13px;
+    color: #8D93A0;
+    padding: 0px;
+    margin: 0px;
+    text-shadow: 1px 1px 1px #eee;
+    text-transform: uppercase;
+    padding: 2px 10px;
+}
+
+.toggle-normal {
+    background:url(/img/togglers.png) 0 0 no-repeat;
+}
+
+.toggle-down {
+    background:url(/img/togglers.png) 0 -10px no-repeat;
+}
+
+.west-pane .side-pane {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.west-pane .side-pane ul {
+    margin: 0px;
+    list-style: none;
+    padding: 0px;
+}
+
+.west-pane .side-pane li {
+    padding: 2px 2px 2px 30px;
+    margin-left: 0px;
+}
+
+.west-pane .side-pane .active {
+    color: #fff;
+    border-top: 1px solid #8D93A0;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.1, rgb(126,141,180)),
+        color-stop(0.74, rgb(157,174,202))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(126,141,180) 10%,
+        rgb(157,174,202) 74%
+    );
+}
+
+.west-pane .side-pane .active a, .west-pane .side-pane .active a:link, .west-pane .side-pane .active a:visited {
+    color: #fff;
+    font-weight: bold;
+}
+
+.west-pane .side-pane span.counter {
+    float   : right;
+    background-color: #8296BD;
+    font-size: 84%;
+    font-weight: bold;
+    color: #fff;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding: 1px 8px;
+}
+
 
 .west-resizer {
     background: #D6DDE5;

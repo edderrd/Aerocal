@@ -40,3 +40,15 @@ function applyLayout()
 
     });
 }
+
+function navigationPanels()
+{
+    $(".side-pane > h1").css("cursor", "pointer");
+    $(".side-pane > h1").click(
+        function()
+        {
+            $(this).siblings("ul").slideToggle();
+        }
+    );
+
+}

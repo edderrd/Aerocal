@@ -41,11 +41,6 @@ span.login a {
     font-weight: bold;
 }
 
-.highlight {
-    background-color: #F0EED0;
-    cursor: pointer;
-}
-
 .x-hidden {
     display: none;
 }
