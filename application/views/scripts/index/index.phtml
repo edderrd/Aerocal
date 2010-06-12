@@ -1,79 +1,33 @@
-<?php if($this->acl()->isAdmin()): ?>
-    <div class="container">
-        <div class="header"><?= $this->translate->_("All reservations") ?></div>
-        <?php if(empty($this->reservations)): ?>
-            <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
-        <?php else: ?>
-            <table>
-                <tr>
-                    <th><?= $this->translate->_("Id") ?></th>
-                    <th><?= $this->translate->_("User") ?></th>
-                    <th><?= $this->translate->_("Aircraft") ?></th>
-                    <th><?= $this->translate->_("Start date") ?></th>
-                    <th><?= $this->translate->_("End date") ?></th>
-                    <th><?= $this->translate->_("Status") ?></th>
-                    <th><?= $this->translate->_("Message") ?></th>
-                </tr>
-                <?php foreach($this->reservations as $reservation): ?>
-                    <tr>
-                        <td><?= $reservation['id'] ?></td>
-                        <td>
-                            <?= $reservation['User']['first_name'] ?> 
-                            <?= $reservation['User']['last_name'] ?>
-                        </td>
-                        <td><?= $reservation['Aircraft']['name'] ?></td>
-                        <td><?= $reservation['start_date'] ?></td>
-                        <td><?= $reservation['end_date'] ?></td>
-                        <?php if(!empty($reservation['ReservationStatus'])): ?>
-                            <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
-                            <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
-                            <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
-                        <?php else: ?>
-                            <td>-</td>
-                            <td>-</td>
-                        <?php endif; ?>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-        <div class="toolbar"><a href="#"><?= $this->translate->_("Add Reservation") ?></a></div>
-    </div>
-<?php else: ?>
-    <div class="container">
-        <div class="header"><?= $this->translate->_("My reservations") ?></div>
-        <?php if(empty($this->reservations)): ?>
-            <div class="no-result"><?= $this->translate->_("No reservations") ?></div>
-        <?php else: ?>
-            <table>
-                <tr>
-                    <th><?= $this->translate->_("Id") ?></th>
-                    <th><?= $this->translate->_("Aircraft") ?></th>
-                    <th><?= $this->translate->_("Start date") ?></th>
-                    <th><?= $this->translate->_("End date") ?></th>
-                    <th><?= $this->translate->_("Status") ?></th>
-                    <th><?= $this->translate->_("Message") ?></th>
-                </tr>
-                <?php foreach($this->reservations as $reservation): ?>
-                    <tr>
-                        <td><?= $reservation['id'] ?></td>
-                        <td><?= $reservation['Aircraft']['name'] ?></td>
-                        <td><?= $reservation['start_date'] ?></td>
-                        <td><?= $reservation['end_date'] ?></td>
-                        <?php if(!empty($reservation['ReservationStatus'])): ?>
-                            <?php $lastStatus = count($reservation['ReservationStatus']) -1 ?>
-                            <td><?= $this->translate->_($reservation['ReservationStatus'][$lastStatus]['ReservationType']['type']) ?></td>
-                            <td><?= $reservation['ReservationStatus'][$lastStatus]['message'] ?></td>
-                        <?php else: ?>
-                            <td>-</td>
-                            <td>-</td>
-                        <?php endif; ?>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        <?php endif; ?>
-        <div class="toolbar"><a href="#"><?= $this->translate->_("Add Reservation") ?></a></div>
-    </div>
-<?php endif; ?>
+<?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/wdCalendar_lang_US.js")) ?>
+<?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.calendar.js")) ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl("/css/calendar.css")) ?>
+<script type="text/javascript">
+    function showCalendar()
+    {
+        var op = {
+            view: "week",
+            theme:3,
+            showday: new Date(),
+            //EditCmdhandler:Edit,
+            //DeleteCmdhandler:Delete,
+            //ViewCmdhandler:View,
+            //onWeekOrMonthToDay:wtd,
+            //onBeforeRequestData: cal_beforerequest,
+            //onAfterRequestData: cal_afterrequest,
+            //onRequestDataError: cal_onerror,
+            //autoload:true,
+            //url: DATA_FEED_URL + "?method=list",
+            //quickAddUrl: DATA_FEED_URL + "?method=add",
+            //quickUpdateUrl: DATA_FEED_URL + "?method=update",
+            //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
+            height: document.documentElement.clientHeight  - 102,
+            eventItems: []
+        };
+        console.debug($(".ui-layout-center").size);
+        console.debug(document.documentElement.clientHeight - 200);
+        var p = $("#calendarcontainer").bcalendar(op).BcalGetOp();
+    }
+</script>
 
-<br>
-<?= $this->Fullcalendar("reservations", $this->fc) ?>
+<div id="calendarcontainer" style="overflow-y: visible; border: 1px solid #ccc"></div>
+<?php $this->JQuery()->addOnLoad("showCalendar();") ?>

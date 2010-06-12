@@ -1,22 +1,33 @@
 function applyLayout()
 {
-    $('body').layout(
+    return $('body').layout(
     {
         defaults:
         {
             applyDefaultStyles: true,
-            center__onresize: "innerLayout.resizeAll"
+            center__onresize: "innerLayout.resizeAll"            
         },
         north:
         {
             closable: false,
             resizable: false,
             size: '103',
-            spacing_open: 0
+            spacing_open: 0,
+            applyDefaultStyles: false,
+            paneClass: 'north-pane'
+        },
+        center:
+        {
+            applyDefaultStyles: false,
+            paneClass: 'center-pane'
         },
         west:
         {
-            //TODO: Add options here
+            applyDefaultStyles: false,
+            paneClass: 'west-pane',
+            resizerClass: 'west-resizer',
+            togglerClass: 'ui-layout-toggler',
+            buttonClass: 'ui-layout-button'
         },
         east:
         {
@@ -28,6 +39,4 @@ function applyLayout()
         }
 
     });
-
-
 }

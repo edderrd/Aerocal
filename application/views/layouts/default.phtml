@@ -13,7 +13,7 @@
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.layout.min-1.2.0.js")) ?>
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery.custom.js")) ?>
 
-        <?php $this->JQuery()->addOnLoad("applyLayout();") ?>
+        <?php $this->JQuery()->addOnLoad("var myLayout = applyLayout();") ?>
 
         <?= $this->headLink() ?>
         <?= $this->headStyle() ?>

@@ -14,7 +14,7 @@ body {
     position: relative;
     margin: 0;
     padding: 0;
-    background: #6fb2e5;
+    background: #fff;
 /*    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGBAMAAAAS4vJ7AAAAG1BMVEXS4erj7PHf6O3g6O729vby8vLx8fHh6u%2Fz8%2FOBUUhCAAAAIElEQVQIHWNgFFJkMAlJYShzaWMQS3Nh0EhzY1BxSQMAM84Ew1msm%2BsAAAAASUVORK5CYII%3D"); */
 }
 #page {
@@ -112,10 +112,10 @@ form input[type=password], form input[type=text] {
   -moz-border-radius: 2px;
   background: rgba(255,255,255,0.75);
   width: 200px;
-  box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
-  -o-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
-  -webkit-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
-  -moz-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff
+  box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff;
+  -o-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff;
+  -webkit-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff;
+  -moz-box-shadow: 0 0 2px #fff, 0 0 1px #fff, inset 0 0 3px #fff;
 }
 
 form label {
@@ -124,4 +124,34 @@ form label {
     float: left;
     margin: 2px 4px 6px 4px;
     text-align: right;
+}
+
+.center-pane {
+    padding: 0px;
+    border: 1px solid #ccc;
+}
+
+.north-pane {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.10, rgb(140,140,140)),
+        color-stop(1, rgb(194,194,194))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(140,140,140) 10%,
+        rgb(194,194,194) 100%
+    );
+    padding: 9px;
+    text-shadow: 1px 1px 1px #dedede;
+}
+
+.west-pane {
+    background: #E9E8E2;
+}
+
+.west-resizer {
+    background: #E9E8E2;
 }
