@@ -64,18 +64,9 @@
 .button-option {
     padding: 3px;
     color: #fff;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.48, rgb(31,77,194)),
-        color-stop(1, rgb(113,139,209))
-    );
-    background: -moz-linear-gradient(
-        center bottom,
-        rgb(31,77,194) 48%,
-        rgb(113,139,209) 100%
-    );
-    -moz-border-radius: 16px;
-    -webkit-border-radius: 16px;
+    font-size: 10px;
+    background-color: #82A4CB;
+    text-shadow: 1px 1px 1px #6B6B6B;
+    -moz-border-radius: 22px;
+    -webkit-border-radius: 22px;
 }

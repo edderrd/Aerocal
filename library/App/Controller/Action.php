@@ -90,6 +90,20 @@ class App_Controller_Action extends Zend_Controller_Action
     }
 
     /**
+     * Add a translated message to headtitle
+     * @param string $msg
+     * @return App_Controller_Action
+     */
+    protected function _addHeadTitle($msg)
+    {
+        $separator = " - ";
+        $msg = self::$_translate->_($msg);
+        $this->view->headTitle($separator . $msg);
+
+        return $this;
+    }
+
+    /**
      * Add messages to the view
      * @param array $messages
      */

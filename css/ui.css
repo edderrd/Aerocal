@@ -136,22 +136,33 @@ form label {
         linear,
         left bottom,
         left top,
-        color-stop(0.10, rgb(140,140,140)),
-        color-stop(1, rgb(194,194,194))
+        color-stop(0.10, rgb(168,168,168)),
+        color-stop(1, rgb(207,207,207))
     );
     background: -moz-linear-gradient(
         center bottom,
-        rgb(140,140,140) 10%,
-        rgb(194,194,194) 100%
+        rgb(168,168,168) 10%,
+        rgb(207,207,207) 100%
     );
-    padding: 9px;
-    text-shadow: 1px 1px 1px #dedede;
+    padding: 6px;
+}
+
+.north-pane h1 {
+    text-shadow: 1px 1px 1px #ddd;
+    top: -12px;
+    position: relative;
+    font-size: 1.7em;
 }
 
 .west-pane {
-    background: #E9E8E2;
+    background: #D6DDE5;
+    color: #000;
+}
+
+.west-pane a, .west-pane a:visited, .west-pane a:link  {
+    color: #000;
 }
 
 .west-resizer {
-    background: #E9E8E2;
+    background: #D6DDE5;
 }

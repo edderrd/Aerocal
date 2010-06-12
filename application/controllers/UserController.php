@@ -17,6 +17,7 @@ class UserController extends App_Controller_Action
 
     public function indexAction()
     {
+        $this->_addHeadTitle("User preferences");
         $this->view->form = new Form_Preferences();
 
         if ($this->getRequest()->isPost() &&
@@ -40,11 +41,13 @@ class UserController extends App_Controller_Action
     
     public function listAction()
     {
+        $this->_addHeadTitle("User list");
         $this->view->users = User::findAll();
     }
 	
     public function loginAction()
     {
+        $this->_addHeadTitle("Login");
         $this->_helper->layout()->setLayout("login");
         $this->view->form = new Form_Login();
         if ($this->getRequest()->isPost() &&
@@ -65,6 +68,7 @@ class UserController extends App_Controller_Action
     
     public function logoutAction()
     {
+        $this->_addHeadTitle("Logout");
     	Zend_Auth::getInstance()->clearIdentity();
     	$this->_redirect("/");
     }

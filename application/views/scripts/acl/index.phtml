@@ -1,36 +1,33 @@
-<div class="container">
-    <div class="header"><?= $this->translate->_("Roles") ?></div>
-    <?php if(!empty($this->roles)): ?>
-        <table>
-            <tr>
-                <th><?= $this->translate->_("Id") ?></th>
-                <th><?= $this->translate->_("Role") ?></th>
-                <th><?= $this->translate->_("Accepted permission") ?></th>
-            </tr>
-            <?php foreach($this->roles as $rol): ?>
-                <?php if($rol['name'] == 'administrator'): ?>
-                    <tr>
-                        <td><?= $rol['id'] ?></td>
-                        <td><?= ucfirst($rol['name']) ?></td>
-                        <td><span class="button-option">*<?= $this->translate->_("Full access") ?></span></td>
-                    </tr>
-                <?php else: ?>
-                    <tr>
-                        <td><?= $rol['id'] ?></td>
-                        <td><?= ucfirst($rol['name']) ?></td>
-                        <?php if (isset($rol['AclPermission']['AclResource'])): ?>
-                            <td>
-                                <?php foreach($rol['AclPermission']['AclResource'] as $rolResource): ?>
-                                    <span class="button-option"><?= $rolResource['description'] ?></span>&nbsp;
-                                <?php endforeach; ?>
-                            </td>
-                        <?php else: ?>
-                            <td></td>
-                        <?php endif; ?>
-                        
-                    </tr>
-                <?php endif; ?>
-            <?php endforeach ?>
-        </table>
-    <?php endif; ?>
-</div>
+<?php if(!empty($this->roles)): ?>
+    <table class="table-pane">
+        <tr>
+            <th><?= $this->translate->_("Id") ?></th>
+            <th><?= $this->translate->_("Role") ?></th>
+            <th><?= $this->translate->_("Accepted permission") ?></th>
+        </tr>
+        <?php foreach($this->roles as $rol): ?>
+            <?php if($rol['name'] == 'administrator'): ?>
+                <tr>
+                    <td><?= $rol['id'] ?></td>
+                    <td><?= ucfirst($rol['name']) ?></td>
+                    <td align="left"><span class="button-option">*<?= $this->translate->_("Full access") ?></span></td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td><?= $rol['id'] ?></td>
+                    <td><?= ucfirst($rol['name']) ?></td>
+                    <?php if (isset($rol['AclPermission']['AclResource'])): ?>
+                        <td align="left">
+                            <?php foreach($rol['AclPermission']['AclResource'] as $rolResource): ?>
+                                <span class="button-option"><?= $rolResource['description'] ?></span>&nbsp;
+                            <?php endforeach; ?>
+                        </td>
+                    <?php else: ?>
+                        <td></td>
+                    <?php endif; ?>
+
+                </tr>
+            <?php endif; ?>
+        <?php endforeach ?>
+    </table>
+<?php endif; ?>

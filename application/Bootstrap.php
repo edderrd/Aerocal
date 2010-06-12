@@ -82,7 +82,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // initialize view
         $view = new Zend_View();
         $view->doctype("XHTML1_STRICT");
-        $view->headTitle("Aerocal");
 
         // Add it to the ViewRenderer
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper(
@@ -97,6 +96,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $config = $this->getOption('app');
         $config['environment']  = APPLICATION_ENV;
         $view->app = $config;
+        $view->headTitle($config['header']);
+
         
         // Helpers
         $view->addHelperPath("ZendX/JQuery/View/Helper", "ZendX_JQuery_View_Helper");

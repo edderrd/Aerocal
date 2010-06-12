@@ -24,6 +24,7 @@ class My_View_Helper_Login extends App_View_Helper_Abstract
 		
         if (Zend_Auth::getInstance()->hasIdentity())
         {
+            $attributes = array("class" => "login");
             $identity = Zend_Auth::getInstance()->getIdentity();
             $welcomeMsg = $this->view->translate->_("Logged as");
             $preferencesMsg = $this->view->translate->_("User preferences");

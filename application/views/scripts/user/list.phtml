@@ -1,19 +1,18 @@
-<div class="container">
-    <div class="header"><?= $this->translate->_("Users list") ?></div>
-    <table>
+<table class="table-pane">
+    <thead>
         <tr>
             <th><?= $this->translate->_("First name") ?></th>
             <th><?= $this->translate->_("Last name") ?></th>
             <th><?= $this->translate->_("Username") ?></th>
             <th><?= $this->translate->_("Role") ?></th>
         <tr>
-        <?php foreach($this->users as $user): ?>
-            <tr>
-                <td><?= $user['first_name'] ?></td>
-                <td><?= $user['last_name'] ?></td>
-                <td><?= $user['username'] ?></td>
-                <td><?= ucfirst($user['AclRole']['name']) ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</div>
+    </thead>
+    <?php foreach($this->users as $user): ?>
+        <tr>
+            <td><?= $user['first_name'] ?></td>
+            <td><?= $user['last_name'] ?></td>
+            <td><?= $user['username'] ?></td>
+            <td><?= ucfirst($user['AclRole']['name']) ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

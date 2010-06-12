@@ -11,7 +11,7 @@ function applyLayout()
         {
             closable: false,
             resizable: false,
-            size: '103',
+            size: '50',
             spacing_open: 0,
             applyDefaultStyles: false,
             paneClass: 'north-pane'

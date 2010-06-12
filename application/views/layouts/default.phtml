@@ -23,8 +23,8 @@
     </head>
     <body>
         <div class="ui-layout-north" class="header">
-            <?= $this->login() ?>
             <h1><?= $this->app['header'] ?></h1>
+            <?= $this->login() ?>
              <div class="messages">
                 <?= $this->messages() ?>
                 <?php if($this->messages): ?>
