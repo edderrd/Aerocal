@@ -128,7 +128,6 @@ form label {
 
 .center-pane {
     padding: 0px;
-    border: 1px solid #ccc;
 }
 
 .north-pane {
@@ -145,6 +144,7 @@ form label {
         rgb(207,207,207) 100%
     );
     padding: 6px;
+    border-bottom: 1px solid #555;
 }
 
 .north-pane h1 {
