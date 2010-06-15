@@ -140,6 +140,7 @@ span.calControls {
     );
     padding: 6px;
     border-bottom: 1px solid #555;
+    text-align: center;
 }
 
 .north-pane h1 {
@@ -147,6 +148,7 @@ span.calControls {
     top: -12px;
     position: relative;
     font-size: 1.7em;
+    text-align: left;
 }
 
 .west-pane {
@@ -256,7 +258,6 @@ span.calControls {
 }
 
 #calNav {
-    float: right;
     position: relative;
     top: -50px;
     -moz-border-radius: 4px;
@@ -267,10 +268,15 @@ span.calControls {
     border-right: 1px solid #6B6B6B;
     color: #fff;
     text-shadow: 1px 1px 1px #6B6B6B;
+    display: inline-block;
+    text-shadow: #ccc 0px 0px 0px;
 }
 .btn {
   display: inline-block;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
   background: -webkit-gradient(
       linear,
       left bottom,
@@ -354,4 +360,30 @@ span.calControls {
     padding: 0;
     font-size: 0.8em;
     color: red;
+}
+
+
+/* User Preferences */
+.container .header {
+    line-height: 32px;
+    color: #fff;
+    padding-left: 32px;
+    font-size: 1.5em;
+    border-bottom: 1px solid #8D93A0;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.1, rgb(126,141,180)),
+        color-stop(0.74, rgb(157,174,202))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(126,141,180) 10%,
+        rgb(157,174,202) 74%
+    );
+}
+.container form {
+    width: 300px;
+    margin: 32px auto 0 auto;
 }
