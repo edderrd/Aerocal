@@ -23,11 +23,17 @@
 
 /* Text Shadow */
 .txtShadow {
-    text-shadow:2px 2px 2px #A1A1A1;
-    -webkit-text-shadow:2px 2px 2px #A1A1A1;
-    -moz-text-shadow:2px 2px 2px #A1A1A1;
-    -o-text-shadow:2px 2px 2px #A1A1A1;
+    text-shadow:1px 1px 1px #A1A1A1;
+    -webkit-text-shadow:1px 1px 1px #A1A1A1;
+    -moz-text-shadow:1px 1px 1px #A1A1A1;
+    -o-text-shadow:1px 1px 1px #A1A1A1;
 }
+
+/* Background Colors */
+.bgGreen {background: green}
+.bgRed {background: red}
+.bgBlue {background: skyblue}
+.bgOrange {background: orange}
 
 /* Corner radius */
 .corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
@@ -50,7 +56,7 @@
 
 /* Effects */
 .glass {
-   margin: 10px;
+   margin: 0px;
    padding: 0;
    border: 1px solid rgba(0,0,0,0.5);
    border-radius: 4px 4px 4px 4px;

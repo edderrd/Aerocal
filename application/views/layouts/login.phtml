@@ -9,6 +9,7 @@
         <?php $this->JQuery()->addStylesheet($this->baseUrl("/css/smoothness/jquery-ui-1.8.1.custom.css")) ?>
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery-ui-1.7.3.custom.min.js")) ?>
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.layout.min-1.2.0.js")) ?>
+        <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.label.js")) ?>
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/jquery.custom.js")) ?>
 
         <?= $this->headLink() ?>
@@ -18,16 +19,24 @@
 
         <?= $this->JQuery()->addOnLoad("applyLayout();") ?>
     </head>
-    <body>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#loginForm label").overlabel();
+});
+</script>
+    <body id="loginPage">
         <div class="ui-layout-center">
+            <div id="loginForm">
+                <div id="loginLogo">AENSA</div>
             <?php if($this->messages): ?>
-                <ul>
+                <div id="loginMessage">
                     <?php foreach($this->messages as $message):?>
-                        <li><?= $message ?></li>
+                        <p><?= $message ?></p>
                     <?php endforeach; ?>
-                </ul>
+                </div>
             <?php endif; ?>
-            <?= $this->layout()->content ?>
+                <?= $this->layout()->content ?>
+            </div>
         </div>
     </body>
 </html>

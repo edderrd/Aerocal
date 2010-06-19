@@ -25,15 +25,18 @@
         <div class="ui-layout-north" class="header">
             <h1><?= $this->app['header'] ?></h1>
             <?= $this->login() ?>
-             <div class="messages">
-                <?= $this->messages() ?>
-                <?php if($this->messages): ?>
-                    <ul>
-                        <?php foreach($this->messages as $message):?>
-                            <li><?= $message ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
+            <div id="calNav">
+                <a class="btn left" href="#"><span>Day</span></a><a class="btn" href="#"><span>Week</span></a><a class="btn right" href="#"><span>Month</span></a>
+            </div>
+            <div class="messages">
+            <?= $this->messages() ?>
+            <?php if($this->messages): ?>
+                <ul>
+                    <?php foreach($this->messages as $message):?>
+                        <li><?= $message ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
             </div>
         </div>
         <div class="ui-layout-west">
