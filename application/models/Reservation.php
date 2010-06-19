@@ -63,6 +63,7 @@ class Reservation extends BaseReservation
             {
                 $tmp = array();
 
+                $tmp["id"] = $reservation['id'];
                 if($addName)
                     $tmp['title'] = $reservation['User']['first_name'] ." "
                                     .$reservation['User']['last_name'] .": "
@@ -70,13 +71,42 @@ class Reservation extends BaseReservation
                 else
                     $tmp['title'] = $reservation['Aircraft']['name'];
                 $tmp['title'] .= " - " . $reservation['Aircraft']['AircraftType']['type'];
-                $tmp['start_date'] = $reservation['start_date'];
-                $tmp['end_date'] = $reservation['end_date'];
+                $tmp['start_date'] = date("m/d/Y H:i:s", strtotime($reservation['start_date']));
+                $tmp['end_date'] = date("m/d/Y H:i:s", strtotime($reservation['end_date']));
+                $tmp['is_all_day'] = 0;
+                $tmp['recurrent'] = 0;
+                $tmp['relation'] = 0;
+                $tmp['color'] = 6;
+                $tmp['extra'] = 0;
+                $tmp['location'] = "";
 
-                $rv[] = $tmp;
+                $rv[] = array_values($tmp);
             }
         }
         return $rv;
+    }
+
+    /**
+     * Add a new reservation
+     *
+     * @param array $data
+     * @return int
+     */
+    public static function addReservation($data)
+    {
+        if (!empty($data))
+        {
+            $r = new Reservation();
+            $r->start_date = $data['startDate'];
+            $r->end_date = $data['endDate'];
+            $r->User = Doctrine::getTable("User")->find($data['user_id']);
+            $r->Aircraft = Doctrine::getTable("User")->find($data['aircraft']);
+            $r->ReservationStatus[0]->type_id = 1;
+            $r->save();
+            $r->refresh();
+
+            return $r->id;
+        }
     }
 
 }

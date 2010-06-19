@@ -2,11 +2,16 @@
 
 class IndexController extends App_Controller_Action
 {
+    protected $_actionContexts = array(
+        'reserve' => array("html", "json"),
+        'index' => array("html", "json")
+    );
+
     public function init()
     {
         $this->_helper
              ->ajaxContext()
-             ->addActionContexts(array("html", "json"))
+             ->addActionContexts($this->_actionContexts)
              ->initContext();
 
         parent::init();
@@ -15,22 +20,20 @@ class IndexController extends App_Controller_Action
 
     public function indexAction()
     {
-        //$fc = new App_Fullcalendar();
-        //$fc->selectable(false)->editable(false);
-
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
         {
             $this->_addHeadTitle("All reservations");
-            $this->view->reservations = Reservation::findAll();
+            $reservations = Reservation::findAll();
 
-            //$fc->addEvents(Reservation::toEvents($this->view->reservations, true));
+            $this->view->events = Reservation::toEvents($reservations, true);
         }
         else
         {
             $this->_addHeadTitle("My reservations");
-            $this->view->reservations = Reservation::findByUser($user->id);
-            //$fc->addEvents(Reservation::toEvents($this->view->reservations));
+            $reservations = Reservation::findByUser($user->id);
+            
+            $this->view->events = Reservation::toEvents($reservations);
         }
 
         //$this->view->fc = $fc;
@@ -38,7 +41,24 @@ class IndexController extends App_Controller_Action
 
     public function reserveAction()
     {
-        //TODO: Add logic here!
+        $this->view->form = new Form_Reserve();
+        $submit = $this->_request->getParam("submit");
+        $params = $this->_getAllParams();
+        $user = Zend_Auth::getInstance()->getIdentity()->user;
+        
+        if ($submit)
+        {
+            $params['user_id'] = $user->id;
+            Reservation::addReservation($params);
+            $this->setMessage(self::$_translate->_("Reservation added"));
+            $this->_redirect("/index/index");
+        }
+        else
+        {
+            $this->view->form->startDate->setValue(date("Y-m-d H:i:s" , strtotime($params['startDate'])));
+            $this->view->form->endDate->setValue(date("Y-m-d H:i:s" , strtotime($params['endDate'])));
+            $this->view->form->aircraft->setMultiOptions(App_Utils::toList($user->Aircraft, 'id', 'name'));
+        }
+        
     }
 }
-

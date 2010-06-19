@@ -185,7 +185,7 @@ border-bottom:2px solid #c3d9ff;
 	background-position:-60px -68px;
 	width:5px;
 	height:9px;
-	background-image:url(images/calendar/combined.gif)
+	background-image:url(/img/calendar/combined.gif)
 }
 
 .chip {
@@ -261,7 +261,7 @@ border-bottom:2px solid #c3d9ff;
 	width:9px;
 	height:7px;
 	line-height:7px;
-	background-image:url(images/calendar/combined.gif)
+	background-image:url(/img/calendar/combined.gif)
 }
 .ff2 .cic {
 	display:-moz-inline-box;
@@ -466,7 +466,7 @@ border-bottom:2px solid #c3d9ff;
 	cursor:pointer;
 	width:15px;
 	height:15px;
-	background:url(images/calendar/combined.gif) 0 -50px
+	background:url(/img/calendar/combined.gif) 0 -50px
 }
 .cc-title {
 	padding:2px;
@@ -512,10 +512,10 @@ border-bottom:2px solid #c3d9ff;
 	WIDTH: 100%
 }
 .bubble-sprite {
-	BACKGROUND-IMAGE: url(images/calendar/bubble_combined.png); POSITION: absolute; WIDTH: 148px; HEIGHT: 96px
+	BACKGROUND-IMAGE: url(/img/calendar/bubble_combined.png); POSITION: absolute; WIDTH: 148px; HEIGHT: 96px
 }
 .ie6 .bubble-sprite {
-	FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="crop",src="/Theme/Default/images/calendar/bubble_combined.png"); BACKGROUND: none transparent scroll repeat 0% 0%
+	FILTER: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod="crop",src="/Theme/Default//img/calendar/bubble_combined.png"); BACKGROUND: none transparent scroll repeat 0% 0%
 }
 .bubble-corner {
 	POSITION: relative; WIDTH: 25px; HEIGHT: 25px; OVERFLOW: hidden
@@ -533,7 +533,7 @@ border-bottom:2px solid #c3d9ff;
 	TOP: -25px; LEFT: -25px
 }
 .bubble-closebutton {
-	POSITION: absolute; WIDTH: 15px; BACKGROUND: url(images/calendar/combined.gif) 0px -50px; HEIGHT: 15px; TOP: 10px; CURSOR: pointer; RIGHT: 10px
+	POSITION: absolute; WIDTH: 15px; BACKGROUND: url(/img/calendar/combined.gif) 0px -50px; HEIGHT: 15px; TOP: 10px; CURSOR: pointer; RIGHT: 10px
 }
 .bubble-top {
 	BACKGROUND: #fff; HEIGHT: 24px

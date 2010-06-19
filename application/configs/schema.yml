@@ -82,6 +82,19 @@ User:
       local: role_id
     Reservation:
       type: many
+    Aircraft:
+      refClass: UserAircraft
+      
+UserAircraft:
+  columns:
+    user_id:
+      type: integer
+      notnull: true
+      primary: true
+    aircraft_id:
+      type: integer
+      notnull: true
+      primary: true
 
 AircraftType:
   columns:

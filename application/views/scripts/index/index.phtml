@@ -10,20 +10,57 @@
             showday: new Date(),
             //EditCmdhandler:Edit,
             //DeleteCmdhandler:Delete,
-            //ViewCmdhandler:View,
+            //ViewCmdhandler:,
             //onWeekOrMonthToDay:wtd,
             //onBeforeRequestData: cal_beforerequest,
             //onAfterRequestData: cal_afterrequest,
             //onRequestDataError: cal_onerror,
-            //autoload:true,
-            //url: DATA_FEED_URL + "?method=list",
-            //quickAddUrl: DATA_FEED_URL + "?method=add",
+            //quickAddUrl: "/index/reserve/format/json",
+            url:"/index/index/format/json",
+            autoload: true,
+            quickAddCallback: quick_add,
             //quickUpdateUrl: DATA_FEED_URL + "?method=update",
             //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
             height: document.documentElement.clientHeight  - 50,
-            eventItems: []
+            eventItems: <?= json_encode($this->events) ?>
         };
         var p = $("#calendarcontainer").bcalendar(op).BcalGetOp();
+    }
+
+    function quick_add(start, end, isAllDay, pos, render)
+    {
+        $.ajax(
+        {
+            url: "/index/reserve/format/html",
+            type: "post",
+            dataType: "html",
+            data: 
+            {
+                "startDate": start.toString(),
+                "endDate": end.toString(),
+                "isallday": isAllDay
+            },
+            success: function(data)
+            {
+                
+                $("<div id='modal-dialog'>")
+                    .dialog(
+                    {
+                        title: "Add Reservation",
+                        show: "drop",
+                        hide: "drop",
+                        autoOpen: true,
+                        modal: true,
+                        closeOnEscape: true,
+                        close: function()
+                        {
+                            render();
+                            $("#modal-dialog").remove();
+                        }
+                    })
+                    .html(data);
+            }
+        });
     }
 </script>
 

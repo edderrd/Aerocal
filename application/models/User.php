@@ -29,6 +29,7 @@ class User extends BaseUser
                     ->leftJoin("r.AclPermission p")
                     ->leftJoin("p.AclResource re")
                     ->leftJoin("p.AclResource pre")
+                    ->leftJoin("u.Aircraft a")
                     ->addWhere("u.username = '$username'")
                     ->fetchOne();
 

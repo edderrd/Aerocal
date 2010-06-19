@@ -1,0 +1,10 @@
+<form method="post" id="reserveform" action="<?= $this->baseUrl("/index/reserve/") ?>" onSubmit="return reserveformSubmit($(this)); return false;">
+    <p><?= $this->translate->_("Click submit to save your reservation") ?></p>
+    <dl class="form">
+        <?= $this->form->startDate ?>
+        <?= $this->form->endDate ?>
+        <dt><?= $this->form->aircraft->getLabel() ?></dt>
+        <dd><?= $this->form->aircraft ?></dd>
+    </dl>
+    <?= $this->form->submit ?>
+</form>
