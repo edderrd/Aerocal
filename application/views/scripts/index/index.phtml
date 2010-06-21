@@ -18,7 +18,11 @@
             //quickAddUrl: "/index/reserve/format/json",
             url:"/index/index/format/json",
             autoload: true,
+            <?php if ($this->canAddReservations): ?>
             quickAddCallback: quick_add,
+            <?php else: ?>
+            quickAddCallback: function() { alert("You can't add reservations")},
+            <?php endif; ?>
             //quickUpdateUrl: DATA_FEED_URL + "?method=update",
             //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
             height: document.documentElement.clientHeight  - 50,

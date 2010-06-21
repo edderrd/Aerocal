@@ -21,6 +21,12 @@ class IndexController extends App_Controller_Action
     public function indexAction()
     {
         $user = Zend_Auth::getInstance()->getIdentity()->user;
+        
+        // add reservations only if the user have aircrafts
+        $this->view->canAddRervation = false;
+        if(count($user->Aircraft->toArray()) > 0)
+            $this->view->canAddRerservation = true;
+
         if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
         {
             $this->_addHeadTitle("All reservations");
