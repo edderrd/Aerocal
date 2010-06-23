@@ -109,4 +109,35 @@ class Reservation extends BaseReservation
         }
     }
 
+    public static function isAvailable($params)
+    {
+        $rv = false;
+
+        if(!empty($params))
+        {
+            $r = Doctrine_Query::create()
+                    ->from("Reservation r")
+                    ->andWhere("r.start_date > '{$params['startDate']}' AND r.start_date < '{$params['endDate']}'")
+                    ->orWhere("r.end_date > '{$params['startDate']}' AND r.end_date  < '{$params['endDate']}'")
+                    ->fetchArray(true);
+
+            if(empty($r))
+                return true;
+
+            $isValid = false;
+            foreach($r as $reservation)
+            {
+                if ($reservation['user_id'] == $params['user_id'])
+                    return false;
+
+                if($reservation['aircraft_id'] <> $params['aircraft'])
+                    $isValid = true;
+                else
+                    $isValid = false;
+            }
+            return $isValid;
+        }
+        return false;
+    }
+
 }

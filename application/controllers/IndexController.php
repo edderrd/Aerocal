@@ -59,11 +59,18 @@ class IndexController extends App_Controller_Action
         {
             case "submit":
                 $params['user_id'] = $user->id;
-                Reservation::addReservation($params);
-                $this->view->redirect = "/index/index";
-                $this->view->message = self::$_translate->_("Reservation added");
+                if (Reservation::isAvailable($params))
+                {
+                    Reservation::addReservation($params);
+                    $this->view->redirect = "/index/index";
+                    $this->view->message = self::$_translate->_("Reservation added");
+                }
+                else
+                {
+                    $this->view->message = self::$_translate->_("You reservation is not valid");
+                    $buttons[self::$_translate->_("Close")]['action'] = "close";
+                }
                 break;
-
             default:
                 $form->startDate->setValue(date("Y-m-d H:i" , strtotime($params['startDate'])));
                 $form->endDate->setValue(date("Y-m-d H:i" , strtotime($params['endDate'])));
