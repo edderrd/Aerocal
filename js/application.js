@@ -177,9 +177,29 @@ function modalDialog(loadUrl, params, callbacks)
     });
 }
 
+/**
+ * Date format to match mysql style
+ * @param Date date1
+ * @return string
+ */
 function formatDate(date1) {
     return date1.getFullYear() + '-' +
         (date1.getMonth() < 9 ? '0' : '') + (date1.getMonth()+1) + '-' +
         (date1.getDate() < 10 ? '0' : '') + date1.getDate() + " " +
         date1.getHours()+':'+date1.getMinutes();
+}
+
+/**
+ * Convert alerts into a nice looking notifications
+ */
+function consume_alert(title)
+{
+    if (_alert) return;
+    _alert = window.alert;
+    window.alert = function(message) {
+        $.pnotify({
+            pnotify_title: title,
+            pnotify_text: message
+        });
+    };
 }
