@@ -47,24 +47,33 @@ class IndexController extends App_Controller_Action
 
     public function reserveAction()
     {
-        $this->view->form = new Form_Reserve();
+        $form = new Form_Reserve();
         $submit = $this->_request->getParam("submit");
         $params = $this->_getAllParams();
         $user = Zend_Auth::getInstance()->getIdentity()->user;
+        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
+        $this->view->subaction = $subaction;
+        $this->view->title = self::$_translate->_("Add Reservation");
         
-        if ($submit)
+        switch($subaction)
         {
-            $params['user_id'] = $user->id;
-            Reservation::addReservation($params);
-            $this->setMessage(self::$_translate->_("Reservation added"));
-            $this->_redirect("/index/index");
+            case "submit":
+                $params['user_id'] = $user->id;
+                Reservation::addReservation($params);
+                $this->view->redirect = "/index/index";
+                $this->view->message = self::$_translate->_("Reservation added");
+                break;
+
+            default:
+                $form->startDate->setValue(date("Y-m-d H:i" , strtotime($params['startDate'])));
+                $form->endDate->setValue(date("Y-m-d H:i" , strtotime($params['endDate'])));
+                $form->aircraft->setMultiOptions(App_Utils::toList($user->Aircraft, 'id', 'name'));
+                $this->view->form = $form->toArray();
+                $buttons[self::$_translate->_("Add")]['action'] = "submit";
+                $buttons[self::$_translate->_("Add")]['url'] = "/index/reserve/format/json/subaction/submit";
+                $buttons[self::$_translate->_("Add")]['params'] = $params;
+                $this->view->buttons = $buttons;
+                break;
         }
-        else
-        {
-            $this->view->form->startDate->setValue(date("Y-m-d H:i:s" , strtotime($params['startDate'])));
-            $this->view->form->endDate->setValue(date("Y-m-d H:i:s" , strtotime($params['endDate'])));
-            $this->view->form->aircraft->setMultiOptions(App_Utils::toList($user->Aircraft, 'id', 'name'));
-        }
-        
     }
 }

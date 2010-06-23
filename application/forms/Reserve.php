@@ -5,7 +5,7 @@
  * @author Edder Rojas <edder.rojas@gmail.com>
  */
 class Form_Reserve
-    extends Zend_Form
+    extends App_Form
 {
     public function init()
     {
@@ -24,10 +24,6 @@ class Form_Reserve
             'required' => false,
             'label'     => "Aircraft",
             'decorators' => array("ViewHelper", "Errors")
-        ));
-
-        $this->addElement("submit", "submit", array(
-            'decorators' => array("ViewHelper")
         ));
     }
 }

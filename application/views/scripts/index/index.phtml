@@ -19,7 +19,7 @@
             url:"/index/index/format/json",
             autoload: true,
             <?php if ($this->canAddReservation): ?>
-            quickAddCallback: quick_add,
+            quickAddCallback: quickAdd,
             <?php else: ?>
             quickAddCallback: function() { alert("You can't add reservations")},
             <?php endif; ?>
@@ -31,40 +31,16 @@
         var p = $("#calendarcontainer").bcalendar(op).BcalGetOp();
     }
 
-    function quick_add(start, end, isAllDay, pos, render)
+    function quickAdd(start, end, isAllDay, pos, render)
     {
-        $.ajax(
-        {
-            url: "/index/reserve/format/html",
-            type: "post",
-            dataType: "html",
-            data: 
+        modalDialog(
+            '/index/reserve/format/json',
             {
-                "startDate": start.toString(),
-                "endDate": end.toString(),
-                "isallday": isAllDay
+                'startDate': formatDate(start),
+                'endDate': formatDate(end),
+                'isAllDay':isAllDay
             },
-            success: function(data)
-            {
-                
-                $("<div id='modal-dialog'>")
-                    .dialog(
-                    {
-                        title: "Add Reservation",
-                        show: "drop",
-                        hide: "drop",
-                        autoOpen: true,
-                        modal: true,
-                        closeOnEscape: true,
-                        close: function()
-                        {
-                            render();
-                            $("#modal-dialog").remove();
-                        }
-                    })
-                    .html(data);
-            }
-        });
+            [render]);
     }
 </script>
 

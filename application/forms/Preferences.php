@@ -5,7 +5,7 @@
  * @author Edder Rojas <edder.rojas@gmail.com>
  */
 class Form_Preferences
-    extends Zend_Form
+    extends App_Form
 {
 
     protected function _getLanguageList()

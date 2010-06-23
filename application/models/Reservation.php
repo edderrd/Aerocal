@@ -100,7 +100,7 @@ class Reservation extends BaseReservation
             $r->start_date = $data['startDate'];
             $r->end_date = $data['endDate'];
             $r->User = Doctrine::getTable("User")->find($data['user_id']);
-            $r->Aircraft = Doctrine::getTable("User")->find($data['aircraft']);
+            $r->Aircraft = Doctrine::getTable("Aircraft")->find($data['aircraft']);
             $r->ReservationStatus[0]->type_id = 1;
             $r->save();
             $r->refresh();
