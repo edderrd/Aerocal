@@ -192,14 +192,31 @@ function formatDate(date1) {
 /**
  * Convert alerts into a nice looking notifications
  */
-function consume_alert(title)
+function consumeAlert(title)
 {
     if (_alert) return;
     _alert = window.alert;
     window.alert = function(message) {
         $.pnotify({
             pnotify_title: title,
-            pnotify_text: message
+            pnotify_text: message,
+            pnotify_history: false
         });
     };
+}
+
+/**
+ * Display multiple notifications
+ * @params Object messages array of messages
+ */
+function showNotifications(title, messages)
+{
+    $.each(messages, function(index, message)
+    {
+        $.pnotify({
+            pnotify_title: title,
+            pnotify_text: message,
+            pnotify_history: false
+        })
+    });
 }

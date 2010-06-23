@@ -15,7 +15,7 @@
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/application.js")) ?>
 
         <?php $this->JQuery()->addOnLoad("myLayout = applyLayout(); navigationPanels();") ?>
-        <?php $this->JQuery()->addOnLoad("consume_alert('".$this->translate->_('Alert')."');") ?>
+        <?php $this->JQuery()->addOnLoad("consumeAlert('".$this->translate->_('Message')."');") ?>        
 
         <script type="text/javascript">
             var myLayout;
@@ -36,14 +36,7 @@
                 <a class="btn left" href="#"><span>Day</span></a><a class="btn" href="#"><span>Week</span></a><a class="btn right" href="#"><span>Month</span></a>
             </div>
             <div class="messages">
-            <?= $this->messages() ?>
-            <?php if($this->messages): ?>
-                <ul>
-                    <?php foreach($this->messages as $message):?>
-                        <li><?= $message ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
+                <?= $this->messages() ?>
             </div>
         </div>
         <div class="ui-layout-west">
