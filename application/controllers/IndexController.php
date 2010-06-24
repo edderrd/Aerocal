@@ -21,11 +21,15 @@ class IndexController extends App_Controller_Action
     public function indexAction()
     {
         $user = Zend_Auth::getInstance()->getIdentity()->user;
-        
+        $calendar = new App_JqCalendar();
+        $calendar->defaultView();
+
         // add reservations only if the user have aircrafts
-        $this->view->canAddReservation = false;
+        
         if(count($user->Aircraft->toArray()) > 0)
-            $this->view->canAddReservation = true;
+            $calendar->enableAdd(true);
+        else
+            $calendar->enableAdd(false);
 
         if (Zend_Auth::getInstance()->getIdentity()->isAdmin)
         {
@@ -33,16 +37,20 @@ class IndexController extends App_Controller_Action
             $reservations = Reservation::findAll();
 
             $this->view->events = Reservation::toEvents($reservations, true);
+            $calendar->loadUrl("/index/index/format/json");
         }
         else
         {
             $this->_addHeadTitle("My reservations");
             $reservations = Reservation::findByUser($user->id);
-            
-            $this->view->events = Reservation::toEvents($reservations);
-        }
 
-        //$this->view->fc = $fc;
+            $this->view->events = Reservation::toEvents($reservations);
+            $calendar->loadUrl("/index/index/format/json");
+        }
+        if (!$calendar->canAdd())
+            $this->setMessage(self::$_translate->_("You don't have aircraft assigned"));
+        
+        $this->view->jqCalendar = $calendar;
     }
 
     public function reserveAction()

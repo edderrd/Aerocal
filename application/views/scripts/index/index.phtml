@@ -2,35 +2,6 @@
 <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.calendar.js")) ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl("/css/calendar.css")) ?>
 <script type="text/javascript">
-    function showCalendar()
-    {
-        var op = {
-            view: "week",
-            theme:3,
-            showday: new Date(),
-            //EditCmdhandler:Edit,
-            //DeleteCmdhandler:Delete,
-            //ViewCmdhandler:,
-            //onWeekOrMonthToDay:wtd,
-            //onBeforeRequestData: cal_beforerequest,
-            //onAfterRequestData: cal_afterrequest,
-            //onRequestDataError: cal_onerror,
-            //quickAddUrl: "/index/reserve/format/json",
-            url:"/index/index/format/json",
-            autoload: true,
-            <?php if ($this->canAddReservation): ?>
-            quickAddCallback: quickAdd,
-            <?php else: ?>
-            quickAddCallback: function() { alert("You can't add reservations")},
-            <?php endif; ?>
-            //quickUpdateUrl: DATA_FEED_URL + "?method=update",
-            //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
-            height: document.documentElement.clientHeight  - 50,
-            eventItems: <?= json_encode($this->events) ?>
-        };
-        var p = $("#calendarcontainer").bcalendar(op).BcalGetOp();
-    }
-
     function quickAdd(start, end, isAllDay, pos, render)
     {
         modalDialog(
@@ -44,5 +15,4 @@
     }
 </script>
 
-<div id="calendarcontainer" style="overflow-y: visible; border: 1px solid #ccc"></div>
-<?php $this->JQuery()->addOnLoad("showCalendar();") ?>
+<?= $this->jqCalendar("index", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
