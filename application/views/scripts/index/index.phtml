@@ -2,30 +2,20 @@
 <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.calendar.js")) ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl("/css/calendar.css")) ?>
 <script type="text/javascript">
-    function showCalendar()
+    function quickAdd(start, end, isAllDay, pos, render)
     {
-        var op = {
-            view: "week",
-            theme:3,
-            showday: new Date(),
-            //EditCmdhandler:Edit,
-            //DeleteCmdhandler:Delete,
-            //ViewCmdhandler:View,
-            //onWeekOrMonthToDay:wtd,
-            //onBeforeRequestData: cal_beforerequest,
-            //onAfterRequestData: cal_afterrequest,
-            //onRequestDataError: cal_onerror,
-            //autoload:true,
-            //url: DATA_FEED_URL + "?method=list",
-            //quickAddUrl: DATA_FEED_URL + "?method=add",
-            //quickUpdateUrl: DATA_FEED_URL + "?method=update",
-            //quickDeleteUrl: DATA_FEED_URL + "?method=remove"
-            height: document.documentElement.clientHeight  - 50,
-            eventItems: []
-        };
-        var p = $("#calendarcontainer").bcalendar(op).BcalGetOp();
+        modalDialog(
+            '/index/reserve/format/json',
+            {
+                'startDate': formatDate(start),
+                'endDate': formatDate(end),
+                'isAllDay':isAllDay
+            },
+            [render]);
     }
 </script>
-
-<div id="calendarcontainer" style="overflow-y: visible; border: 1px solid #ccc"></div>
-<?php $this->JQuery()->addOnLoad("showCalendar();") ?>
+<?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
+<? $this->toolbar()
+        ->addButton("day-btn", "Day", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'day');"))
+        ->addButton("week-btn", "Week", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'week');", 'checked' => "checked"))
+        ->addButton("month-btn", "Month", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'month');")) ?>

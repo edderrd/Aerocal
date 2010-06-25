@@ -14,6 +14,7 @@
  * @property string $language
  * @property AclRole $AclRole
  * @property Doctrine_Collection $Reservation
+ * @property Doctrine_Collection $Aircraft
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -70,5 +71,10 @@ abstract class BaseUser extends Doctrine_Record
         $this->hasMany('Reservation', array(
              'local' => 'reservation_id',
              'foreign' => 'id'));
+
+        $this->hasMany('Aircraft', array(
+             'refClass' => 'UserAircraft',
+             'local' => 'user_id',
+             'foreign' => 'aircraft_id'));
     }
 }

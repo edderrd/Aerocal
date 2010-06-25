@@ -17,7 +17,7 @@ class App_View_Helper_Abstract extends Zend_View_Helper_Abstract
                 return $rv;
             }
             foreach($attributes as $key => $value) {
-                $rv .= "$key='$value' ";
+                $rv .= "$key=\"$value\" ";
             }
         }
 
