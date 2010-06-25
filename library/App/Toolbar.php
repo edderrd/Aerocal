@@ -12,6 +12,14 @@ class App_Toolbar {
      * @var App_Toolbar
      */
     private static $_instance = null;
+    /**
+     * @var Bool
+     */
+    protected static $_buttonSet = true;
+    /**
+     * @var string
+     */
+    protected static $_id = "";
 
     /**
      * Creates a new instance of the same class but also set a registry for them
@@ -80,6 +88,39 @@ class App_Toolbar {
             return self::$_buttons;
 
         return array();
+    }
+
+    /**
+     * Enable buttonset
+     * @param bool $option
+     */
+    public function setButtonset($option)
+    {
+        self::$_buttonSet = $option;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isButtonSet()
+    {
+        return self::$_buttonSet;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        self::$_id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return self::$_id;
     }
 }
 ?>

@@ -220,3 +220,8 @@ function showNotifications(title, messages)
         })
     });
 }
+
+function createToolbar(elementId)
+{
+    $("#"+elementId).buttonset();
+}

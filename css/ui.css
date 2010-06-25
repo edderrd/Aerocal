@@ -260,16 +260,11 @@ span.calControls {
 #calNav {
     position: relative;
     top: -50px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    background-color: #9F9F9F;
-    border-left: 1px solid #6B6B6B;
-    border-top: 1px solid #6B6B6B;
-    border-right: 1px solid #6B6B6B;
     color: #fff;
     text-shadow: 1px 1px 1px #6B6B6B;
     display: inline-block;
     text-shadow: #ccc 0px 0px 0px;
+    font-size: 0.7em;
 }
 .btn {
   display: inline-block;
