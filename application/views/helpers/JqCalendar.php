@@ -18,7 +18,7 @@ class My_View_Helper_JqCalendar
      */
     protected function createFunction($name, $jsonOptions, $options, $canAdd)
     {
-
+        $this->view->headScript()->appendScript("var $name;");
         $rv = array();
         $rv[] = '<script type="text/javascript">';
         $rv[] = "var op = $jsonOptions;";
@@ -27,7 +27,7 @@ class My_View_Helper_JqCalendar
         if (isset($options['quickAddCallback']) && $canAdd)
             $rv[] = "op.quickAddCallback = {$options['quickAddCallback']};";
         $rv[] = "function $name() {";
-        $rv[] = "\tvar $name = $('#$name')";
+        $rv[] = "\t var $name = $('#$name')";
         $rv[] = "\t\t\t.bcalendar(op).BcalGetOp();";
         $rv[] = "}";
         $rv[] = '</script>';
@@ -44,7 +44,7 @@ class My_View_Helper_JqCalendar
      */
     public function jqCalendar($name, App_JqCalendar $calendar, $options, $attributes = array())
     {
-        $functionName = "Calendar". ucfirst($name);
+        $functionName = $name;
         $jsonOptions = $calendar->options->getConfig();
         $canAdd = $calendar->canAdd();
         $function = $this->createFunction($functionName, $jsonOptions, $options, $canAdd);

@@ -14,9 +14,8 @@
             [render]);
     }
 </script>
-
-<?= $this->jqCalendar("index", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
+<?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
 <? $this->toolbar()
-        ->addButton("day-btn", "Day", array('onclick' => "alert('Not Implemented!');"))
-        ->addButton("week-btn", "Week", array('onclick' => "alert('Not Implemented!');"))
-        ->addButton("month-btn", "Month", array('onclick' => "alert('Not Implemented!');")) ?>
+        ->addButton("day-btn", "Day", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'day');"))
+        ->addButton("week-btn", "Week", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'week');", 'checked' => "checked"))
+        ->addButton("month-btn", "Month", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'month');")) ?>

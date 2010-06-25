@@ -221,7 +221,26 @@ function showNotifications(title, messages)
     });
 }
 
+/**
+ * Creates a button toolbar
+ * Depends on jquery ui 1.8+ buttons
+ * @param string elementId
+ */
 function createToolbar(elementId)
 {
     $("#"+elementId).buttonset();
+}
+
+/**
+ * Change calendar view
+ * Depends on jquery ui 1.8+ buttons
+ * and Calendar plugin
+ * @param string calendarId
+ * @param JQueryElement $element
+ * @param string action
+ */
+function changeCalendarView(calendarId, $element, action)
+{
+    $("#"+calendarId).swtichView(action);
+    $element.button("enable");
 }
