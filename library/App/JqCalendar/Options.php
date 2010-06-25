@@ -23,6 +23,7 @@ class App_JqCalendar_Options
         $this->_data['eventItems'] = array();
         //defaults
         $this->setOption("view", "week")
+             ->setOption("weekstartday", 3)
              ->setOption("theme", 3);
     }
 

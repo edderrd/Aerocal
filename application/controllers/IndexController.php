@@ -23,7 +23,8 @@ class IndexController extends App_Controller_Action
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         $calendar = new App_JqCalendar();
         $calendar->defaultView();
-
+        $calendar->currentFirstDay(true);
+        
         // add reservations only if the user have aircrafts
         
         if(count($user->Aircraft->toArray()) > 0)

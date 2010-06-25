@@ -108,5 +108,15 @@ class App_JqCalendar
     {
         return $this->options->getOption("canAdd");
     }
+
+    /**
+     * Define if the current day of the week will be the first day displayed
+     * @param true $option
+     */
+    public function currentFirstDay($option)
+    {
+        if ($option)
+            $this->options->setOption("weekstartday", date("w"));
+    }
 }
 ?>
