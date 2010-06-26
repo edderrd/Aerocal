@@ -67,7 +67,7 @@ function parseJsonContent(data)
     var rv = Array();
     if (data.form)
     {
-        rv.push('<form method="'+data.form.method+'" id="'+data.form.id+'">');
+    	rv.push('<form method="'+data.form.method+'" id="'+data.form.id+'">');
         rv.push("<dl>");
         $.each(data.form.elements, function(elementName, formElement)
         {
@@ -120,7 +120,12 @@ function parseJsonButtons(buttons, dialogElement)
                            data: data,
                            success: function(data)
                            {
-                               alert(data.message);
+                    	   	   if (data.form && !data.isValid)
+                    	   	   {
+                    	   		  dialogElement.html(parseJsonContent(data));
+                    	   	   }
+                    	       
+                    	   	   alert(data.message);
                                if (data.redirect)
                                    window.location = data.redirect;
                                else

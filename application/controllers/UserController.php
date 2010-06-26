@@ -79,15 +79,33 @@ class UserController extends App_Controller_Action
     {
         $form = new Form_User();
         $params = $this->_getAllParams();
+        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
         
-        $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
-        $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
+        switch ($subaction)
+        {
+        	case 'submit':
+        		if(!$form->isValid($params))
+        		{
+        		    $this->view->isValid = $form->isValid($params);
+        		    $this->view->message = $form->getErrorMessages();        		    
+        		}
+        		else
+        		{
+        		    $this->view->isValid = $form->isValid($params);
+        		    $this->view->message = "Should be save";
+        		    $this->createAjaxButton("Close", "close");
+        		    break;
+        		}        		        	
+        		
+        	default:
+        	    $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
+                $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
+                
+                $this->view->title = self::$_translate->_("Create user");
+                $this->createAjaxButton("Create", "submit", $params, "/user/create/format/json/subaction/submit");
+                $this->view->form = $form->toArray();
+        }
         
-        $this->view->title = self::$_translate->_("Create user");
-        $buttons[self::$_translate->_("Create")]['action'] = "submit";
-        $buttons[self::$_translate->_("Create")]['url'] = "/index/index/format/json/subaction/submit";
-        $buttons[self::$_translate->_("Create")]['params'] = $params;
-        $this->view->buttons = $buttons;
-        $this->view->form = $form->toArray();
+        
     }
 }

@@ -85,10 +85,7 @@ class IndexController extends App_Controller_Action
                 $form->endDate->setValue(date("Y-m-d H:i" , strtotime($params['endDate'])));
                 $form->aircraft->setMultiOptions(App_Utils::toList($user->Aircraft, 'id', 'name'));
                 $this->view->form = $form->toArray();
-                $buttons[self::$_translate->_("Add")]['action'] = "submit";
-                $buttons[self::$_translate->_("Add")]['url'] = "/index/reserve/format/json/subaction/submit";
-                $buttons[self::$_translate->_("Add")]['params'] = $params;
-                $this->view->buttons = $buttons;
+                $this->createAjaxButton("Add", "submit", $params, "/index/reserve/format/json/subaction/submit");
                 break;
         }
     }

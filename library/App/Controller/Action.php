@@ -102,7 +102,7 @@ class App_Controller_Action extends Zend_Controller_Action
 
         return $this;
     }
-
+    
     /**
      * Add messages to the view
      * @param array $messages
@@ -122,5 +122,31 @@ class App_Controller_Action extends Zend_Controller_Action
     public function preDispatch()
     {
         $this->_validateSession();
+    }
+    
+    /**
+     * Create modal dialog action button
+     
+     * @param string $name
+     * @param string $action
+     * @param array $params
+     * @param string $url
+     * @return App_Controller_Action;
+     */
+    public function createAjaxButton($name, $action, $params = null, $url = null)
+    {
+        $name = self::$_translate->_($name);
+        
+        $buttons[$name]['action'] = $action;
+        
+        if(!empty($params))
+            $buttons[$name]['params'] = $params;
+
+        if(!empty($url))
+            $buttons[$name]['url'] = $url;
+            
+        $this->view->buttons = $buttons;
+        
+        return $this;
     }
 }
