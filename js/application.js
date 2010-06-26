@@ -144,6 +144,9 @@ function parseJsonButtons(buttons, dialogElement)
  */
 function modalDialog(loadUrl, params, callbacks)
 {
+	params = params == undefined ? new Object() : params;
+	callbacks = callbacks == undefined ? new Object() : callbacks;
+	
     $.ajax(
     {
         url: loadUrl,
