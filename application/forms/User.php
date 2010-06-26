@@ -15,6 +15,7 @@ class Form_User
         $this->addElement("text", "first_name", array(
             'label'      => "First Name",
             'required'   => true,
+            'focus'      => 'focus',
             'decorators' => array("ViewHelper", "Errors")
         ));
 

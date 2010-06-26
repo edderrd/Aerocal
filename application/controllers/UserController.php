@@ -92,8 +92,11 @@ class UserController extends App_Controller_Action
         		else
         		{
         		    $this->view->isValid = $form->isValid($params);
-        		    $this->view->message = "Should be save";
+        		    User::createUser($params);
+        		    
+        		    $this->view->message = self::$_translate->_("User created correctly");
         		    $this->createAjaxButton("Close", "close");
+        		    $this->view->redirect = "/user/list";
         		    break;
         		}        		        	
         		

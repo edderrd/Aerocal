@@ -80,7 +80,7 @@ function parseJsonContent(data)
                     rv.push("<dt>"+formElement.label+"</dt>");
                     rv.push("<dd>"+formElement.html+"</dd>");
                     break;
-            }
+            }            
         });
         rv.push("</dl>");
         rv.push('</form>');
@@ -123,6 +123,7 @@ function parseJsonButtons(buttons, dialogElement)
                     	   	   if (data.form && !data.isValid)
                     	   	   {
                     	   		  dialogElement.html(parseJsonContent(data));
+                    	   		  break;
                     	   	   }
                     	       
                     	   	   alert(data.message);
@@ -170,6 +171,7 @@ function modalDialog(loadUrl, params, callbacks)
                     autoOpen: true,
                     modal: true,
                     closeOnEscape: true,
+                    position: ["center", "top"],
                     close: function()
                     {
                         $.each(callbacks, function(name, func)

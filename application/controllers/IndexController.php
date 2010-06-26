@@ -67,6 +67,7 @@ class IndexController extends App_Controller_Action
         switch($subaction)
         {
             case "submit":
+                $this->view->isValid = true;
                 $params['user_id'] = $user->id;
                 if (Reservation::isAvailable($params))
                 {
@@ -77,7 +78,7 @@ class IndexController extends App_Controller_Action
                 else
                 {
                     $this->view->message = self::$_translate->_("You reservation is not valid");
-                    $buttons[self::$_translate->_("Close")]['action'] = "close";
+                    $this->createAjaxButton("Close", "close");
                 }
                 break;
             default:

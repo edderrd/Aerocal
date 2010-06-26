@@ -51,4 +51,33 @@ class User extends BaseUser
                     ->leftJoin("u.AclRole r")
                     ->fetchArray(true);
     }
+    
+    /**
+     * Create a user and his aircraft relations
+     * @param array $params
+     */
+    public static function createUser($params)
+    {
+        if(!empty($params))
+        {
+            $user = new User();
+            $user->first_name = $params['first_name'];
+            $user->last_name = $params['last_name'];
+            $user->role_id = $params['role_id'];
+            $user->username = $params['username'];
+            $user->password = $params['password'];
+            if (!empty($params['aircraft']))
+            {
+                foreach($params['aircraft'] as $aircraft_id)
+                {
+                    $user->Aircraft[] = Doctrine::getTable("Aircraft")->find($aircraft_id);
+                }
+            }
+            $user->language = $params['language'];
+            $user->save();
+            $user->refresh();
+            
+            return $user->id;
+        }
+    }
 }
