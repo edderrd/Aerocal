@@ -7,24 +7,6 @@
 class Form_Preferences
     extends App_Form
 {
-
-    protected function _getLanguageList()
-    {
-        $config = new Zend_Config_Ini(APPLICATION_PATH . "/configs/application.ini", APPLICATION_ENV);
-        $rv = array();
-
-        // default value
-        $rv[$config->translate->default] = $config->translate->default;
-
-        foreach($config->translate->languages as $language)
-        {
-            $rv[$language] = $language;
-        }
-
-        return $rv;
-    }
-
-
     public function init()
     {
         $this->setMethod("post");

@@ -47,12 +47,22 @@ class My_View_Helper_Toolbar
         {
             $attributes = $this->_parseAttributes($button['attributes']);
             $type = $this->_toolbar->isButtonset() ? "radio" : "button";
-            $rv[] = "<input 
-                     type=\"$type\"
-                     id=\"{$button["id"]}\"
-                     name=\"$containerId\"
-                     $attributes/>";
-            $rv[] = "<label for=\"{$button["id"]}\">{$button['value']}</label>";
+            if($this->_toolbar->isButtonset())
+            {
+                $rv[] = "<input 
+                         type=\"$type\"
+                         id=\"{$button["id"]}\"
+                         name=\"$containerId\"
+                         $attributes/>";
+                $rv[] = "<label for=\"{$button["id"]}\">{$button['value']}</label>";
+            }
+            else
+            {
+                $rv[] = "<button
+                         id=\"{$button["id"]}\"
+                         name=\"$containerId\"
+                         $attributes>{$button['value']}</button>";
+            }
         }
         $buttons = implode("\n", $rv);
         $container = "";

@@ -27,4 +27,24 @@ class App_Form extends Zend_Form
 
         return $rv;
     }
+    
+    /**
+     * Return defined language list
+     * @return array
+     */
+    protected function _getLanguageList()
+    {
+        $config = new Zend_Config_Ini(APPLICATION_PATH . "/configs/application.ini", APPLICATION_ENV);
+        $rv = array();
+
+        // default value
+        $rv[$config->translate->default] = $config->translate->default;
+
+        foreach($config->translate->languages as $language)
+        {
+            $rv[$language] = $language;
+        }
+
+        return $rv;
+    }
 }

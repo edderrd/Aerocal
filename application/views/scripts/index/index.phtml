@@ -16,6 +16,6 @@
 </script>
 <?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
 <? $this->toolbar()
-        ->addButton("day-btn", "Day", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'day');"))
-        ->addButton("week-btn", "Week", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'week');", 'checked' => "checked"))
-        ->addButton("month-btn", "Month", array('onclick' => "changeCalendarView('mainCalendar', $(this), 'month');")) ?>
+        ->addButton("day-btn", $this->translate->_("Day"), array('onclick' => "changeCalendarView('mainCalendar', $(this), 'day');"))
+        ->addButton("week-btn", $this->translate->_("Week"), array('onclick' => "changeCalendarView('mainCalendar', $(this), 'week');", 'checked' => "checked"))
+        ->addButton("month-btn", $this->translate->_("Month"), array('onclick' => "changeCalendarView('mainCalendar', $(this), 'month');")) ?>

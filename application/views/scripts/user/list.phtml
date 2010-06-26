@@ -16,3 +16,7 @@
         </tr>
     <?php endforeach; ?>
 </table>
+
+<? $this->toolbar()
+        ->setButtonset(false)
+        ->addButton("day-btn", $this->translate->_("Add user"), array('onclick' => "modalDialog('/user/create/format/json');"))?>

@@ -2,7 +2,9 @@
 class UserController extends App_Controller_Action
 {
     protected $_contexts = array(
-        'new' => array("html", "json")
+        'new' => array("html", "json"),
+        'create' => array("html", "json")
+    
     );
 
     public function preDispatch()
@@ -71,5 +73,21 @@ class UserController extends App_Controller_Action
         $this->_addHeadTitle("Logout");
     	Zend_Auth::getInstance()->clearIdentity();
     	$this->_redirect("/");
+    }
+    
+    public function createAction()
+    {
+        $form = new Form_User();
+        $params = $this->_getAllParams();
+        
+        $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
+        $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
+        
+        $this->view->title = self::$_translate->_("Create user");
+        $buttons[self::$_translate->_("Create")]['action'] = "submit";
+        $buttons[self::$_translate->_("Create")]['url'] = "/index/index/format/json/subaction/submit";
+        $buttons[self::$_translate->_("Create")]['params'] = $params;
+        $this->view->buttons = $buttons;
+        $this->view->form = $form->toArray();
     }
 }
