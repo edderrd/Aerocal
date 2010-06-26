@@ -13,6 +13,8 @@
     <?php endforeach; ?>
 </table>
 
-<?php $this->toolbar()
-        ->setButtonset(false)
-        ->addButton("create-btn", $this->translate->_("Create Aircraft"), array('onclick' => "modalDialog('/aircraft/create/format/json');"))?>
+<?php if($this->acl()->isValid("aircraft", "create")): ?>
+    <?php $this->toolbar()
+            ->setButtonset(false)
+            ->addButton("create-btn", $this->translate->_("Create Aircraft"), array('onclick' => "modalDialog('/aircraft/create/format/json');"))?>
+<?php endif; ?>

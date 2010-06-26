@@ -17,6 +17,6 @@
     <?php endforeach; ?>
 </table>
 
-<? $this->toolbar()
+<?php $this->toolbar()
         ->setButtonset(false)
         ->addButton("create-btn", $this->translate->_("Create user"), array('onclick' => "modalDialog('/user/create/format/json');"))?>
