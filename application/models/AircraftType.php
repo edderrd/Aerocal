@@ -12,5 +12,11 @@
  */
 class AircraftType extends BaseAircraftType
 {
-
+    
+    public function findAll()
+    {
+        return Doctrine_Query::create()
+                    ->from("AircraftType t")
+                    ->fetchArray(true);
+    }
 }

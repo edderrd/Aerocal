@@ -13,4 +13,11 @@
 class AircraftStatus extends BaseAircraftStatus
 {
 
+    public function findAll()
+    {
+        return Doctrine_Query::create()
+                    ->from("AircraftStatus s")
+                    ->fetchArray(true);
+    }
+    
 }
