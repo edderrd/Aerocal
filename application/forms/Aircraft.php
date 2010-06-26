@@ -15,20 +15,22 @@ class Form_Aircraft
         $this->addElement("text", "name", array(
             'label'      => "Name",
             'required'   => true,
-            'decorators' => array("ViewHelper")
+            'decorators' => array("ViewHelper", "Errors")
         ));
 
         $this->addElement("select", "type_id", array(
             'required' => false,
             'label'     => "Type",
-            'decorators' => array("ViewHelper")
+            'decorators' => array("ViewHelper", "Errors")
         ));
+        $this->type_id->setRegisterInArrayValidator(false);
         
         $this->addElement("select", "status_id", array(
             'label'      => "Status",
             'required'   => true,
-            'decorators' => array("ViewHelper")
+            'decorators' => array("ViewHelper", "Errors")
         ));
+        $this->status_id->setRegisterInArrayValidator(false);
         
     }
 }

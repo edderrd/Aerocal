@@ -25,5 +25,22 @@ class Aircraft extends BaseAircraft
                     ->leftJoin("a.AircraftStatus s")
                     ->fetchArray(true);
     }
+    
+    public function create($params)
+    {
+        if(!empty($params))
+        {
+            $aircraft = new Aircraft();
+            $aircraft->name = $params['name'];
+            $aircraft->type_id = $params['type_id'];
+            $aircraft->status_id = $params['status_id'];
+            $aircraft->save();
+            $aircraft->refresh();
+            
+            return $aircraft->id;
+        }
+        
+        return false;
+    }
 
 }

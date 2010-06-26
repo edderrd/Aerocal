@@ -30,16 +30,36 @@ class AircraftController extends App_Controller_Action
     {
         $form = new Form_Aircraft();
         $params = $this->_getAllParams();
+        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
         
-        $form->type_id->setMultiOptions(App_Utils::toList(AircraftType::findAll(), 'id', 'type'));
-        $form->status_id->setMultiOptions(App_Utils::toList(AircraftStatus::findAll(), 'id', 'status'));
+        switch ($subaction)
+        {
+            case 'submit':
+                if(!$form->isValid($params))
+                {
+                    $this->view->isValid = $form->isValid($params);
+                    $this->view->message = $form->getErrorMessages();                   
+                }
+                else
+                {
+                    $this->view->isValid = $form->isValid($params);
+                    Aircraft::create($params);
+                    
+                    $this->view->message = self::$_translate->_("Aircraft created correctly");
+                    $this->createAjaxButton("Close", "close");
+                    $this->view->redirect = "/aircraft/index";
+                    break;
+                }                           
+                
+            default:
+                $form->type_id->setMultiOptions(App_Utils::toList(AircraftType::findAll(), 'id', 'type'));
+                $form->status_id->setMultiOptions(App_Utils::toList(AircraftStatus::findAll(), 'id', 'status'));
+                
+                $this->view->title = self::$_translate->_("Create aircraft");
+                $this->createAjaxButton("Create", "submit", $params, "/aircraft/create/format/json/subaction/submit");
+                $this->view->form = $form->toArray();
+        }
         
-        $this->view->title = self::$_translate->_("Create aircraft");
-        $buttons[self::$_translate->_("Create")]['action'] = "submit";
-        $buttons[self::$_translate->_("Create")]['url'] = "/index/index/format/json/subaction/submit";
-        $buttons[self::$_translate->_("Create")]['params'] = $params;
-        $this->view->buttons = $buttons;
-        $this->view->form = $form->toArray();
     }
 }
 ?>
