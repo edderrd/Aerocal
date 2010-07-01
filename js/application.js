@@ -122,15 +122,16 @@ function parseJsonButtons(buttons, dialogElement)
                            {
                     	   	   if (data.form && !data.isValid)
                     	   	   {
-                    	   		  dialogElement.html(parseJsonContent(data));
-                    	   		  break;
+                    	   		  dialogElement.html(parseJsonContent(data));                    	   		  
                     	   	   }
-                    	       
-                    	   	   alert(data.message);
-                               if (data.redirect)
-                                   window.location = data.redirect;
-                               else
-                                   dialogElement.dialog("close");
+                    	   	   else
+                    	       {
+                    	   		   alert(data.message);
+                    	   		   if (data.redirect)
+                    	   			   window.location = data.redirect;
+                    	   		   else
+                    	   			   dialogElement.dialog("close");
+                    	   	   }
                            }
                        });
                    };
