@@ -12,5 +12,27 @@ class AclController extends App_Controller_Action
         $this->view->resources = AclResource::findAll();
         $this->view->roles = AclRole::findAll();
     }
+    
+    public function createroleAction()
+    {
+        $form = new Form_AclRole();
+        $form->resources->setMultiOptions(App_Utils::toList(AclResource::findAll(), 'id', 'description'));
+        
+        $options = array(
+            'title'     => "Create role",
+            'url'       => "/acl/create_role/format/json/subaction/submit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/acl/index",
+                "message" => "Role created correctly"
+            )
+        );
+        
+        $this->ajaxFormProcessor($form, $options);                
+        
+    }
 }
 ?>

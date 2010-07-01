@@ -13,12 +13,18 @@ class App_Controller_Action extends Zend_Controller_Action
            'logout'
        )
     );
-
     /**
      * @var Zend_Translate
      */
     protected static $_translate = null;
+    /**
+     * @var App_Acl
+     */
     protected static $_acl;
+    /**
+     * @var array
+     */
+    protected $_defaultContextFormat = array("html", "json");
 
     /**
      * Check if the user is currently logged in
@@ -122,6 +128,12 @@ class App_Controller_Action extends Zend_Controller_Action
     public function preDispatch()
     {
         $this->_validateSession();
+        $action = $this->_request->getActionName();
+        $context[$action] = $this->_defaultContextFormat; 
+        $this->_helper
+                ->ajaxContext()
+                ->addActionContexts($context)
+                ->initContext();
     }
     
     /**
@@ -148,5 +160,45 @@ class App_Controller_Action extends Zend_Controller_Action
         $this->view->buttons = $buttons;
         
         return $this;
+    }
+    
+    /**
+     * Create Modal dialog business logic
+     * @param App_Form $form
+     * @param array $options
+     */
+    public function ajaxFormProcessor(App_Form $form, $options)
+    {
+        $params = $this->_getAllParams();
+        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
+        
+        switch ($subaction)
+        {
+            case 'submit':
+                if(!$form->isValid($params))
+                {
+                    $this->view->isValid = $form->isValid($params);
+                    $this->view->message = $form->getErrorMessages();                   
+                }
+                else
+                {
+                    $this->view->isValid = $form->isValid($params);
+                    AclRole::create($params);
+                    
+                    $this->view->message = self::$_translate->_($options['success']['message']);
+                    $this->createAjaxButton(
+                        $options['success']['button']['title'], 
+                        $options['success']['button']['action']);
+                        
+                    if (isset($options['success']['redirect']))    
+                        $this->view->redirect = $options['success']['redirect'];
+                    break;
+                }
+                
+            default:
+                $this->view->title = self::$_translate->_($options['title']);
+                $this->createAjaxButton("Create", "submit", $params, $options['url']);
+                $this->view->form = $form->toArray();
+        }
     }
 }

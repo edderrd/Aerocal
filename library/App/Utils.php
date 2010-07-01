@@ -21,7 +21,18 @@ class App_Utils {
         {
             foreach($data as $item)
             {
-                $rv[$item[$index]] = $item[$value];
+                if (is_array($value))
+                {
+                    foreach($value as $valueIndex => $subvalue)
+                    {
+                        $separator = $valueIndex == 0 ? "" : " ";
+                        $rv[$item[$index]] = $separator . $item[$subvalue];
+                    }
+                }
+                else 
+                {
+                    $rv[$item[$index]] = $item[$value];    
+                }                
             }
         }
         return $rv;

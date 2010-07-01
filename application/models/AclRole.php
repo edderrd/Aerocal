@@ -12,8 +12,6 @@
  */
 class AclRole extends BaseAclRole
 {
-
-
     public static function findAll()
     {
         return Doctrine_Query::create()
@@ -22,5 +20,28 @@ class AclRole extends BaseAclRole
                     ->leftJoin('p.AclResource re')
                     ->fetchArray();
 
+    }
+    
+    public static function create($params)
+    {
+        $aclRole = new AclRole();
+        $aclRole->name = $params['name'];
+        $aclRole->description = $params['description'];
+        $aclRole->save();
+        $aclRole->refresh();
+        
+        if (!empty($params['resources']))
+        {
+            $resources = is_array($params['resources']) ? $params['resources'] : array($params['resources']);
+            foreach($resources as $resource)
+            {
+                $permission = new AclPermission();
+                $permission->resource_id = $resource;
+                $permission->role_id = $aclRole->id;
+                $permission->save();
+            }            
+        }
+        
+        return $aclRole->id;
     }
 }
