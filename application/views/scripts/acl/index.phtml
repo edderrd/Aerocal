@@ -1,15 +1,18 @@
+<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
 <?php if($this->acl()->isValid("aircraft", "create")): ?>
     <?php $this->toolbar()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create Role"), array('onclick' => "modalDialog('/acl/create_role/format/json');"))?>
 <?php endif; ?>
 <?php if(!empty($this->roles)): ?>
-    <table class="table-pane">
+    <table class="table-pane" id="main-table">
         <tr>
             <th><?= $this->translate->_("Id") ?></th>
             <th><?= $this->translate->_("Role") ?></th>
             <th><?= $this->translate->_("Description") ?>
             <th><?= $this->translate->_("Accepted permission") ?></th>
+            <th style="width: 30px;"><span class="edit-mono-icon">&nbsp;</span></th>
+            <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
         </tr>
         <?php foreach($this->roles as $rol): ?>
             <?php if($rol['name'] == 'administrator'): ?>
@@ -18,6 +21,8 @@
                     <td><?= ucfirst($rol['name']) ?></td>
                     <td><?= ucfirst($rol['description']) ?></td>
                     <td align="left"><span class="button-option">*<?= $this->translate->_("Full access") ?></span></td>
+                    <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
+                    <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
                 </tr>
             <?php else: ?>
                 <tr>
@@ -33,7 +38,8 @@
                     <?php else: ?>
                         <td></td>
                     <?php endif; ?>
-
+                    <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
+                    <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
                 </tr>
             <?php endif; ?>
         <?php endforeach ?>

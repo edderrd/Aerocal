@@ -254,3 +254,21 @@ function changeCalendarView(calendarId, $element, action)
     $("#"+calendarId).swtichView(action);
     $element.button("enable");
 }
+
+function tableHightlight(elementId)
+{
+	var lookupElements = "#"+elementId+" tr";
+	
+	$(lookupElements).hover(
+		function() {
+			$(this).children("td").each(function() {
+				$(this).children("a").removeClass("x-hidden");
+			});
+		},
+		function() {
+			$(this).children("td").each(function() {
+				$(this).children("a").addClass("x-hidden");
+			});
+		}
+	);
+}
