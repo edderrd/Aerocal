@@ -31,10 +31,13 @@ class App_Utils {
                 }
                 else 
                 {
-                    $rv[$item[$index]] = $item[$value];    
-                }                
+                    $rv[$item[$index]] = $item[$value];
+                }
+                if (is_string($rv[$item[$index]]))
+                    $rv[$item[$index]] = ucfirst($rv[$item[$index]]);
             }
         }
+        asort($rv);
         return $rv;
     }
 }

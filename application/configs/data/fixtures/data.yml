@@ -1,19 +1,19 @@
 AclResource:
   AclResource_1:
-    name: mvc:default.index.index
-    description: "Main Page"
-  AclResource_2:
     name: mvc:default.index.reserve
     description: "Reserve Aircraft action"
-  AclResource_3:
+  AclResource_2:
     name: mvc:default.user.index
     description: "Edit user profile"
-  AclResource_4:
+  AclResource_3:
     name: mvc:default.user.list
     description: "List all users"
-  AclResource_5:
+  AclResource_4:
     name: mvc:default.user.create
     description: "Create a user"
+  AclResource_5:
+    name: mvc:default.user.edit
+    description: "Edit a user"
   AclResource_6:
     name: mvc:default.user.delete
     description: "Delete a user"
@@ -24,36 +24,39 @@ AclResource:
     name: mvc:default.aircraft.create
     description: "Create a aircraft"
   AclResource_9:
+    name: mvc:default.aircraft.edit
+    description: "Edit a aircraft"
+  AclResource_10:
     name: mvc:default.aircraft.delete
     description: "Delete a aircraft"
-  AclResource_10:
+  AclResource_11:
     name: mvc:default.acl.index
     description: "List roles and resources"
-  AclResource_11:
+  AclResource_12:
     name: mvc:default.acl.create_resource
     description: "Create a resource"
-  AclResource_12:
-    name: mvc:default.acl.update_resourece
-    description: "Update a resource"
   AclResource_13:
+    name: mvc:default.acl.edit_resource
+    description: "Edit a resource"
+  AclResource_14:
     name: mvc:default.acl.delete_resourece
     description: "Delete a resource"
-  AclResource_14:
+  AclResource_15:
     name: mvc:default.acl.create_role
     description: "Create a role"
-  AclResource_15:
-    name: mvc:default.acl.update_role
-    description: "Update a role"
   AclResource_16:
+    name: mvc:default.acl.edit_role
+    description: "Edit a role"
+  AclResource_17:
     name: mvc:default.acl.delete_role
     description: "Delete a role"
-  AclResource_17:
+  AclResource_18:
     name: mvc:default.acl.create_permission
     description: "Create a permission"
-  AclResource_18:
-    name: mvc:default.acl.update_permission
-    description: "Update a permission"
   AclResource_19:
+    name: mvc:default.acl.update_permission
+    description: "Edit a permission"
+  AclResource_20:
     name: mvc:default.acl.delete_permission
     description: "Delete a permission"
 

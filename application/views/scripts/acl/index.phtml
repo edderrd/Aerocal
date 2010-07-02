@@ -21,8 +21,16 @@
                     <td><?= ucfirst($rol['name']) ?></td>
                     <td><?= ucfirst($rol['description']) ?></td>
                     <td align="left"><span class="button-option">*<?= $this->translate->_("Full access") ?></span></td>
-                    <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
-                    <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
+                    <?php if($this->acl()->isValid("acl", "edit_role")):?>
+                        <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
+                    <?php else: ?>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
+                    <?php if($this->acl()->isValid("acl", "delete_role")):?>
+                        <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
+                    <?php else: ?>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
                 </tr>
             <?php else: ?>
                 <tr>
@@ -38,8 +46,16 @@
                     <?php else: ?>
                         <td></td>
                     <?php endif; ?>
-                    <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
-                    <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
+                    <?php if($this->acl()->isValid("acl", "edit_role")):?>
+                        <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/acl/edit_role/id/<?= $rol['id'] ?>');">&nbsp;</a></td>
+                    <?php else: ?>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
+                    <?php if($this->acl()->isValid("acl", "delete_role")):?>
+                        <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/acl/delete_role/id/<?= $rol['id'] ?>')">&nbsp;</a></td>
+                    <?php else: ?>
+                        <td>&nbsp;</td>
+                    <?php endif; ?>
                 </tr>
             <?php endif; ?>
         <?php endforeach ?>

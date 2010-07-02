@@ -1,4 +1,16 @@
 <?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
+<script type="text/javascript"> 
+    function editInline(element)
+    {
+        console.debug('testing');
+        var content = element.html();
+        var myInput = $("<input type='text'></input>");
+        console.debug(myInput);
+        
+        element.html(myInput.val(content));
+    }
+</script>
+
 <table class="table-pane" id="main-table">
     <tr>
         <th><?= $this->translate->_("Name") ?></th>
@@ -11,9 +23,17 @@
         <tr>
             <td><?= $aircraft['name'] ?></td>
             <td><?= $this->translate->_($aircraft['AircraftType']['type']) ?></td>
-            <td><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
-            <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a></td>
-            <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/aircraft/delete/id/<?= $aircraft['id'] ?>')">&nbsp;</a></td>
+            <td onClick="editInline($(this));"><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
+            <?php if($this->acl()->isValid("aircraft", "edit")):?>
+                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a></td>
+            <?php else: ?>
+                <td>&nbsp;</td>
+            <?php endif; ?>
+            <?php if($this->acl()->isValid("aircraft", "delete")):?>
+                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/aircraft/delete/id/<?= $aircraft['id'] ?>')">&nbsp;</a></td>
+            <?php else: ?>
+                <td>&nbsp;</td>
+            <?php endif; ?>
         </tr>
     <?php endforeach; ?>
 </table>

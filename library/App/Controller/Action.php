@@ -13,6 +13,7 @@ class App_Controller_Action extends Zend_Controller_Action
            'logout'
        )
     );
+    
     /**
      * @var Zend_Translate
      */
@@ -55,7 +56,7 @@ class App_Controller_Action extends Zend_Controller_Action
             }
             return false;
     }
-
+    
     /**
      * Validate if the user has logged in, and if user have permission
      * otherwise will redirect respectivelly
@@ -73,6 +74,7 @@ class App_Controller_Action extends Zend_Controller_Action
         }
         else
         {
+            
             // validate if the user have permissions to see this action
             $identity = Zend_Auth::getInstance()->getIdentity();
             if(!$identity->isValidResource($controller, $action))
@@ -80,7 +82,7 @@ class App_Controller_Action extends Zend_Controller_Action
                 // will redirect if isn't a action exception
                 if (!$this->_isActionException($controller, $action))
                 {
-                    $msg = $this->_translate->_("You dont have permission to browse");
+                    $msg = self::$_translate->_("You dont have permission to browse");
                     $this->setMessage($msg . " $controller\\$action");
                     $this->_redirect("/index/index");
                 }

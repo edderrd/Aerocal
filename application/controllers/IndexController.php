@@ -2,20 +2,14 @@
 
 class IndexController extends App_Controller_Action
 {
-    protected $_actionContexts = array(
-        'reserve' => array("html", "json"),
-        'index' => array("html", "json")
-    );
-
     public function init()
     {
-        $this->_helper
-             ->ajaxContext()
-             ->addActionContexts($this->_actionContexts)
-             ->initContext();
-
         parent::init();
-
+    }
+    
+    public function preDispatch()
+    {
+        parent::preDispatch();
     }
 
     public function indexAction()

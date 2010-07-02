@@ -11,13 +11,18 @@ class App_Acl extends Zend_Acl
      * @var Zend_Acl_Role
      */
     protected $_role;
-
     /**
      * @var User
      */
     public $user;
-
+    /**
+     * @var boolean
+     */
     public $isAmin = false;
+    /**
+     * @var string
+     */
+    protected $_defaultAction = null;
 
     /**
      * Add roles to self ACL
@@ -63,11 +68,14 @@ class App_Acl extends Zend_Acl
                 $this->add(new Zend_Acl_Resource($resource['name']));
             }
             $this->add(new Zend_Acl_Resource("mvc:default.user.logout"));
-        }
+        }        
         else
         {
             throw new Exception("There no Resources defined");
         }
+        
+        // default action
+        $this->add(new Zend_Acl_Resource($this->_defaultAction));
     }
 
     /**
@@ -85,9 +93,11 @@ class App_Acl extends Zend_Acl
             foreach($this->user['AclRole']['AclPermission']['AclResource'] as $resource)
             {
                 $this->allow($this->user['AclRole']['name'], $resource['name']);
-            }
-            
+            }            
         }
+        
+        // allow default action
+        $this->allow($this->user['AclRole']['name'], $this->_defaultAction);
     }
 
     /**
@@ -100,6 +110,8 @@ class App_Acl extends Zend_Acl
         if(!$user)
             throw new Exception("There is a error on Roles and permissions");
 
+        $config = new Zend_Config_Ini(APPLICATION_PATH . "/configs/application.ini", APPLICATION_ENV);
+        $this->_defaultAction = $config->app->defaultAction;
         $this->user = $user;
         $this->isAdmin = $user['AclRole']['name'] == "administrator" ? true : false;
         $this->_addRoles(AclRole::findAll());

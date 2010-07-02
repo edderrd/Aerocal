@@ -16,8 +16,16 @@
             <td><?= $user['last_name'] ?></td>
             <td><?= $user['username'] ?></td>
             <td><?= ucfirst($user['AclRole']['name']) ?></td>
-            <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/user/edit/id/<?= $user['id'] ?>');">&nbsp;</a></td>
-            <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/user/delete/id/<?= $user['id'] ?>')">&nbsp;</a></td>
+            <?php if($this->acl()->isValid("user", "edit")):?>
+                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/user/edit/id/<?= $user['id'] ?>');">&nbsp;</a></td>
+            <?php else: ?>
+                <td>&nbsp;</td>
+            <?php endif; ?>
+            <?php if($this->acl()->isValid("user", "delete")):?>
+                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/user/delete/id/<?= $user['id'] ?>')">&nbsp;</a></td>
+            <?php else: ?>
+                <td>&nbsp;</td>
+            <?php endif; ?>
         </tr>
     <?php endforeach; ?>
 </table>
