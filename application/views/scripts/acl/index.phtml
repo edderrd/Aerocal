@@ -1,5 +1,5 @@
 <?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
-<?php if($this->acl()->isValid("aircraft", "create")): ?>
+<?php if($this->acl()->isValid("acl", "create_role")): ?>
     <?php $this->toolbar()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create Role"), array('onclick' => "modalDialog('/acl/create_role/format/json');"))?>
