@@ -320,7 +320,18 @@ span.calControls {
 
 /* LOGIN FORM */
 #loginPage {
-    background: skyblue;
+    background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.02, rgb(214,244,255)),
+	    color-stop(1, rgb(135,207,235))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(214,244,255) 2%,
+	    rgb(135,207,235) 100%
+	);
 }
 #loginLogo {
     display: block;
@@ -333,10 +344,10 @@ span.calControls {
     top: 105px;
 }
 #loginForm {
-    width: 256px;
-    height: 400px;
+    width: 276px;
+    height: 420px;
     background: url(../img/small-Generic-Parking-Ticket.png) no-repeat 0 0;
-    margin: 32px auto 0;
+    margin: 20px auto 0;
 }
 #loginForm input[type=submit] {
     display: block;
