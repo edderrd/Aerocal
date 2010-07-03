@@ -67,6 +67,7 @@ class App_Acl extends Zend_Acl
             {
                 $this->add(new Zend_Acl_Resource($resource['name']));
             }
+            $this->add(new Zend_Acl_Resource("mvc:default.user.login"));
             $this->add(new Zend_Acl_Resource("mvc:default.user.logout"));
         }        
         else

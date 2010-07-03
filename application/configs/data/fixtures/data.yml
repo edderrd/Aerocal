@@ -14,7 +14,7 @@ AclResource:
   AclResource_5:
     name: mvc:default.user.edit
     description: "Edit a user"
-  AclResource_6:
+  AclResource_6:    
     name: mvc:default.user.delete
     description: "Delete a user"
   AclResource_7:
@@ -77,9 +77,6 @@ AclPermission:
     resource_id: 2
     role_id: 1
   AclPermission_3:
-    resource_id: 3
-    role_id: 1
-  AclPermission_4:
     resource_id: 7
     role_id: 1
     
