@@ -26,6 +26,10 @@ class App_Controller_Action extends Zend_Controller_Action
      * @var array
      */
     protected $_defaultContextFormat = array("html", "json");
+    /**
+     * @var String
+     */
+    public $baseUrl;
 
     /**
      * Check if the user is currently logged in
@@ -125,6 +129,9 @@ class App_Controller_Action extends Zend_Controller_Action
     public function init()
     {
         self::$_translate = Zend_Registry::get("translate");
+        // setup baseurl
+        $this->baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl();
+        $this->view->baseUrl = $this->baseUrl;
     }
 
     public function preDispatch()
@@ -157,7 +164,7 @@ class App_Controller_Action extends Zend_Controller_Action
             $buttons[$name]['params'] = $params;
 
         if(!empty($url))
-            $buttons[$name]['url'] = $url;
+            $buttons[$name]['url'] = $this->baseUrl.$url;
             
         $this->view->buttons = $buttons;
         
@@ -193,7 +200,7 @@ class App_Controller_Action extends Zend_Controller_Action
                         $options['success']['button']['action']);
                         
                     if (isset($options['success']['redirect']))    
-                        $this->view->redirect = $options['success']['redirect'];
+                        $this->view->redirect = $this->baseUrl.$options['success']['redirect'];
                     break;
                 }
                 

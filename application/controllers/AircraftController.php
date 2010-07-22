@@ -47,7 +47,7 @@ class AircraftController extends App_Controller_Action
                     
                     $this->view->message = self::$_translate->_("Aircraft created correctly");
                     $this->createAjaxButton("Close", "close");
-                    $this->view->redirect = "/aircraft/index";
+                    $this->view->redirect = $this->baseUrl."/aircraft/index";
                     break;
                 }                           
                 

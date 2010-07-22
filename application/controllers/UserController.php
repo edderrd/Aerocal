@@ -32,7 +32,7 @@ class UserController extends App_Controller_Action
             $user->save();
             
             $this->setMessage(array(self::$_translate->_("Preferences saved successfully")));
-            $this->_redirect("/index/index");
+            $this->_redirect($this->baseUrl."/index/index");
         }
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         $this->view->form->firstname->setValue($user->first_name);
@@ -96,7 +96,7 @@ class UserController extends App_Controller_Action
         		    
         		    $this->view->message = self::$_translate->_("User created correctly");
         		    $this->createAjaxButton("Close", "close");
-        		    $this->view->redirect = "/user/list";
+        		    $this->view->redirect = $this->baseUrl."/user/list";
         		    break;
         		}        		        	
         		

@@ -32,7 +32,7 @@ class IndexController extends App_Controller_Action
             $reservations = Reservation::findAll();
 
             $this->view->events = Reservation::toEvents($reservations, true);
-            $calendar->loadUrl("/index/index/format/json");
+            $calendar->loadUrl($this->baseUrl."/index/index/format/json");
         }
         else
         {
@@ -40,7 +40,7 @@ class IndexController extends App_Controller_Action
             $reservations = Reservation::findByUser($user->id);
 
             $this->view->events = Reservation::toEvents($reservations);
-            $calendar->loadUrl("/index/index/format/json");
+            $calendar->loadUrl($this->baseUrl."/index/index/format/json");
         }
         if (!$calendar->canAdd())
             $this->setMessage(self::$_translate->_("You don't have aircraft assigned"));
@@ -66,7 +66,7 @@ class IndexController extends App_Controller_Action
                 if (Reservation::isAvailable($params))
                 {
                     Reservation::addReservation($params);
-                    $this->view->redirect = "/index/index";
+                    $this->view->redirect = $this->baseUrl."/index/index";
                     $this->view->message = self::$_translate->_("Reservation added");
                 }
                 else

@@ -48,27 +48,27 @@ span.login a {
 /** icons **/
 
 .new-icon {
-    background: url('/img/add.png') no-repeat center left;
+    background: url('../img/add.png') no-repeat center left;
     padding-left: 10px;
 }
 
 .delete-mono-icon {
-    background: url('/img/delete-mono.png') no-repeat center left;
+    background: url('../img/delete-mono.png') no-repeat center left;
     padding-left: 12px;
 }
 
 .delete-icon {
-    background: url('/img/delete.png') no-repeat center left;
+    background: url('../img/delete.png') no-repeat center left;
     padding-left: 15px;
 }
 
 .edit-mono-icon {
-    background: url('/img/edit-mono.png') no-repeat center left;
+    background: url('../img/edit-mono.png') no-repeat center left;
     padding-left: 10px;
 }
 
 .edit-icon {
-    background: url('/img/edit.png') no-repeat center left;
+    background: url('../img/edit.png') no-repeat center left;
     padding-left: 15px;
 }
 

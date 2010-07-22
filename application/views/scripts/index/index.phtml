@@ -5,7 +5,7 @@
     function quickAdd(start, end, isAllDay, pos, render)
     {
         modalDialog(
-            '/index/reserve/format/json',
+            '<?= $this->baseUrl ?>/index/reserve/format/json',
             {
                 'startDate': formatDate(start),
                 'endDate': formatDate(end),

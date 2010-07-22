@@ -174,11 +174,11 @@ span.calControls {
 }
 
 .toggle-normal {
-    background:url(/img/togglers.png) 0 0 no-repeat;
+    background:url(../img/togglers.png) 0 0 no-repeat;
 }
 
 .toggle-down {
-    background:url(/img/togglers.png) 0 -10px no-repeat;
+    background:url(../img/togglers.png) 0 -10px no-repeat;
 }
 
 .west-pane .side-pane {

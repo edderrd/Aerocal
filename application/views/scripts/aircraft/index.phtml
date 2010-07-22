@@ -25,12 +25,12 @@
             <td><?= $this->translate->_($aircraft['AircraftType']['type']) ?></td>
             <td onClick="editInline($(this));"><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
             <?php if($this->acl()->isValid("aircraft", "edit")):?>
-                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a></td>
+                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
             <?php if($this->acl()->isValid("aircraft", "delete")):?>
-                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/aircraft/delete/id/<?= $aircraft['id'] ?>')">&nbsp;</a></td>
+                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/aircraft/delete/id/<?= $aircraft['id'] ?>')">&nbsp;</a></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
@@ -41,5 +41,5 @@
 <?php if($this->acl()->isValid("aircraft", "create")): ?>
     <?php $this->toolbar()
             ->setButtonset(false)
-            ->addButton("create-btn", $this->translate->_("Create Aircraft"), array('onclick' => "modalDialog('/aircraft/create/format/json');"))?>
+            ->addButton("create-btn", $this->translate->_("Create Aircraft"), array('onclick' => "modalDialog('".$this->baseUrl."/aircraft/create/format/json');"))?>
 <?php endif; ?>

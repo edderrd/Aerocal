@@ -17,12 +17,12 @@
             <td><?= $user['username'] ?></td>
             <td><?= ucfirst($user['AclRole']['name']) ?></td>
             <?php if($this->acl()->isValid("user", "edit")):?>
-                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('/user/edit/id/<?= $user['id'] ?>');">&nbsp;</a></td>
+                <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/user/edit/id/<?= $user['id'] ?>');">&nbsp;</a></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
             <?php if($this->acl()->isValid("user", "delete")):?>
-                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('/user/delete/id/<?= $user['id'] ?>')">&nbsp;</a></td>
+                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/user/delete/id/<?= $user['id'] ?>')">&nbsp;</a></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
@@ -32,5 +32,5 @@
 <?php if($this->acl()->isValid('user', 'create')): ?>
     <?php $this->toolbar()
             ->setButtonset(false)
-            ->addButton("create-btn", $this->translate->_("Create user"), array('onclick' => "modalDialog('/user/create/format/json');"))?>
+            ->addButton("create-btn", $this->translate->_("Create user"), array('onclick' => "modalDialog('".$this->baseUrl."/user/create/format/json');"))?>
 <?php endif; ?>
