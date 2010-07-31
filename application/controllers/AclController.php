@@ -28,11 +28,14 @@ class AclController extends App_Controller_Action
                 ),
                 "redirect" => "/acl/index",
                 "message" => "Role created correctly"
+            ),
+            'model' => array(
+                "class" => "AclRole",
+                "method" => "create"
             )
         );
         
         $this->ajaxFormProcessor($form, $options);                
-        
     }
 }
 ?>
