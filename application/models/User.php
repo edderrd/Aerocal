@@ -80,4 +80,18 @@ class User extends BaseUser
             return $user->id;
         }
     }
+
+    /**
+     * Look for a user by his id
+     * @param int $id
+     * @return array
+     */
+    public static function findById($id)
+    {
+        return Doctrine_Query::create()
+                ->from("User u")
+                ->addWhere("id = $id")
+                ->fetchOne()
+                ->toArray();
+    }
 }

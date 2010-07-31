@@ -99,4 +99,34 @@ class UserController extends App_Controller_Action
         );
         $this->ajaxFormProcessor($form, $options);
     }
+
+    public function editAction()
+    {
+        $id = $this->_request->getParam("id");
+        $data = User::findById($id);
+        
+        $form = new Form_User();
+        $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
+        $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
+        $form->role_id->setValue($data['role_id']);
+        $form->populate($data);
+
+        $options = array(
+            'title'     => "Create User",
+            'url'       => "/user/create/format/json/subaction/submit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/user/list",
+                "message" => "User created correctly"
+            ),
+            'model' => array(
+                "class" => "User",
+                "method" => "edit"
+            )
+        );
+        $this->ajaxFormProcessor($form, $options);
+    }
 }

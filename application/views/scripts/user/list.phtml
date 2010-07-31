@@ -17,7 +17,7 @@
             <td><?= $user['username'] ?></td>
             <td><?= ucfirst($user['AclRole']['name']) ?></td>
             <?php if($this->acl()->isValid("user", "edit")):?>
-                <td><a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/user/edit/id/<?= $user['id'] ?>');">&nbsp;</a></td>
+                <td><a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/user/edit/format/json/id/<?= $user['id'] ?>');">&nbsp;</a></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
