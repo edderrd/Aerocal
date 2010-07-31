@@ -29,37 +29,26 @@ class AircraftController extends App_Controller_Action
     public function createAction()
     {
         $form = new Form_Aircraft();
-        $params = $this->_getAllParams();
-        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
-        
-        switch ($subaction)
-        {
-            case 'submit':
-                if(!$form->isValid($params))
-                {
-                    $this->view->isValid = $form->isValid($params);
-                    $this->view->message = $form->getErrorMessages();                   
-                }
-                else
-                {
-                    $this->view->isValid = $form->isValid($params);
-                    Aircraft::create($params);
-                    
-                    $this->view->message = self::$_translate->_("Aircraft created correctly");
-                    $this->createAjaxButton("Close", "close");
-                    $this->view->redirect = $this->baseUrl."/aircraft/index";
-                    break;
-                }                           
-                
-            default:
-                $form->type_id->setMultiOptions(App_Utils::toList(AircraftType::findAll(), 'id', 'type'));
-                $form->status_id->setMultiOptions(App_Utils::toList(AircraftStatus::findAll(), 'id', 'status'));
-                
-                $this->view->title = self::$_translate->_("Create aircraft");
-                $this->createAjaxButton("Create", "submit", $params, "/aircraft/create/format/json/subaction/submit");
-                $this->view->form = $form->toArray();
-        }
-        
+        $form->type_id->setMultiOptions(App_Utils::toList(AircraftType::findAll(), 'id', 'type'));
+        $form->status_id->setMultiOptions(App_Utils::toList(AircraftStatus::findAll(), 'id', 'status'));
+
+        $options = array(
+            'title'     => "Create aircraft",
+            'url'       => "/aircraft/create/format/json/subaction/submit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/aircraft/index",
+                "message" => "Aircraft created correctly"
+            ),
+            'model' => array(
+                "class" => "Aircraft",
+                "method" => "create"
+            )
+        );
+        $this->ajaxFormProcessor($form, $options);
     }
 }
 ?>
