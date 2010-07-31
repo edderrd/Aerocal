@@ -192,7 +192,10 @@ class App_Controller_Action extends Zend_Controller_Action
                 else
                 {
                     $this->view->isValid = $form->isValid($params);
-                    AclRole::create($params);
+                    $modelClass = $options['model']['class'];
+                    $modelMethod = $options['model']['method'];
+                    // persist method
+                    call_user_func(array($modelClass, $modelMethod), $params);
                     
                     $this->view->message = self::$_translate->_($options['success']['message']);
                     $this->createAjaxButton(

@@ -78,37 +78,25 @@ class UserController extends App_Controller_Action
     public function createAction()
     {
         $form = new Form_User();
-        $params = $this->_getAllParams();
-        $subaction = isset($params['subaction']) ? $params['subaction'] : null;
+        $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
+        $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
         
-        switch ($subaction)
-        {
-        	case 'submit':
-        		if(!$form->isValid($params))
-        		{
-        		    $this->view->isValid = $form->isValid($params);
-        		    $this->view->message = $form->getErrorMessages();        		    
-        		}
-        		else
-        		{
-        		    $this->view->isValid = $form->isValid($params);
-        		    User::createUser($params);
-        		    
-        		    $this->view->message = self::$_translate->_("User created correctly");
-        		    $this->createAjaxButton("Close", "close");
-        		    $this->view->redirect = $this->baseUrl."/user/list";
-        		    break;
-        		}        		        	
-        		
-        	default:
-        	    $form->role_id->setMultiOptions(App_Utils::toList(AclRole::findAll(), 'id', 'name'));
-                $form->aircraft->setMultiOptions(App_Utils::toList(Aircraft::findAll(), 'id', 'name'));
-                
-                $this->view->title = self::$_translate->_("Create user");
-                $this->createAjaxButton("Create", "submit", $params, "/user/create/format/json/subaction/submit");
-                $this->view->form = $form->toArray();
-        }
-        
-        
+        $options = array(
+            'title'     => "Create User",
+            'url'       => "/user/create/format/json/subaction/submit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/user/list",
+                "message" => "User created correctly"
+            ),
+            'model' => array(
+                "class" => "User",
+                "method" => "createUser"
+            )
+        );
+        $this->ajaxFormProcessor($form, $options);
     }
 }
