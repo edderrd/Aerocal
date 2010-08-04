@@ -1,16 +1,4 @@
 <?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
-<script type="text/javascript"> 
-    function editInline(element)
-    {
-        console.debug('testing');
-        var content = element.html();
-        var myInput = $("<input type='text'></input>");
-        console.debug(myInput);
-        
-        element.html(myInput.val(content));
-    }
-</script>
-
 <table class="table-pane" id="main-table">
     <tr>
         <th><?= $this->translate->_("Name") ?></th>
