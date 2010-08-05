@@ -11,7 +11,7 @@
         <tr>
             <td><?= $aircraft['name'] ?></td>
             <td><?= $this->translate->_($aircraft['AircraftType']['type']) ?></td>
-            <td onClick="editInline($(this));"><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
+            <td><?= $this->translate->_($aircraft['AircraftStatus']['status']) ?></td>
             <?php if($this->acl()->isValid("aircraft", "edit")):?>
                 <td><a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a></td>
             <?php else: ?>

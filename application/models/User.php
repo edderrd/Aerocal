@@ -90,8 +90,38 @@ class User extends BaseUser
     {
         return Doctrine_Query::create()
                 ->from("User u")
+                ->leftJoin("u.Aircraft a")
                 ->addWhere("id = $id")
                 ->fetchOne()
                 ->toArray();
+    }
+
+    public static function edit($params)
+    {
+        print_r($params); exit();
+        if (!empty($params))
+        {
+            $user = Doctrine::getTable("User")->find($params['user_id']);
+            $user->id = $params['user_id'];
+            $user->first_name = $params['first_name'];
+            $user->last_name = $params['last_name'];
+            $user->role_id = $params['role_id'];
+            $user->language = $params['language'];
+
+            if (!empty($params['aircraft']))
+            {
+                $aircrafts = array_merge($params['aircraft'], $params['aircraft_available']);
+                $aircraftObjects = Aircraft::findIn($aircrafts);
+
+                {
+                    foreach($aircraftObjects as $aircraft)
+                        $user->Aircraft[] = $aircraft;
+                }
+            }
+            $user->save();
+            return $user->id;
+        }
+
+        return false;
     }
 }

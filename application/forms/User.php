@@ -54,7 +54,7 @@ class Form_User
         
         $this->addElement("select", "language", array(
             'required' => false,
-            'label'     => "Aircraft",
+            'label'     => "Language",
             'decorators' => array("ViewHelper", "Errors")
         ));
         $this->language->setRegisterInArrayValidator(false);
