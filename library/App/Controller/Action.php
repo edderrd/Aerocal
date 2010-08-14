@@ -209,7 +209,7 @@ class App_Controller_Action extends Zend_Controller_Action
                 
             default:
                 $this->view->title = self::$_translate->_($options['title']);
-                $this->createAjaxButton("Create", "submit", $params, $options['url']);
+                $this->createAjaxButton(self::$_translate->_($options['button']), "submit", $params, $options['url']);
                 $this->view->form = $form->toArray();
         }
     }

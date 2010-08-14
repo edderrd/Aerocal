@@ -84,6 +84,7 @@ class UserController extends App_Controller_Action
         $options = array(
             'title'     => "Create User",
             'url'       => "/user/create/format/json/subaction/submit",
+            'button'    => "Create",
             'success'   => array(
                 "button" => array(
                     "title"  => "Close",
@@ -112,18 +113,20 @@ class UserController extends App_Controller_Action
         $form->aircraft_available->setMultiOptions(App_Utils::toList(Aircraft::findAll(array('exclude' => $userAircrafts)), 'id', 'name'));
         $form->role_id->setValue($data['role_id']);
         $form->user_id->setValue($id);
+        
         $form->populate($data);
 
         $options = array(
             'title'     => "Edit User",
             'url'       => "/user/edit/format/json/subaction/submit",
+            'button'    => "Edit",
             'success'   => array(
                 "button" => array(
                     "title"  => "Close",
                     "action" => "close"
                 ),
                 "redirect" => "/user/list",
-                "message" => "User created correctly"
+                "message" => "User {$form->first_name->getValue()} {$form->last_name->getValue()} modified correctly"
             ),
             'model' => array(
                 "class" => "User",

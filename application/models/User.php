@@ -98,30 +98,28 @@ class User extends BaseUser
 
     public static function edit($params)
     {
-        print_r($params); exit();
         if (!empty($params))
         {
-            $user = Doctrine::getTable("User")->find($params['user_id']);
+            $user = Doctrine::getTable("User")->findOneById($params['user_id']);
             $user->id = $params['user_id'];
             $user->first_name = $params['first_name'];
             $user->last_name = $params['last_name'];
             $user->role_id = $params['role_id'];
             $user->language = $params['language'];
-
-            if (!empty($params['aircraft']))
+            
+            if (!empty($params['aircraft']) || !empty($params['aircraft_available']))
             {
-                $aircrafts = array_merge($params['aircraft'], $params['aircraft_available']);
-                $aircraftObjects = Aircraft::findIn($aircrafts);
+                $params['aircraft'] = isset($params['aircraft']) ? $params['aircraft'] : array();
+                $params['aircraft_available'] = isset($params['aircraft_available']) ? $params['aircraft_available'] : array();
 
-                {
-                    foreach($aircraftObjects as $aircraft)
-                        $user->Aircraft[] = $aircraft;
-                }
+                Aircraft::deleteUserAircrafts($user->id, $params['aircraft']);
+                
+                foreach($params['aircraft_available'] as $aircraft)
+                    $user->Aircraft[] = Doctrine::getTable("Aircraft")->findOneById($aircraft);
             }
             $user->save();
             return $user->id;
         }
-
         return false;
     }
 }

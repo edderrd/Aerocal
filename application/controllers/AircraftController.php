@@ -35,6 +35,7 @@ class AircraftController extends App_Controller_Action
         $options = array(
             'title'     => "Create aircraft",
             'url'       => "/aircraft/create/format/json/subaction/submit",
+            'button'    => "Create",
             'success'   => array(
                 "button" => array(
                     "title"  => "Close",

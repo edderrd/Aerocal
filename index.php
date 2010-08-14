@@ -1,5 +1,4 @@
 <?php
-
 function shutdown()
 {
     Zend_Session::writeClose(true);

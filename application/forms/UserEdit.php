@@ -8,13 +8,15 @@ class Form_UserEdit extends Form_User
     {
         parent::init();
 
+        $this->removeElement("username");
         // password element to a hidden one
         $this->removeElement("password");
 
-        $this->addElement("hidden", "password", array(
+        /*$this->addElement("hidden", "password", array(
             'required'   => false,
             'decorators' => array()
-        ));
+        ));*/
+
         $this->aircraft->setLabel("Aircraft assigned");
         
         $this->addElement("select", "aircraft_available", array(

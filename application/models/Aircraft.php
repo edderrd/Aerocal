@@ -56,22 +56,39 @@ class Aircraft extends BaseAircraft
     /**
      * Return all aircraft by array of ids
      * @param array $aircrafts
-     * @return array
+     * @return mixed
      */
-    public static function findIn($aircrafts)
+    public static function findIn($aircrafts, $inArray = true)
     {
         if (!empty($aircrafts))
         {
             $r = Doctrine_Query::create()
                     ->from("Aircraft a")
-                    ->addWhere("a.id in (".implode(",", $aircrafts).")")
-                    ->fetchArray(true);
-            
+                    ->addWhere("a.id in (".implode(",", $aircrafts).")");
+                    
+            if ($inArray)
+                $r->fetchArray(true);
+            else
+                $r->execute();
             return $r;
         }
-        else
+
+        return null;
+    }
+
+    public static function deleteUserAircrafts($userId, $aircrafts)
+    {
+        if (!empty($aircrafts) && !empty($userId))
         {
-            return array();
+            $r = Doctrine_Query::create()
+                        ->delete("UserAircraft ua")
+                        ->addWhere("ua.user_id = $userId")
+                        ->addWhere("ua.aircraft_id in (".implode(",", $aircrafts).")")
+                        ->execute();
+
+            return $r;
         }
+
+        return false;
     }
 }

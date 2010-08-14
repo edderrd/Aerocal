@@ -21,6 +21,7 @@ class AclController extends App_Controller_Action
         $options = array(
             'title'     => "Create role",
             'url'       => "/acl/create_role/format/json/subaction/submit",
+            'button'    => "Create",
             'success'   => array(
                 "button" => array(
                     "title"  => "Close",
