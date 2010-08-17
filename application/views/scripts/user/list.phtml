@@ -6,6 +6,7 @@
             <th><?= $this->translate->_("Last name") ?></th>
             <th><?= $this->translate->_("Username") ?></th>
             <th><?= $this->translate->_("Role") ?></th>
+            <th><?= $this->translate->_("Aircrafts") ?></th>
             <th style="width: 30px;"><span class="edit-mono-icon">&nbsp;</span></th>
             <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
         </tr>
@@ -16,6 +17,15 @@
             <td><?= $user['last_name'] ?></td>
             <td><?= $user['username'] ?></td>
             <td><?= ucfirst($user['AclRole']['name']) ?></td>
+            <td>
+                <?php if(empty($user['Aircraft'])): ?>
+                    <span><?= $this->translate->_("No aircrafts assigned") ?></span>
+                <?php else: ?>
+                    <?php foreach($user['Aircraft'] as $aircraft): ?>
+                        <span class="button-option"><?= $aircraft['AircraftType']['type']?>: <?= $aircraft['name'] ?></span>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </td>
             <?php if($this->acl()->isValid("user", "edit")):?>
                 <td><a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/user/edit/format/json/id/<?= $user['id'] ?>');">&nbsp;</a></td>
             <?php else: ?>

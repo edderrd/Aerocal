@@ -49,6 +49,8 @@ class User extends BaseUser
         return Doctrine_Query::create()
                     ->from("User u")
                     ->leftJoin("u.AclRole r")
+                    ->leftJoin("u.Aircraft a")
+                    ->leftJoin("a.AircraftType at")
                     ->fetchArray(true);
     }
     
