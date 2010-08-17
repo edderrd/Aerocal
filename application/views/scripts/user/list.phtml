@@ -22,7 +22,7 @@
                 <td>&nbsp;</td>
             <?php endif; ?>
             <?php if($this->acl()->isValid("user", "delete")):?>
-                <td><a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/user/delete/id/<?= $user['id'] ?>')">&nbsp;</a></td>
+                <td><?= $this->confirmLink($this->baseUrl ."/user/delete/id/{$user['id']}", "&nbsp;", "Are you sure to delete user?", array("class" => "delete-icon x-hidden")); ?></td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
