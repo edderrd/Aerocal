@@ -24,6 +24,7 @@
 
 <?php if($this->acl()->isValid("aircraft", "create")): ?>
     <?php $this->toolbar()
+            ->addOnLoad()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create Aircraft"), array('onclick' => "modalDialog('".$this->baseUrl."/aircraft/create/format/json');"))?>
 <?php endif; ?>

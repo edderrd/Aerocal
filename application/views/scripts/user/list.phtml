@@ -53,6 +53,7 @@
 </table>
 <?php if($this->acl()->isValid('user', 'create')): ?>
     <?php $this->toolbar()
+            ->addOnLoad()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create user"), array('onclick' => "modalDialog('".$this->baseUrl."/user/create/format/json');"))?>
 <?php endif; ?>

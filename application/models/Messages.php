@@ -13,4 +13,15 @@
 class Messages extends BaseMessages
 {
 
+    public static function findUnreadByUserId($userId)
+    {
+        return Doctrine_Query::create()
+                    ->from("Messages m")
+                    ->leftJoin("m.FromUser fu")
+                    ->leftJoin("m.ToUser tu")
+                    ->addWhere("m.to_user_id = $userId")
+                    ->addWhere("m.readed = false")
+                    ->fetchArray(true);
+    }
+
 }

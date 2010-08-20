@@ -12,7 +12,6 @@ class My_View_Helper_Toolbar
      * @var App_Toolbar
      */
     protected $_toolbar = null;
-
     /**
      * Initialize App_Toolbar object instance
      */
@@ -31,6 +30,18 @@ class My_View_Helper_Toolbar
     public function toolbar($toolbarId = "toolbar")
     {
         $this->_toolbar->setId($toolbarId);
+        return $this;
+    }
+
+    /**
+     * Add onLoad jquery function
+     * @return My_View_Helper_Toolbar
+     */
+    public function addOnLoad()
+    {
+        $containerId = $this->_toolbar->getId();
+        $this->view->JQuery()->addOnLoad("createToolbar(\"{$containerId}\");");
+
         return $this;
     }
 
@@ -69,7 +80,6 @@ class My_View_Helper_Toolbar
         if (!empty($buttons))
         {
             $container = "<div id=\"$containerId\">$buttons</div>";
-            echo $this->view->JQuery()->addOnLoad("createToolbar(\"$containerId\");");
         }
         return $container;
     }

@@ -1,6 +1,7 @@
 <?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
 <?php if($this->acl()->isValid("acl", "create_role")): ?>
     <?php $this->toolbar()
+            ->addOnLoad()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create Role"), array('onclick' => "modalDialog('".$this->baseUrl."/acl/create_role/format/json');"))?>
 <?php endif; ?>

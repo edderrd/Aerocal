@@ -13,8 +13,10 @@
         <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/application.js")) ?>
 
         <?php $this->JQuery()->addOnLoad("myLayout = applyLayout(); navigationPanels();") ?>
-        <?php $this->JQuery()->addOnLoad("consumeAlert('".$this->translate->_('Message')."');") ?>        
-
+        <?php $this->JQuery()->addOnLoad("consumeAlert('".$this->translate->_('Message')."');") ?>
+        <?php if($this->acl()->isValid("user", "messages")): ?>
+            <?php $this->JQuery()->addOnLoad("getMessages('".$this->baseUrl("/user/messages/format/json")."');") ?>
+        <?php endif; ?>
         <script type="text/javascript">
             var myLayout;
             var _alert;
@@ -23,7 +25,7 @@
         <?= $this->headLink() ?>
         <?= $this->headStyle() ?>
         <?= $this->headScript() ?>
-        <?= $this->JQuery() ?>
+        <?php echo $this->JQuery() ?>
 
     </head>
     <body>
@@ -45,7 +47,7 @@
             <div class="side-pane">
                 <h1><?= $this->translate->_("Messages") ?></h1>
                 <ul>
-                    <li><?= $this->translate->_("Unread") ?> <span class="counter">0</span></li>
+                    <li><?= $this->translate->_("Unread") ?> <span class="counter" id="msg-counter">0</span></li>
                 </ul>
             </div>
         </div>

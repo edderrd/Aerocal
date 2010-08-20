@@ -273,3 +273,19 @@ function tableHightlight(elementId)
 		}
 	);
 }
+
+/**
+ * Retrieve unread messages
+ */
+function getMessages(loadUrl)
+{
+    $.ajax({
+        url: loadUrl,
+        type: "post",
+        dataType: "json",
+        success: function(response) {
+            if (response.messages.count)
+                $("#msg-counter").html(response.messages.count);
+            }
+    });
+}

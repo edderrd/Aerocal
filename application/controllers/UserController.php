@@ -3,8 +3,8 @@ class UserController extends App_Controller_Action
 {
     protected $_contexts = array(
         'new' => array("html", "json"),
-        'create' => array("html", "json")
-    
+        'create' => array("html", "json"),
+        'messages' => array("html", "json")
     );
 
     public function preDispatch()
@@ -147,5 +147,19 @@ class UserController extends App_Controller_Action
             User::enableById($id);
         
         $this->_redirect($this->baseUrl."/user/list");
+    }
+
+    public function messagesAction()
+    {
+        $user = Zend_Auth::getInstance()->getIdentity()->user;
+        $msgs = Messages::findUnreadByUserId($user->id);
+        if (!empty($msgs))
+        {
+            $data['count'] = count($msgs);
+            $data['title'] = self::$_translate->_("New message");
+            $data['message'] = self::$_translate->_("You have unread messages");
+
+            $this->view->messages = $data;
+        }
     }
 }

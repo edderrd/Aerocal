@@ -113,6 +113,11 @@ class Aircraft extends BaseAircraft
         return false;
     }
 
+    /**
+     * Edit a aircraft
+     * @param array $params
+     * @return mixed
+     */
     public static function edit($params)
     {
         if (!empty($params))

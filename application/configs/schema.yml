@@ -217,6 +217,10 @@ Messages:
     content:
       type: text
       notnull: false
+    readed:
+      type: boolean
+      notnull: true
+      default: false
   relations:
     FromUser:
       class: User

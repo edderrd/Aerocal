@@ -10,6 +10,7 @@
  * @property integer $to_user_id
  * @property varchar $subject
  * @property text $content
+ * @property boolean $readed
  * @property User $FromUser
  * @property User $ToUser
  * 
@@ -44,6 +45,11 @@ abstract class BaseMessages extends Doctrine_Record
         $this->hasColumn('content', 'text', null, array(
              'type' => 'text',
              'notnull' => false,
+             ));
+        $this->hasColumn('readed', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
     }
 
