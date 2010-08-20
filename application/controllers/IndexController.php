@@ -63,7 +63,7 @@ class IndexController extends App_Controller_Action
                 $params['user_id'] = $user->id;
                 if (Reservation::isAvailable($params))
                 {
-                    //Reservation::addReservation($params);
+                    Reservation::addReservation($params);
                     $this->reservationNotifyAdmins($user, $params);
                     $this->view->redirect = $this->baseUrl."/index/index";
                     $this->view->message = self::$_translate->_("Reservation added");
@@ -88,7 +88,7 @@ class IndexController extends App_Controller_Action
     {
         $subject = self::$_translate->_("Reservation added");
         $msg = self::$_translate->_("User");
-        $msg .= " {$user->first_name} {$user->last_name}";
+        $msg .= " {$user->first_name} {$user->last_name} ";
         $msg .= self::$_translate->_("made a reservation on");
         $msg .= " " . $params['startDate'];
 

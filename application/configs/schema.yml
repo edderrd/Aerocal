@@ -217,10 +217,13 @@ Message:
     content:
       type: text
       notnull: false
-    readed:
+    is_read:
       type: boolean
       notnull: true
       default: false
+    created_on:
+      type: datetime
+      notnull: true
   relations:
     FromUser:
       class: User

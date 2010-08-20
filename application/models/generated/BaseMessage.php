@@ -10,7 +10,8 @@
  * @property integer $to_user_id
  * @property varchar $subject
  * @property text $content
- * @property boolean $readed
+ * @property boolean $is_read
+ * @property datetime $created_on
  * @property User $FromUser
  * @property User $ToUser
  * 
@@ -46,10 +47,14 @@ abstract class BaseMessage extends Doctrine_Record
              'type' => 'text',
              'notnull' => false,
              ));
-        $this->hasColumn('readed', 'boolean', null, array(
+        $this->hasColumn('is_read', 'boolean', null, array(
              'type' => 'boolean',
              'notnull' => true,
              'default' => false,
+             ));
+        $this->hasColumn('created_on', 'datetime', null, array(
+             'type' => 'datetime',
+             'notnull' => true,
              ));
     }
 

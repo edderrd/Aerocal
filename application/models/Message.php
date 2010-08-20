@@ -25,7 +25,7 @@ class Message extends BaseMessage
                     ->leftJoin("m.FromUser fu")
                     ->leftJoin("m.ToUser tu")
                     ->addWhere("m.to_user_id = $userId")
-                    ->addWhere("m.readed = false")
+                    ->addWhere("m.is_read = false")
                     ->fetchArray(true);
     }
 
@@ -48,7 +48,8 @@ class Message extends BaseMessage
                 $message->to_user_id = $admin['id'];
                 $message->subject = $subject;
                 $message->content = $msg;
-                $message->readed = false;
+                $message->is_read = false;
+                $message->created_on = date("Y-m-d G:i:s", time());
                 $message->save();
             }
         }
