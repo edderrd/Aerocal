@@ -152,7 +152,7 @@ class UserController extends App_Controller_Action
     public function messagesAction()
     {
         $user = Zend_Auth::getInstance()->getIdentity()->user;
-        $msgs = Messages::findUnreadByUserId($user->id);
+        $msgs = Message::findUnreadByUserId($user->id);
         if (!empty($msgs))
         {
             $data['count'] = count($msgs);

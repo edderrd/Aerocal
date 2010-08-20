@@ -199,7 +199,7 @@ ReservationStatus:
       type: varchar(200)
       notnull: true
       
-Messages:
+Message:
   columns:
     id:
       type: integer

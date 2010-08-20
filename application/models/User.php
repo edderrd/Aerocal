@@ -162,4 +162,18 @@ class User extends BaseUser
             $user->save();
         }
     }
+
+    public static function getAllAdmins($inArray = true)
+    {
+        $r = Doctrine_Query::create()
+                ->from("User u")
+                ->leftJoin("u.AclRole r")
+                ->addWhere("r.name = 'administrator'")
+                ->execute();
+
+        if ($inArray)
+            return $r->toArray();
+
+        return $r;
+    }
 }

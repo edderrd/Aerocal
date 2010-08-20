@@ -284,7 +284,7 @@ function getMessages(loadUrl)
         type: "post",
         dataType: "json",
         success: function(response) {
-            if (response.messages.count)
+            if (response.messages)
                 $("#msg-counter").html(response.messages.count);
 
             if (response.notification)

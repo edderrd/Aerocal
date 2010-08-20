@@ -16,8 +16,8 @@
  * @property AclRole $AclRole
  * @property Doctrine_Collection $Reservation
  * @property Doctrine_Collection $Aircraft
- * @property Messages $FromUser
- * @property Messages $ToUser
+ * @property Message $FromUser
+ * @property Message $ToUser
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -85,11 +85,11 @@ abstract class BaseUser extends Doctrine_Record
              'local' => 'user_id',
              'foreign' => 'aircraft_id'));
 
-        $this->hasOne('Messages as FromUser', array(
+        $this->hasOne('Message as FromUser', array(
              'local' => 'id',
              'foreign' => 'from_user_id'));
 
-        $this->hasOne('Messages as ToUser', array(
+        $this->hasOne('Message as ToUser', array(
              'local' => 'id',
              'foreign' => 'to_user_id'));
     }
