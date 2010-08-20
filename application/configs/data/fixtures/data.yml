@@ -79,7 +79,67 @@ AclPermission:
   AclPermission_3:
     resource_id: 7
     role_id: 1
-    
+  AclPermission_4:
+    resource_id: 1
+    role_id: 2
+  AclPermission_5:
+    resource_id: 2
+    role_id: 2
+  AclPermission_6:
+    resource_id: 3
+    role_id: 2
+  AclPermission_7:
+    resource_id: 4
+    role_id: 2
+  AclPermission_8:
+    resource_id: 5
+    role_id: 2
+  AclPermission_9:
+    resource_id: 6
+    role_id: 2
+  AclPermission_10:
+    resource_id: 7
+    role_id: 2
+  AclPermission_11:
+    resource_id: 8
+    role_id: 2
+  AclPermission_12:
+    resource_id: 9
+    role_id: 2
+  AclPermission_13:
+    resource_id: 10
+    role_id: 2
+  AclPermission_14:
+    resource_id: 11
+    role_id: 2
+  AclPermission_15:
+    resource_id: 12
+    role_id: 2
+  AclPermission_16:
+    resource_id: 13
+    role_id: 2
+  AclPermission_17:
+    resource_id: 14
+    role_id: 2
+  AclPermission_18:
+    resource_id: 15
+    role_id: 2
+  AclPermission_19:
+    resource_id: 16
+    role_id: 2
+  AclPermission_20:
+    resource_id: 17
+    role_id: 2
+  AclPermission_21:
+    resource_id: 18
+    role_id: 2
+  AclPermission_22:
+    resource_id: 19
+    role_id: 2
+  AclPermission_23:
+    resource_id: 20
+    role_id: 2
+
 User:
   User_1:
     first_name: Aerocal
