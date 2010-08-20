@@ -32,7 +32,7 @@ class UserController extends App_Controller_Action
             $user->save();
             
             $this->setMessage(array(self::$_translate->_("Preferences saved successfully")));
-            $this->_redirect($this->baseUrl."/index/index");
+            $this->_redirect($this->baseUrl."/user/index");
         }
         $user = Zend_Auth::getInstance()->getIdentity()->user;
         $this->view->form->firstname->setValue($user->first_name);
@@ -160,6 +160,13 @@ class UserController extends App_Controller_Action
             $data['message'] = self::$_translate->_("You have unread messages");
 
             $this->view->messages = $data;
+        }
+
+        $notificationMessages = $this->getMessages();
+        if (!empty($notificationMessages))
+        {
+            $this->view->notification = $notificationMessages;
+            $this->view->notificationTitle = self::$_translate->_("Notice");
         }
     }
 }

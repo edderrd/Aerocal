@@ -286,6 +286,17 @@ function getMessages(loadUrl)
         success: function(response) {
             if (response.messages.count)
                 $("#msg-counter").html(response.messages.count);
+
+            if (response.notification)
+            {
+                $.each(response.notification, function(index, message) {
+                    $.pnotify({
+                        pnotify_title: response.notificationTitle,
+                        pnotify_text: message,
+                        pnotify_history: false
+                    });
+                })
             }
+        }
     });
 }

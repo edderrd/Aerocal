@@ -123,7 +123,22 @@ class App_Controller_Action extends Zend_Controller_Action
     {
         $messages = is_array($messages) ? $messages : array($messages);
         $notification = new Zend_Session_Namespace("notification");
-        $notification->messages = $messages;
+        foreach($messages as $message)
+            $notification->messages[] = $message;
+    }
+
+    /**
+     * Get All messages
+     * @return array
+     */
+    public function getMessages()
+    {
+        $notification = new Zend_Session_Namespace("notification");
+        $messages = $notification->messages;
+        $notification->messages = array();
+
+        return $messages;
+
     }
 
     public function init()

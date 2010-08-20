@@ -42,8 +42,6 @@ class IndexController extends App_Controller_Action
             $this->view->events = Reservation::toEvents($reservations);
             $calendar->loadUrl($this->baseUrl."/index/index/format/json");
         }
-        if (!$calendar->canAdd())
-            $this->setMessage(self::$_translate->_("You don't have aircraft assigned"));
         
         $this->view->jqCalendar = $calendar;
     }
