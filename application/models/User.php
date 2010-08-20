@@ -14,6 +14,7 @@ class User extends BaseUser
 {
     const WRONG_PW = 1;
     const NOT_FOUND = 2;
+    const DISABLED = 3;
 
     /**
      * Perform authenticatino of a user
@@ -35,6 +36,9 @@ class User extends BaseUser
 
         if ($user)
         {
+            if ($user->active == false)
+                throw new Exception(self::DISABLED);
+
             if ($user->password == $password)
                 return $user;
 

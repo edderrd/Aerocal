@@ -6,6 +6,7 @@ class App_Auth_Adapter
 
 	const NOT_FOUND_MSG = "User not valid";
 	const BAD_PASSWORD_MSG = "Username or password invalid";
+        const USER_DISABLED = "User is disabled";
 	
 	/**
 	 * @var User
@@ -41,6 +42,9 @@ class App_Auth_Adapter
 		} 
 		catch (Exception $e)
 		{
+                        if ($e->getMessage() == User::DISABLED)
+                            return $this->result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, self::USER_DISABLED);
+                        
 			if ($e->getMessage() == User::WRONG_PW)
 			    return $this->result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, self::BAD_PASSWORD_MSG);
 			
