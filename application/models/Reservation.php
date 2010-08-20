@@ -22,8 +22,7 @@ class Reservation extends BaseReservation
                     ->leftJoin("r.User u")
                     ->leftJoin("r.Aircraft a")
                     ->leftJoin("a.AircraftType at")
-                    ->leftJoin("r.ReservationStatus s")
-                    ->leftJoin("s.ReservationType t");
+                    ->leftJoin("r.ReservationStatus s");
 
         if ($now)
             $r->addWhere("r.end_date > '$date'");
@@ -41,7 +40,6 @@ class Reservation extends BaseReservation
                     ->leftJoin("r.Aircraft a")
                     ->leftJoin("a.AircraftType at")
                     ->leftJoin("r.ReservationStatus s")
-                    ->leftJoin("s.ReservationType t")
                     ->addWhere("u.id = $userId")
                     ->addWhere("r.end_date > '$now'")
                     ->fetchArray(true);
@@ -101,7 +99,7 @@ class Reservation extends BaseReservation
             $r->end_date = $data['endDate'];
             $r->User = Doctrine::getTable("User")->find($data['user_id']);
             $r->Aircraft = Doctrine::getTable("Aircraft")->find($data['aircraft']);
-            $r->ReservationStatus[0]->type_id = 1;
+            $r->ReservationStatus->status = 1;
             $r->save();
             $r->refresh();
 
@@ -140,4 +138,32 @@ class Reservation extends BaseReservation
         return false;
     }
 
+    /**
+     * Cancel future reservations
+     * @param int $userId
+     * @return int count modified rows
+     */
+    public static function cancelFutureByUserId($userId)
+    {
+        $now = date("Y-m-d G:i:s", time());
+        $count = 0;
+
+        $result = Doctrine_Query::create()
+                    ->from("Reservation r")
+                    ->addWhere("r.user_id = $userId")
+                    ->addWhere("r.start_date > '$now'")
+                    ->execute();
+
+        if(!empty($result))
+        {
+            foreach($result as $reservation)
+            {
+                $count += 1;
+                $reservation->status_id = 2;
+                $reservation->save();
+            }
+        }
+
+        return $count;
+    }
 }

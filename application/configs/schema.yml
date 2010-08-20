@@ -76,6 +76,10 @@ User:
     language:
       type: string
       notnull: true
+    active:
+      type: boolean
+      notnull: true
+      default: true
   relations:
     AclRole:
       foreignType: one
@@ -170,16 +174,20 @@ Reservation:
       notnull: true
     aircraft_id:
       type: integer
-      notnull: true    
+      notnull: true
+    status_id:
+      type: integer
+      notnull: true
+      default: 1
   relations:
     User:
       foreignType: one
     Aircraft:
       foreignType: one
     ReservationStatus:
-      type: many
-      local: id
-      foreign: reservation_id
+      foreignType: one
+      local: status_id
+      foreign: id
 
 ReservationStatus:
   columns:
@@ -187,28 +195,38 @@ ReservationStatus:
       type: integer
       primary: true
       autoincrement: true
-    reservation_id:
-      type: integer
-      notnull: true
-    type_id:
-      type: integer
-      notnull: true
-    message:
+    status:
       type: varchar(200)
-      notnull: false
-  relations:
-    Reservation:
-      foreignType: one
-    ReservationType:
-      foreignType: one
-      local: type_id
-
-ReservationType:
+      notnull: true
+      
+Messages:
   columns:
     id:
       type: integer
       primary: true
       autoincrement: true
-    type:
-      type: varchar(200)
+    from_user_id:
+      type: integer
       notnull: true
+    to_user_id:
+      type: integer
+      notnull: true
+    subject:
+      type: varchar(300)
+      notnull: false
+    content:
+      type: text
+      notnull: false
+  relations:
+    FromUser:
+      class: User
+      foreignType: one
+      local: from_user_id
+      foreign: id
+      foreignAlias: FromUser
+    ToUser:
+      class: User
+      foreignType: one
+      local: to_user_id
+      foreign: id
+      foreignAlias: ToUser

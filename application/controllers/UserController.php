@@ -135,4 +135,17 @@ class UserController extends App_Controller_Action
         );
         $this->ajaxFormProcessor($form, $options);
     }
+
+    public function toggleAction()
+    {
+        $id = $this->_request->getParam("id");
+        $disable = $this->_request->getParam("disable");
+
+        if ($disable == "true")
+            User::disableById($id);
+        else
+            User::enableById($id);
+        
+        $this->_redirect($this->baseUrl."/user/list");
+    }
 }

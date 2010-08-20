@@ -13,4 +13,17 @@
 class UserAircraft extends BaseUserAircraft
 {
 
+    /**
+     * Delete user relations with the aircrafts assigned
+     * @param int $userId
+     * @return <type>
+     */
+    public static function deleteByUserId($userId)
+    {
+        return Doctrine_Query::create()
+                ->delete("UserAircraft ua")
+                ->addWhere("ua.user_id = ?", $userId)
+                ->execute();
+    }
+
 }

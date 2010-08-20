@@ -15,8 +15,8 @@ AclResource:
     name: mvc:default.user.edit
     description: "Edit a user"
   AclResource_6:    
-    name: mvc:default.user.delete
-    description: "Delete a user"
+    name: mvc:default.user.toggle
+    description: "Enable or disable a user"
   AclResource_7:
     name: mvc:default.aircraft.index
     description: "List all aircraft"
@@ -132,8 +132,8 @@ Aircraft:
     type_id: 1
     status_id: 1
 
-ReservationType:
-  ReservationType_1:
-    type: Accepted
-  ReservationType_2:
-    type: Cancelled
+ReservationStatus:
+  ReservationStatus_1:
+    status: Accepted
+  ReservationStatus_2:
+    status: Cancelled

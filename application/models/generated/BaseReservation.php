@@ -10,9 +10,10 @@
  * @property datetime $end_date
  * @property integer $user_id
  * @property integer $aircraft_id
+ * @property integer $status_id
  * @property User $User
  * @property Aircraft $Aircraft
- * @property Doctrine_Collection $ReservationStatus
+ * @property ReservationStatus $ReservationStatus
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -45,6 +46,11 @@ abstract class BaseReservation extends Doctrine_Record
              'type' => 'integer',
              'notnull' => true,
              ));
+        $this->hasColumn('status_id', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 1,
+             ));
     }
 
     public function setUp()
@@ -58,8 +64,8 @@ abstract class BaseReservation extends Doctrine_Record
              'local' => 'aircraft_id',
              'foreign' => 'id'));
 
-        $this->hasMany('ReservationStatus', array(
-             'local' => 'id',
-             'foreign' => 'reservation_id'));
+        $this->hasOne('ReservationStatus', array(
+             'local' => 'status_id',
+             'foreign' => 'id'));
     }
 }

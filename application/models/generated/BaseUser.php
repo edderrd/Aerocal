@@ -12,9 +12,12 @@
  * @property varchar $password
  * @property integer $role_id
  * @property string $language
+ * @property boolean $active
  * @property AclRole $AclRole
  * @property Doctrine_Collection $Reservation
  * @property Doctrine_Collection $Aircraft
+ * @property Messages $FromUser
+ * @property Messages $ToUser
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -59,6 +62,11 @@ abstract class BaseUser extends Doctrine_Record
              'type' => 'string',
              'notnull' => true,
              ));
+        $this->hasColumn('active', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
+             ));
     }
 
     public function setUp()
@@ -76,5 +84,13 @@ abstract class BaseUser extends Doctrine_Record
              'refClass' => 'UserAircraft',
              'local' => 'user_id',
              'foreign' => 'aircraft_id'));
+
+        $this->hasOne('Messages as FromUser', array(
+             'local' => 'id',
+             'foreign' => 'from_user_id'));
+
+        $this->hasOne('Messages as ToUser', array(
+             'local' => 'id',
+             'foreign' => 'to_user_id'));
     }
 }

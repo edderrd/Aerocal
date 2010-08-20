@@ -2,8 +2,7 @@
 <table class="table-pane" id="main-table">
     <thead>
         <tr>
-            <th><?= $this->translate->_("First name") ?></th>
-            <th><?= $this->translate->_("Last name") ?></th>
+            <th><?= $this->translate->_("Name") ?></th>
             <th><?= $this->translate->_("Username") ?></th>
             <th><?= $this->translate->_("Role") ?></th>
             <th><?= $this->translate->_("Aircrafts") ?></th>
@@ -13,8 +12,13 @@
     </thead>
     <?php foreach($this->users as $user): ?>
         <tr>
-            <td><?= $user['first_name'] ?></td>
-            <td><?= $user['last_name'] ?></td>
+            <td>
+                <?= $user['first_name'] ?>
+                <?= $user['last_name'] ?>
+                <?php if(!$user['active']): ?>
+                    <span class="button-option"><?= $this->translate->_("Disabled") ?></span>
+                <?php endif; ?>
+            </td>
             <td><?= $user['username'] ?></td>
             <td><?= ucfirst($user['AclRole']['name']) ?></td>
             <td>
@@ -31,8 +35,14 @@
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>
-            <?php if($this->acl()->isValid("user", "delete")):?>
-                <td><?= $this->confirmLink($this->baseUrl ."/user/delete/id/{$user['id']}", "&nbsp;", "Are you sure to delete user?", array("class" => "delete-icon x-hidden")); ?></td>
+            <?php if($this->acl()->isValid("user", "toggle")):?>
+                <td>
+                    <?php if($user['active']): ?>
+                        <?= $this->confirmLink($this->baseUrl ."/user/toggle/disable/true/id/{$user['id']}", "&nbsp;", "Are you sure to disable this user?", array("class" => "delete-icon x-hidden")); ?>
+                    <?php else: ?>
+                        <?= $this->confirmLink($this->baseUrl ."/user/toggle/disable/false/id/{$user['id']}", "&nbsp;", "Are you sure to enable this user?", array("class" => "delete-icon x-hidden")); ?>
+                    <?php endif; ?>
+                </td>
             <?php else: ?>
                 <td>&nbsp;</td>
             <?php endif; ?>

@@ -124,4 +124,38 @@ class User extends BaseUser
         }
         return false;
     }
+
+    /**
+     * Disable a user, also will cancel all pending reservations
+     * @param string $userId
+     * @return boolean
+     */
+    public static function disableById($userId)
+    {
+        $user = Doctrine::getTable("User")->findOneById($userId);
+
+        if (empty($user))
+            return false;
+        
+        Reservation::cancelFutureByUserId($userId);
+        $user->active = false;
+        $user->save();
+
+        return true;
+    }
+
+    /**
+     * Enable a user, but doesn't enable canceled reservations
+     * @param int $userId
+     */
+    public static function enableById($userId)
+    {
+        $user = Doctrine::getTable("User")->findOnebyId($userId);
+
+        if (!empty($user))
+        {
+            $user->active = true;
+            $user->save();
+        }
+    }
 }
