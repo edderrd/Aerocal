@@ -51,5 +51,39 @@ class AircraftController extends App_Controller_Action
         );
         $this->ajaxFormProcessor($form, $options);
     }
+
+    public function editAction()
+    {
+        $id = $this->_request->getParam("id");
+        $data = Aircraft::findById($id);
+
+        $form = new Form_AircraftEdit();
+        $form->name->setValue($data['name']);
+        $form->type_id->addMultiOptions(App_Utils::toList(AircraftType::findAll(), 'id', 'type'));
+        $form->status_id->setMultiOptions(App_Utils::toList(AircraftStatus::findAll(), 'id', 'status'));
+        $form->type_id->setValue($data['type_id']);
+        $form->aircraft_id->setValue($id);
+
+        $form->populate($data);
+
+        $options = array(
+            'title'     => "Edit aircraft",
+            'url'       => "/aircraft/edit/format/json/subaction/submit",
+            'button'    => "Edit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/aircraft/index",
+                "message" => "Aircraft {$form->name->getValue} modified correctly"
+            ),
+            'model' => array(
+                "class" => "Aircraft",
+                "method" => "edit"
+            )
+        );
+        $this->ajaxFormProcessor($form, $options);
+    }
 }
 ?>

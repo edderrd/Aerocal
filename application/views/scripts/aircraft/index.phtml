@@ -10,7 +10,7 @@
         <tr>
             <td>
                 <?php if($this->acl()->isValid("aircraft", "edit")):?>
-                    <a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/aircraft/edit/id/<?= $aircraft['id'] ?>');">&nbsp;</a>
+                    <a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/aircraft/edit/format/json/id/<?= $aircraft['id'] ?>');">&nbsp;</a>
                 <?php else: ?>
                     &nbsp;
                 <?php endif; ?>

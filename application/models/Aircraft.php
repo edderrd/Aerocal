@@ -76,6 +76,28 @@ class Aircraft extends BaseAircraft
         return null;
     }
 
+    /**
+     * Return a array from a aircraft id
+     * @param int $aircraftId
+     * @return array
+     */
+    public static function findById($aircraftId)
+    {
+        return Doctrine_Query::create()
+                    ->from("Aircraft a")
+                    ->leftJoin("a.AircraftStatus s")
+                    ->leftJoin("a.AircraftType t")
+                    ->addWhere("a.id = $aircraftId")
+                    ->fetchOne()
+                    ->toArray(true);
+    }
+
+    /**
+     * Delete the aircraft for a user
+     * @param int $userId
+     * @param array $aircrafts
+     * @return mixed
+     */
     public static function deleteUserAircrafts($userId, $aircrafts)
     {
         if (!empty($aircrafts) && !empty($userId))
@@ -88,7 +110,22 @@ class Aircraft extends BaseAircraft
 
             return $r;
         }
+        return false;
+    }
 
+    public static function edit($params)
+    {
+        if (!empty($params))
+        {
+            $aircraft = Doctrine::getTable("Aircraft")->findOneById($params['aircraft_id']);
+            $aircraft->id = $params['aircraft_id'];
+            $aircraft->type_id = $params['type_id'];
+            $aircraft->status_id = $params['status_id'];
+
+            $aircraft->save();
+
+            return $aircraft->id;
+        }
         return false;
     }
 }

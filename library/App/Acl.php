@@ -84,19 +84,12 @@ class App_Acl extends Zend_Acl
      */
     protected function _addPermissions()
     {
-        if ($this->isAdmin)
+        $user = $this->user->toArray(true);
+        foreach($this->user['AclRole']['AclPermission']['AclResource'] as $resource)
         {
-            $this->allow($user['AclRole']['name']);
+            $this->allow($this->user['AclRole']['name'], $resource['name']);
         }
-        else
-        {
-            $user = $this->user->toArray(true);
-            foreach($this->user['AclRole']['AclPermission']['AclResource'] as $resource)
-            {
-                $this->allow($this->user['AclRole']['name'], $resource['name']);
-            }            
-        }
-        
+
         // allow default action
         $this->allow($this->user['AclRole']['name'], $this->_defaultAction);
     }
