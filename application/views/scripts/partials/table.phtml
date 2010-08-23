@@ -1,0 +1,104 @@
+<?php
+    $translate = Zend_Registry::get("translate");
+?>
+
+
+<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
+<table class="table-pane" id="main-table">
+    <thead>
+        <tr>
+            <?php if($this->showEdit): ?>
+                <th style="width: 30px;"><span class="edit-mono-icon">&nbsp;</span></th>
+            <?php endif; ?>
+            <?php foreach($this->headerNames as $headerName): ?>
+                <th><?= $translate->_($headerName) ?></th>
+            <?php endforeach; ?>
+            <?php if($this->showDelete): ?>
+                <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
+            <?php endif; ?>
+        </tr>
+    </thead>
+    <?php foreach($this->data as $row): ?>
+        <tr>
+            <?php if($this->showEdit): ?>
+                <td>
+                    <?php if($this->acl()->isValid($this->showEdit['controller'], $this->showEdit['action'])):?>
+                        <a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/<?= $this->showEdit['controller'] ?>/<?= $this->showEdit['action'] ?>/format/json/id/<?= $row['id'] ?>');">&nbsp;</a>
+                    <?php else: ?>
+                        &nbsp;
+                    <?php endif; ?>
+                </td>
+            <?php endif; ?>
+            <?php foreach($this->columns as $column): ?>
+                <td>
+                    <?php if(isset($column['helper'])): ?>
+                        <?php
+                            $helper = $column['helper'];
+                            echo $this->$helper($row[$column['name']]);
+                        ?>
+                    <?php else: ?>
+                        <?php if(isset($column['multi'])): ?>
+                            <?php foreach($column as $subColumn): ?>
+                                <?php if (isset($subColumn['container'])): ?>
+                                    <span class="button-option">
+                                <?php endif; ?>
+                                <?php if (isset($subColumn['check'])): ?>
+                                    <?php if(!$row[$subColumn['name']]): ?>
+                                        <?= $translate->_($subColumn['checkText']) ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?php if (isset($subColumn['name'])): ?>
+                                        <?php if (is_array($subColumn['name'])): ?>
+                                            <?= $row[$subColumn['name'][0]][$subColumn['name'][1]] ?>
+                                        <?php else: ?>
+                                            <?= $row[$subColumn['name']] ?>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if(isset($subColumn['separator'])): ?>
+                                    <?= $subColumn['separator'] ?>
+                                <?php endif; ?>
+                                <?php if (isset($subColumn['container'])): ?>
+                                    </span>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <?php if (isset($column['container'])): ?>
+                                <span class="button-option">
+                            <?php endif; ?>
+                            <?php if (isset($column['check'])): ?>
+                                <?php if(!$row[$column['name']]): ?>
+                                    <?= $translate->_($column['checkText']) ?>
+                                <?php endif; ?>
+                                <?= $translate->_($column['checkText']) ?>
+                            <?php else: ?>
+                                <?php if (isset($column['name'])): ?>
+                                    <?php if (is_array($column['name'])): ?>
+                                        <?= $row[$column['name'][0]][$column['name'][1]] ?>
+                                    <?php else: ?>
+                                        <?= $row[$column['name']] ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if(isset($column['separator'])): ?>
+                                <?= $column['separator'] ?>
+                            <?php endif; ?>
+                            <?php if (isset($column['container'])): ?>
+                                </span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </td>
+            <?php endforeach; ?>
+            <?php if($this->showDelete): ?>
+                <td>
+                    <?php if($this->acl()->isValid($this->showDelete['controller'], $this->showDelete['action'])):?>
+                        <?= $this->confirmLink($this->baseUrl ."/{$this->showDelete['controller']}/{$this->showDelete['action']}/id/{$row['id']}", "&nbsp;", $this->showDelete['message'], array("class" => "delete-icon x-hidden")); ?>
+                    <?php else: ?>
+                        &nbsp;
+                    <?php endif; ?>
+                </td>
+            <?php endif; ?>
+        </tr>
+    <?php endforeach; ?>
+</table>

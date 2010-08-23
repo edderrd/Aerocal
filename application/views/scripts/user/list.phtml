@@ -1,56 +1,49 @@
-<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
-<table class="table-pane" id="main-table">
-    <thead>
-        <tr>
-            <th style="width: 30px;"><span class="edit-mono-icon">&nbsp;</span></th>
-            <th><?= $this->translate->_("Name") ?></th>
-            <th><?= $this->translate->_("Username") ?></th>
-            <th><?= $this->translate->_("Role") ?></th>
-            <th><?= $this->translate->_("Aircrafts") ?></th>
-            <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
-        </tr>
-    </thead>
-    <?php foreach($this->users as $user): ?>
-        <tr>
-            <td>
-                <?php if($this->acl()->isValid("user", "edit")):?>
-                    <a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/user/edit/format/json/id/<?= $user['id'] ?>');">&nbsp;</a>
-                <?php else: ?>
-                    &nbsp;
-                <?php endif; ?>
-            </td>
-            <td>
-                <?= $user['first_name'] ?>
-                <?= $user['last_name'] ?>
-                <?php if(!$user['active']): ?>
-                    <span class="button-option"><?= $this->translate->_("Disabled") ?></span>
-                <?php endif; ?>
-            </td>
-            <td><?= $user['username'] ?></td>
-            <td><?= ucfirst($user['AclRole']['name']) ?></td>
-            <td>
-                <?php if(empty($user['Aircraft'])): ?>
-                    <span><?= $this->translate->_("No aircrafts assigned") ?></span>
-                <?php else: ?>
-                    <?php foreach($user['Aircraft'] as $aircraft): ?>
-                        <span class="button-option"><?= $aircraft['AircraftType']['type']?>: <?= $aircraft['name'] ?></span>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </td>
-            <td>
-                <?php if($this->acl()->isValid("user", "toggle")):?>
-                    <?php if($user['active']): ?>
-                        <?= $this->confirmLink($this->baseUrl ."/user/toggle/disable/true/id/{$user['id']}", "&nbsp;", "Are you sure to disable this user?", array("class" => "delete-icon x-hidden")); ?>
-                    <?php else: ?>
-                        <?= $this->confirmLink($this->baseUrl ."/user/toggle/disable/false/id/{$user['id']}", "&nbsp;", "Are you sure to enable this user?", array("class" => "delete-icon x-hidden")); ?>
-                    <?php endif; ?>
-                <?php else: ?>
-                    &nbsp;
-                <?php endif; ?>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+<?php
+
+$data = array(
+    "showEdit" => array(
+        'controller' => "user",
+        'action'     => "edit"
+    ),
+    'headerNames' => array(
+        "Name", "Username", "Role", "Aircrafts"
+    ),
+    'showDelete' => array(
+        'controller' => "user",
+        'action'     => 'toggle',
+        'message'    => "Are you sure to disable user?"
+    ),
+    'data' => $this->users,
+    'columns' => array(
+        array(
+            'multi' => true,
+            array(
+                'name'      => 'first_name',
+                'separator' => "&nbsp;"
+            ),
+            array(
+                'name'  => "last_name",
+                'separator' => "&nbsp;"
+            ),
+            array(
+                "name" => "active",
+                'container' => true,
+                'check'     => true,
+                'checkText' => "Disabled"
+            )
+        ),
+        array("name" => "username"),
+        array ('name' => array("AclRole", "name")),
+        array (
+            'helper' => 'showAircraft',
+            'name'   => 'Aircraft'
+        )
+    )
+);
+
+echo $this->partial("partials/table.phtml", $data);
+
+?>
 <?php if($this->acl()->isValid('user', 'create')): ?>
     <?php $this->toolbar()
             ->addOnLoad()

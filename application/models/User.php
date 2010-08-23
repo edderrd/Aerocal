@@ -130,7 +130,7 @@ class User extends BaseUser
     }
 
     /**
-     * Disable a user, also will cancel all pending reservations
+     * Disable a user, 
      * @param string $userId
      * @return boolean
      */
@@ -149,20 +149,34 @@ class User extends BaseUser
     }
 
     /**
-     * Enable a user, but doesn't enable canceled reservations
+     * Enable/disable a user, but doesn't enable canceled reservations
+     * if disabled also will cancel all pending reservations
      * @param int $userId
      */
-    public static function enableById($userId)
+    public static function toggleActiveById($userId)
     {
         $user = Doctrine::getTable("User")->findOnebyId($userId);
 
         if (!empty($user))
         {
-            $user->active = true;
+            if($user->active)
+            {
+                $user->active = false;
+                Reservation::cancelFutureByUserId($userId);
+            }
+            else
+            {
+                $user->active = true;
+            }
             $user->save();
         }
     }
 
+    /**
+     * Return all admins
+     * @param bool $inArray
+     * @return mixed
+     */
     public static function getAllAdmins($inArray = true)
     {
         $r = Doctrine_Query::create()
