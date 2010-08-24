@@ -35,7 +35,7 @@ class AclPermission extends BaseAclPermission
             $class = __CLASS__;
             $r = Doctrine_Query::create()
                         ->delete("$class p")
-                        ->addWhere("p.role_id = $role_id")
+                        ->addWhere("p.role_id = $roleId")
                         ->addWhere("p.resource_id in (".implode(",", $permissions).")")
                         ->execute();
 
