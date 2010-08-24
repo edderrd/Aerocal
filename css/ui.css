@@ -82,7 +82,7 @@ header.header h1 {
     padding-left: 13px;
     padding-right: 13px;
 }
-#loginForm input[type=password], form input[type=text] {
+#loginForm input[type=password], form input[type=text], form input[type=password] {
   font-size: 1em;
   display: block;
   border: 1px solid rgba(0,0,0,0.5);
@@ -462,4 +462,9 @@ html > body .ui-pnotify {
 .ui-pnotify-history-container .ui-pnotify-history-pulldown {
 	display: block;
 	margin: 0 auto;
+}
+
+.ui-dialog {
+    font-size: 12px;
+    min-width: 300px,
 }

@@ -39,12 +39,9 @@
                     <?php else: ?>
                         <?php if(isset($column['multi'])): ?>
                             <?php foreach($column as $subColumn): ?>
-                                <?php if (isset($subColumn['container'])): ?>
-                                    <span class="button-option">
-                                <?php endif; ?>
                                 <?php if (isset($subColumn['check'])): ?>
                                     <?php if(!$row[$subColumn['name']]): ?>
-                                        <?= $translate->_($subColumn['checkText']) ?>
+                                        <span class="button-option"><?= $translate->_($subColumn['checkText']) ?></span>
                                     <?php endif; ?>
                                 <?php else: ?>
                                     <?php if (isset($subColumn['name'])): ?>
@@ -57,9 +54,6 @@
                                 <?php endif; ?>
                                 <?php if(isset($subColumn['separator'])): ?>
                                     <?= $subColumn['separator'] ?>
-                                <?php endif; ?>
-                                <?php if (isset($subColumn['container'])): ?>
-                                    </span>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php else: ?>

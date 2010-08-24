@@ -44,4 +44,56 @@ class AclRole extends BaseAclRole
         
         return $aclRole->id;
     }
+
+    /**
+     * Find a role by his id
+     * @param int $id
+     * @return array
+     */
+    public static function findById($id)
+    {
+        $class = __CLASS__;
+        return Doctrine_Query::create()
+                    ->from("$class r")
+                    ->leftJoin('r.AclPermission p')
+                    ->leftJoin('p.AclResource re')
+                    ->addWhere("r.id = $id")
+                    ->fetchOne()
+                    ->toArray(true);
+    }
+
+    /**
+     * Update a role and his permissions
+     * @param array $params
+     * @return int
+     */
+    public static function edit($params)
+    {
+        $class = __CLASS__;
+
+        $aclRole = new $class($class, false);
+        $aclRole->id = $params['aclrole_id'];
+        $aclRole->name = $params['name'];
+        $aclRole->description = $params['description'];
+
+        /**if (!empty($params['resources']) || !empty($params['resources_available']))
+        {
+
+            $params['resources'] = isset($params['resources']) ? $params['resources'] : array();
+            $params['resources_available'] = isset($params['resources_available']) ? $params['resources_available'] : array();
+
+            AclPermission::deleteRolePermissions($aclRole->id, $params['resources']);
+
+            foreach($params['resources_available']  as $resource)
+            {
+                $permission = new AclPermission();
+                $permission->resource_id = $resource;
+                $permission->role_id = $aclRole->id;
+                $permission->save();
+            }
+        }*/
+        $aclRole->save();
+
+        return $aclRole->id;
+    }
 }

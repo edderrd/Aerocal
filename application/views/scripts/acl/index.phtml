@@ -1,49 +1,33 @@
-<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
+<?php
+
+$data = array(
+    "showEdit" => array(
+        'controller' => "acl",
+        'action'     => "edit_role"
+    ),
+    'headerNames' => array(
+        "Id", "Role", "Description", "Permissions"
+    ),
+    'data' => $this->roles,
+    'columns' => array(
+        array("name" => "id"),
+        array("name" => "name"),
+        array("name" => "description"),
+        array (
+            'helper' => 'showRolePermissions',
+            'name'   => 'AclPermission'
+        )
+    )
+);
+
+echo $this->partial("partials/table.phtml", $data);
+
+?>
+
+
 <?php if($this->acl()->isValid("acl", "create_role")): ?>
     <?php $this->toolbar()
             ->addOnLoad()
             ->setButtonset(false)
             ->addButton("create-btn", $this->translate->_("Create Role"), array('onclick' => "modalDialog('".$this->baseUrl."/acl/create_role/format/json');"))?>
-<?php endif; ?>
-<?php if(!empty($this->roles)): ?>
-    <table class="table-pane" id="main-table">
-        <tr>
-            <th style="width: 30px;"><span class="edit-mono-icon">&nbsp;</span></th>
-            <th><?= $this->translate->_("Id") ?></th>
-            <th><?= $this->translate->_("Role") ?></th>
-            <th><?= $this->translate->_("Description") ?>
-            <th><?= $this->translate->_("Accepted permission") ?></th>
-            <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
-        </tr>
-        <?php foreach($this->roles as $rol): ?>
-            <tr>
-                <td>
-                    <?php if($this->acl()->isValid("acl", "edit_role")):?>
-                        <a class="edit-icon x-hidden" href="javascript: alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/acl/edit_role/id/<?= $rol['id'] ?>');">&nbsp;</a>
-                    <?php else: ?>
-                        &nbsp;
-                    <?php endif; ?>
-                </td>
-                <td><?= $rol['id'] ?></td>
-                <td><?= ucfirst($rol['name']) ?></td>
-                <td><?= ucfirst($rol['description']) ?></td>
-                <td align="left">
-                    <?php if (isset($rol['AclPermission']['AclResource'])): ?>
-                        <?php foreach($rol['AclPermission']['AclResource'] as $rolResource): ?>
-                            <span class="button-option"><?= $rolResource['description'] ?></span>&nbsp;
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        &nbsp;
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?php if($this->acl()->isValid("acl", "delete_role")):?>
-                        <a class="delete-icon x-hidden" href="javascript:alert('Not implemented'); modalDialog('<?= $this->baseUrl ?>/acl/delete_role/id/<?= $rol['id'] ?>')">&nbsp;</a>
-                    <?php else: ?>
-                        &nbsp;
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach ?>
-    </table>
 <?php endif; ?>

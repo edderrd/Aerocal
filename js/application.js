@@ -62,30 +62,37 @@ function navigationPanels()
 /**
  * Parse json form and content element from a json into a html string
  */
-function parseJsonContent(data)
+function parseJsonContent(data, $dialog)
 {
     var rv = Array();
     if (data.form)
     {
-    	rv.push('<form method="'+data.form.method+'" id="'+data.form.id+'">');
-        rv.push("<dl>");
+        $dialog.html("");
+        var $form = $('<form class="modal-form" method="'+data.form.method+'" id="'+data.form.id+'">');
+    	var $table = $("<table></table>");
+        
         $.each(data.form.elements, function(elementName, formElement)
         {
             switch (formElement.type)
             {
                 case "Zend_Form_Element_Hidden":
                     rv.push(formElement.html);
+                    var $hidden = $("<span></span>").html(formElement.html);
+                    $form.append($hidden);
                     break;
                 default:
-                    rv.push("<dt>"+formElement.label+"</dt>");
-                    rv.push("<dd>"+formElement.html+"</dd>");
+                    var $row = $("<tr>");
+                    var $cellLabel = $("<td>").html(formElement.label);
+                    var $cellInput = $("<td>").html(formElement.html);
+                    $row.append($cellLabel)
+                        .append($cellInput);
+                    $table.append($row);
                     break;
-            }            
+            }
         });
-        rv.push("</dl>");
-        rv.push('</form>');
+        $form.append($table);
+        $dialog.append($form);
     }
-
     if (data.content)
     {
         rv.push('<div id="'+data.content.id+'"');
@@ -105,41 +112,45 @@ function parseJsonButtons(buttons, dialogElement)
     {
         $.each(buttons, function(name, button)
         {
-           switch(button.action)
-           {
-               case 'close':
-                   $rv[name] = function() {dialogElement.dialog("close")};
-                   break;
-               case 'submit':
-                   $rv[name] = function()
-                   {
-                       var data = dialogElement.children("form").serialize();
-                       $.ajax(
-                       {
-                           url: button.url,
-                           data: data,
-                           success: function(data)
-                           {
-                    	   	   if (data.form && !data.isValid)
-                    	   	   {
-                    	   		  dialogElement.html(parseJsonContent(data));                    	   		  
-                    	   	   }
-                    	   	   else
-                    	       {
-                    	   		   alert(data.message);
-                    	   		   if (data.redirect)
-                    	   			   window.location = data.redirect;
-                    	   		   else
-                    	   			   dialogElement.dialog("close");
-                    	   	   }
-                           }
-                       });
-                   };
-                   break;
-               default:
-                   $rv[name] = function() {alert("No action selected")};
-                   break;
-           }
+            switch(button.action)
+            {
+                case 'close':
+                    $rv[name] = function() {
+                        dialogElement.dialog("close")
+                        };
+                    break;
+                case 'submit':
+                    $rv[name] = function()
+                    {
+                        var data = dialogElement.children("form").serialize();
+                        $.ajax(
+                        {
+                            url: button.url,
+                            data: data,
+                            success: function(data)
+                            {
+                                if (data.form && !data.isValid)
+                                {
+                                    parseJsonContent(data, dialogElement);
+                                }
+                                else
+                                {
+                                    alert(data.message);
+                                    if (data.redirect)
+                                        window.location = data.redirect;
+                                    else
+                                        dialogElement.dialog("close");
+                                }
+                            }
+                        });
+                    };
+                    break;
+                default:
+                    $rv[name] = function() {
+                        alert("No action selected")
+                        };
+                    break;
+            }
         });
     }
 
@@ -162,17 +173,25 @@ function modalDialog(loadUrl, params, callbacks)
         data: params,
         success: function(data)
         {
+            var $dialog = null;
+            if ($("#modal-dialog"))
+            {
+                $dialog = $("#modal-dialog");
+                $dialog.html("");
+            }
+
             $dialog = $("<div id='modal-dialog'>");
+            parseJsonContent(data, $dialog);
+
             buttons = parseJsonButtons(data.buttons, $dialog);
             $dialog.dialog(
                 {
                     title: data.title,
                     show: "drop",
                     hide: "drop",
-                    autoOpen: true,
                     modal: true,
                     closeOnEscape: true,
-                    position: ["center", "top"],
+//                    position: ["center", "top"],
                     close: function()
                     {
                         $.each(callbacks, function(name, func)
@@ -183,7 +202,7 @@ function modalDialog(loadUrl, params, callbacks)
                     },
                     buttons: buttons
                 })
-                .html(parseJsonContent(data));
+                .show();
         }
     });
 }

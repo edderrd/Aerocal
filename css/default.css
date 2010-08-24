@@ -106,3 +106,46 @@ table.table-pane td {
     padding: 4px;
     font-size: 95%;
 }
+
+/** modal form **/
+
+.modal-form, .modal-form table {
+    padding: 0px;
+    margin: 0px;
+}
+
+.modal-form table {
+    width: 100%;
+    border-collapse:collapse;
+}
+
+.modal-form span {
+    display: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.modal-form td {
+    padding: 4px;
+}
+
+.modal-form tr td:first-child {
+    text-align: right;
+    color: #555;
+    vertical-align: top;
+}
+
+.modal-form select[multiple] {
+    height: 70px;
+    overflow: auto;
+    width: 90%;
+    margin: 0px;
+}
+
+.modal-form input[type="text"], .modal-form input[type="password"], .modal-form textarea {
+    width: 90%;
+}
+
+.modal-form input[type="text"], .modal-form input[type="password"] {
+    margin-left: 0px;
+}

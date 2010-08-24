@@ -22,4 +22,26 @@ class AclPermission extends BaseAclPermission
                     ->fetchArray();
     }
 
+    /**
+     * Delete one+ permissions from a role
+     * @param int $roleId
+     * @param array $permissions
+     * @return int
+     */
+    public static function deleteRolePermissions($roleId, $permissions)
+    {
+        if (!empty($permissions) && !empty($roleId))
+        {
+            $class = __CLASS__;
+            $r = Doctrine_Query::create()
+                        ->delete("$class p")
+                        ->addWhere("p.role_id = $role_id")
+                        ->addWhere("p.resource_id in (".implode(",", $permissions).")")
+                        ->execute();
+
+            return $r;
+        }
+        return false;
+    }
+
 }

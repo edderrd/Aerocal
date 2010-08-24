@@ -6,7 +6,6 @@
  */
 class App_Form extends Zend_Form
 {
-
     /**
      * Convert form elements into a array
      * @return array

@@ -15,13 +15,18 @@ class AclResource extends BaseAclResource
 
     /**
      * Get all AclResources
+     * @param array filter
      * @return array
      */
-    public static function findAll()
+    public static function findAll($filter = array())
     {
-        return Doctrine_Query::create()
-                    ->from("AclResource r")
-                    ->fetchArray();
+        $r = Doctrine_Query::create()
+                    ->from("AclResource r");
+
+        if (isset($filter['exclude']) && !empty($filter['exclude']))
+            $r->andWhere('r.id not in ('. implode(",", $filter['exclude']) .')');
+
+        return $r->fetchArray(true);
     }
 
 }
