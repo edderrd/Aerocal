@@ -139,4 +139,21 @@ class App_Acl extends Zend_Acl
         return null;
     }
 
+    /**
+     * Refresh user permissions
+     * @param array $user
+     */
+    public function updatePermissions($user = null)
+    {
+        // remove all resources
+        $this->removeAll();
+
+        // set a new user if necessary
+        if (!empty($user))
+            $this->user = $user;
+
+        $this->_addResources(AclResource::findAll());
+        $this->_addPermissions();
+    }
+
 }

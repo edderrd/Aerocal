@@ -86,7 +86,7 @@ class App_Controller_Action extends Zend_Controller_Action
                 // will redirect if isn't a action exception
                 if (!$this->_isActionException($controller, $action))
                 {
-                    $msg = self::$_translate->_("You dont have permission to browse");
+                    $msg = self::$_translate->_("You dont have permission to browse this page");
                     $this->setMessage($msg . " $controller\\$action");
                     $this->_redirect("/index/index");
                 }
@@ -99,6 +99,17 @@ class App_Controller_Action extends Zend_Controller_Action
             $translate->setLocale($acl->user->language);
             Zend_Registry::set("translate", $translate);
         }
+    }
+
+    /**
+     * Update permissions on given acl permission
+     */
+    protected function updatePermissions()
+    {
+        $identity = Zend_Auth::getInstance()->getIdentity();
+        $identity->UpdatePermissions();
+        $this->view->navigation()->setDefaultAcl($identity);
+        $this->view->navigation()->setRole($acl->getRole());
     }
 
     /**
