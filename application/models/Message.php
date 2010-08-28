@@ -54,5 +54,27 @@ class Message extends BaseMessage
             }
         }
     }
+    
+    /**
+     * Get all messages from a user from the most recent created_on
+     * @param int $userId
+     * @return array
+     */
+    public static function findAllByUserId($userId)
+    {
+    	if (!empty($userId))
+    	{
+    		$r = Doctrine_Query::create()
+    				->from(__CLASS__ . " m")
+    				->leftJoin("m.FromUser fu")
+                    ->leftJoin("m.ToUser tu")
+                    ->addWhere("m.to_user_id = $userId")
+                    ->orderBy("created_on desc")
+                    ->fetchArray(true);
+            
+        	return $r;
+    	}
+    	return false;
+    }
 
 }

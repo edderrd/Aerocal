@@ -468,3 +468,10 @@ html > body .ui-pnotify {
     font-size: 12px;
     min-width: 300px,
 }
+
+div.no-data {
+	width: 300px;
+	margin: 60px auto;
+	font-size: 24px;
+	font-weight: bold;
+	color: #888;

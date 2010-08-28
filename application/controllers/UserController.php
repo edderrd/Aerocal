@@ -17,6 +17,9 @@ class UserController extends App_Controller_Action
                 ->initContext();
     }
 
+    /**
+     * Calendar display, also main entry application
+     */
     public function indexAction()
     {
         $this->_addHeadTitle("User preferences");
@@ -41,12 +44,18 @@ class UserController extends App_Controller_Action
         $this->view->form->language->setValue($user->language);
     }
     
+    /**
+     * Users list
+     */
     public function listAction()
     {
         $this->_addHeadTitle("User list");
         $this->view->users = User::findAll();
     }
 	
+    /**
+     * User login
+     */
     public function loginAction()
     {
         $this->_addHeadTitle("Login");
@@ -68,6 +77,9 @@ class UserController extends App_Controller_Action
         }
     }
     
+    /**
+     * Clean out user session
+     */
     public function logoutAction()
     {
         $this->_addHeadTitle("Logout");

@@ -62,6 +62,12 @@ AclResource:
   AclResource_21:
     name: mvc:default.user.messages
     description: "Retrieve user messages"
+  AclResource_22:
+    name: mvc:default.message.index
+    description: "List user related messages"
+  AclResource_23:
+    name: mvc:default.message.delete
+    description: "Delete user messages"
 
 AclRole:
   AclRole_1:
@@ -148,6 +154,15 @@ AclPermission:
   AclPermission_25:
     resource_id: 21
     role_id: 2
+  AclPermission_26:
+    resource_id: 22
+    role_id: 2
+  AclPermission_27:
+    resource_id: 23
+    role_id: 2
+  AclPermission_28:
+    resource_id: 22
+    role_id: 1
 
 User:
   User_1:

@@ -22,11 +22,11 @@
             var _alert;
         </script>
 
-        <?php echo $this->JQuery() ?>
         <?php echo $this->headLink() ?>
         <?php echo $this->headScript() ?>
         <?php echo $this->headStyle() ?>
-
+		<?php echo $this->JQuery() ?>
+		
     </head>
     <body>
         <div class="ui-layout-north" class="header">
@@ -44,7 +44,7 @@
             <div class="side-pane">
                 <h1><?= $this->translate->_("Messages") ?></h1>
                 <ul>
-                    <li><?= $this->translate->_("Unread") ?> <span class="counter" id="msg-counter">0</span></li>
+                    <li><a href="<?= $this->baseUrl("/message/index") ?>"><?= $this->translate->_("My messages") ?></a> <span class="counter" id="msg-counter">0</span></li>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,34 @@
+<?php if($this->acl()->isValid("aircraft", "create")): ?>
+    <?php $this->toolbar()
+            ->addOnLoad()
+            ->setButtonset(false)
+            ->addButton("create-btn", $this->translate->_("Delete all"), array('onclick' => "alert('Not implemented')"))?>
+<?php endif; ?>
+
+<?php if (empty($this->data)): ?>
+	<div class="no-data"><?= $this->translate->_("There's no messages") ?></div>
+<?php else:?>
+	<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
+	<table class="table-pane" id="main-table">
+	    <thead>
+	    	<tr>
+	    		<th><?= $this->translate->_("From") ?></th>
+	    		<th><?= $this->translate->_("Message") ?></th>
+	    		<th><?= $this->translate->_("Date")?></th>
+	        </tr>
+	    </thead>
+	    <?php foreach($this->data as $row): ?>
+	        <tr>
+	        	<td>
+	        		<?= $row['FromUser']['first_name']?> 
+	        		<?= $row['FromUser']['last_name']?>
+	        	</td>
+	        	<td>
+	        		<span><?= $row['subject']?></span><br>
+	        		<span style="color: #888;"><?= $row['content']?></span>
+	        	</td>
+	        	<td><?= $row['created_on'] ?></td>
+	        </tr>
+	    <?php endforeach; ?>
+	</table>
+<?php endif; ?>
