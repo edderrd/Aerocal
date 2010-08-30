@@ -76,5 +76,25 @@ class Message extends BaseMessage
     	}
     	return false;
     }
+    
+    /**
+     * Mark a message as read
+     * @param int $messageId
+     * @retun mixed
+     */
+    public static function markRead($messageId)
+    {
+    	if (!empty($messageId))
+    	{
+    		$r = Doctrine_Query::create()
+    				->update(__CLASS__ . " m")
+    				->set("is_read", true)
+    				->where("m.id = $messageId")
+    				->execute();
+    		return $r;
+    	}
+    	
+    	return false;
+    }
 
 }

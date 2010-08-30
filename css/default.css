@@ -57,6 +57,11 @@ span.login a {
     padding-left: 12px;
 }
 
+.unread-mono-icon {
+    background: url('../img/unread-mono.png') no-repeat center left;
+    padding-left: 12px;
+}
+
 .delete-icon {
     background: url('../img/delete.png') no-repeat center left;
     padding-left: 15px;
@@ -69,6 +74,11 @@ span.login a {
 
 .edit-icon {
     background: url('../img/edit.png') no-repeat center left;
+    padding-left: 15px;
+}
+
+.unread-icon {
+    background: url('../img/unread.png') no-repeat center left;
     padding-left: 15px;
 }
 
@@ -148,4 +158,23 @@ table.table-pane td {
 
 .modal-form input[type="text"], .modal-form input[type="password"] {
     margin-left: 0px;
+}
+
+/** alignments **/
+
+.align-left {
+	text-align: left;
+	margin-left: 30px;	
+}
+
+.align-right {
+	text-align: right;	
+}
+
+.align-center {
+	text-align: center;	
+}
+
+.bold {
+	font-weight: bold;
 }

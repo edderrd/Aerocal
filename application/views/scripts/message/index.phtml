@@ -8,24 +8,32 @@
 <?php if (empty($this->data)): ?>
 	<div class="no-data"><?= $this->translate->_("There's no messages") ?></div>
 <?php else:?>
-	<?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
 	<table class="table-pane" id="main-table">
 	    <thead>
 	    	<tr>
-	    		<th><?= $this->translate->_("From") ?></th>
+	    		<th style="width: 30px"></th>
 	    		<th><?= $this->translate->_("Message") ?></th>
+	    		<th><?= $this->translate->_("From") ?></th>
 	    		<th><?= $this->translate->_("Date")?></th>
 	        </tr>
 	    </thead>
 	    <?php foreach($this->data as $row): ?>
 	        <tr>
 	        	<td>
-	        		<?= $row['FromUser']['first_name']?> 
-	        		<?= $row['FromUser']['last_name']?>
+	        		<?php if(!$row['is_read']):?>
+	        			<a href="<?= $this->baseUrl("/message/index/subaction/read/id/".$row['id']) ?>" title="<?= $this->translate->_("Mark as a read") ?>"><span class="unread-icon">&nbsp;</span></a>
+	        		<?php endif; ?>
+	        	</td>
+	        	<td class="align-left">
+	        		<?php 
+	        			$isRead = !$row['is_read'] ? 'class="bold"' : '';
+	        		?>
+	        		<span <?= $isRead ?>><?= $row['subject']?></span><br>
+	        		<span style="color: #888;"><?= $row['content']?></span>
 	        	</td>
 	        	<td>
-	        		<span><?= $row['subject']?></span><br>
-	        		<span style="color: #888;"><?= $row['content']?></span>
+	        		<?= $row['FromUser']['first_name']?> 
+	        		<?= $row['FromUser']['last_name']?>
 	        	</td>
 	        	<td><?= $row['created_on'] ?></td>
 	        </tr>
