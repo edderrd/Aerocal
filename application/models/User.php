@@ -110,7 +110,10 @@ class User extends BaseUser
             $user->id = $params['user_id'];
             $user->first_name = $params['first_name'];
             $user->last_name = $params['last_name'];
-            $user->role_id = $params['role_id'];
+            
+            if(isset($params['role_id']))
+                $user->role_id = $params['role_id'];
+            
             $user->language = $params['language'];
             
             if (!empty($params['aircraft']) || !empty($params['aircraft_available']))

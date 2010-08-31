@@ -23,9 +23,33 @@ class UserController extends App_Controller_Action
     public function indexAction()
     {
         $this->_addHeadTitle("User preferences");
-        $this->view->form = new Form_Preferences();
+        $form = new Form_Preferences();
+        $user = Zend_Auth::getInstance()->getIdentity()->user;
+        $form->user_id->setValue($user->id);
+        $form->first_name->setValue($user->first_name);
+        $form->last_name->setValue($user->last_name);
+        $form->language->setValue($user->language);
 
-        if ($this->getRequest()->isPost() &&
+        $options = array(
+            'title'     => "User preferences",
+            'url'       => "/user/index/format/json/subaction/submit",
+            'button'    => "Edit",
+            'success'   => array(
+                "button" => array(
+                    "title"  => "Close",
+                    "action" => "close"
+                ),
+                "redirect" => "/index/index",
+                "message" => "Prefereces saved correctly"
+            ),
+            'model' => array(
+                "class" => "User",
+                "method" => "edit"
+            )
+        );
+        $this->ajaxFormProcessor($form, $options);
+
+        /*if ($this->getRequest()->isPost() &&
                 $this->view->form->isValid($this->_getAllParams()))
         {
             $user = Zend_Auth::getInstance()->getIdentity()->user;
@@ -41,7 +65,7 @@ class UserController extends App_Controller_Action
         $this->view->form->firstname->setValue($user->first_name);
         $this->view->form->lastname->setValue($user->last_name);
         //TODO: Implement password change
-        $this->view->form->language->setValue($user->language);
+        $this->view->form->language->setValue($user->language);*/
     }
     
     /**

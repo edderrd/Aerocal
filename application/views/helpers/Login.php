@@ -28,8 +28,7 @@ class My_View_Helper_Login extends App_View_Helper_Abstract
             $identity = Zend_Auth::getInstance()->getIdentity();
             $welcomeMsg = $this->view->translate->_("Logged as");
             $preferencesMsg = $this->view->translate->_("User preferences");
-            //$message = "$welcomeMsg, <a href='/user' title='$preferencesMsg'>{$identity->user['first_name']} {$identity->user['last_name']}</a> |";
-            $message = "<a href='/user' title='$preferencesMsg'>{$identity->user['first_name']} {$identity->user['last_name']}</a> |";
+            $message = "<a href='javascript:modalDialog(\"".$this->view->baseUrl("/user/index/format/json")."\");' title='$preferencesMsg'>{$identity->user['first_name']} {$identity->user['last_name']}</a> |";
             $logoutMsg = $this->view->translate->_("Logout");
             $content = " $logoutMsg";
             $url = $this->view->url(array("action" => "logout", "controller" => "user"));
