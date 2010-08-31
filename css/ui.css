@@ -492,11 +492,6 @@ html > body .ui-pnotify {
 	margin: 0 auto;
 }
 
-.ui-dialog {
-    font-size: 12px;
-    min-width: 300px,
-}
-
 div.no-data {
 	width: 300px;
 	margin: 60px auto;

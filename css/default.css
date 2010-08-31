@@ -142,7 +142,7 @@ table.table-pane td {
 .modal-form tr td:first-child {
     text-align: right;
     color: #555;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .modal-form select[multiple] {
@@ -177,4 +177,12 @@ table.table-pane td {
 
 .bold {
 	font-weight: bold;
+}
+
+ul.errors {
+    padding: 2px;
+    margin: 0px;
+    list-style: none;
+    color: #B90000;
+    font-size: 0.8em;
 }

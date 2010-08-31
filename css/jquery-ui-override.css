@@ -1,0 +1,90 @@
+/** dialog buttons **/
+.ui-dialog .ui-dialog-buttonpane button {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.1, rgb(126,141,180)),
+        color-stop(0.74, rgb(157,174,202))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(126,141,180) 10%,
+        rgb(157,174,202) 74%
+    );
+    border: none;
+    color: #fff;
+    text-shadow: 1px 1px 1px black;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-state-hover {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(95,110,207)),
+        color-stop(1, rgb(176,188,255))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(95,110,207) 0%,
+        rgb(176,188,255) 100%
+    );
+    border: none;
+    color: #fff;
+    text-shadow: 1px 1px 1px black;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-state-active {
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(176,188,255)),
+        color-stop(1, rgb(95,110,207))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(176,188,255) 0%,
+        rgb(95,110,207) 100%
+    );
+    color: #fff;
+    border: none;
+    text-shadow: 1px 1px 1px black;
+}
+
+/** dialog **/
+.ui-dialog {
+    -moz-box-shadow: 0px 4px 15px #888888;
+    -webkit-box-shadow: 0px 4px 15px #888888;
+    font-size: 12px;
+    min-width: 300px,
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    -webkit-border-bottom-right-radius: 15px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    margin: -3px -3px auto -2px;
+    border-top: 1px solid #ADADAD;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #777;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.10, rgb(168,168,168)),
+        color-stop(1, rgb(207,207,207))
+    );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(168,168,168) 10%,
+        rgb(207,207,207) 100%
+    );
+    text-shadow: 1px 1px 1px #ddd;
+}
