@@ -50,10 +50,19 @@ function applyLayout()
 function navigationPanels()
 {
     $(".side-pane > h1").css("cursor", "pointer");
-    $(".side-pane > h1").click(
-        function()
-        {
-            $(this).siblings("ul").slideToggle();
+    $(".side-pane > h1").toggle(function(e) {
+    		$(this).prev().hide();
+    		$(this).next().slideUp();
+    		$(this).prev().removeClass("toggle-normal");
+    		$(this).prev().addClass("toggle-down");
+    		$(this).prev().fadeIn();
+        },
+        function(e) {
+        	$(this).prev().hide();
+        	$(this).next().slideDown();
+    		$(this).prev().removeClass("toggle-down");
+    		$(this).prev().addClass("toggle-normal");
+    		$(this).prev().fadeIn();
         }
     );
 

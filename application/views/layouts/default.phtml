@@ -38,10 +38,12 @@
         </div>
         <div class="ui-layout-west">
             <div class="side-pane">
+            	<span class="toggle-normal">&nbsp;</span>
                 <h1><?= $this->translate->_("Navigation") ?></h1>
                 <?= $this->navigation()->menu()->setMaxDepth(0) ?>
             </div>
             <div class="side-pane">
+                <span class="toggle-normal">&nbsp;</span>
                 <h1><?= $this->translate->_("Messages") ?></h1>
                 <ul>
                     <li <?php if($this->messagesActive):?>class="active"<?php endif; ?>><a href="<?= $this->baseUrl("/message/index") ?>"><?= $this->translate->_("My messages") ?></a> <span title="<?= $this->translate->_("Unread messages") ?>" class="counter" id="msg-counter">0</span></li>

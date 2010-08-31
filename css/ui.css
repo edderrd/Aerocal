@@ -174,11 +174,25 @@ span.calControls {
 }
 
 .toggle-normal {
-    background:url(../img/togglers.png) 0 0 no-repeat;
+    float:left;
+    background:url(../img/togglers.png);
+    background-repeat: no-repeat;
+    background-position:-12px 0;
+    width: 13px;
+    height: 13px;
+    margin: 3px 5px 0px 10px;
+    padding: 0px;
 }
 
 .toggle-down {
-    background:url(../img/togglers.png) 0 -10px no-repeat;
+    float:left;
+    background:url(../img/togglers.png);
+    background-repeat: no-repeat;
+    background-position:0 0;
+    width: 13px;
+    height: 13px;
+    margin: 3px 5px 0px 10px;
+    padding: 0px;
 }
 
 .west-pane .side-pane {
