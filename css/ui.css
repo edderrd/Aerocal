@@ -215,7 +215,18 @@ span.calControls {
 }
 
 .west-pane .side-pane li:hover {
-    background: #CCC;
+    background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(196,196,196)),
+	    color-stop(0.57, rgb(212,212,212))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(196,196,196) 0%,
+	    rgb(212,212,212) 57%
+	);
     -o-transition: .1s all;
     -webkit-transition: .1s all;
     -moz-transition: .1s all;
@@ -223,6 +234,7 @@ span.calControls {
     -webkit-text-shadow:1px 1px 1px #A1A1A1;
     -moz-text-shadow:1px 1px 1px #A1A1A1;
     -o-text-shadow:1px 1px 1px #A1A1A1;
+    
 }
 
 .west-pane .side-pane .active a, .west-pane .side-pane .active a:link, .west-pane .side-pane .active a:visited {
