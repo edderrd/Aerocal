@@ -75,4 +75,7 @@
     text-shadow: 1px 1px 1px #6B6B6B;
     -moz-border-radius: 22px;
     -webkit-border-radius: 22px;
+    display: block;
+    float: left;
+    margin: 3px;
 }
