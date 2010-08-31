@@ -156,6 +156,7 @@ span.calControls {
     color: #000;
     padding: 0px;
     margin: 0px;
+    border-right: 1px solid #AAA;
 }
 
 .west-pane a, .west-pane a:visited, .west-pane a:link  {
@@ -265,11 +266,12 @@ span.calControls {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     padding: 1px 8px;
+    margin-right: 8px;
 }
 
 
 .west-resizer {
-    background: #CCC;
+    background-color: #D6DDE5;
 }
 .ui-layout-toggler-west {
     background: #AAA;

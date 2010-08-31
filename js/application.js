@@ -27,10 +27,11 @@ function applyLayout()
         west:
         {
             applyDefaultStyles: false,
+            closable: false,
+            resizable: false,
             paneClass: 'west-pane',
-            resizerClass: 'west-resizer',
-            togglerClass: 'ui-layout-toggler',
-            buttonClass: 'ui-layout-button'
+            size: '200',
+            spacing_open: 0
         },
         east:
         {
