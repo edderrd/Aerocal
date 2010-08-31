@@ -44,7 +44,7 @@
             <div class="side-pane">
                 <h1><?= $this->translate->_("Messages") ?></h1>
                 <ul>
-                    <li><a href="<?= $this->baseUrl("/message/index") ?>"><?= $this->translate->_("My messages") ?></a> <span title="<?= $this->translate->_("Unread messages") ?>" class="counter" id="msg-counter">0</span></li>
+                    <li <?php if($this->messagesActive):?>class="active"<?php endif; ?>><a href="<?= $this->baseUrl("/message/index") ?>"><?= $this->translate->_("My messages") ?></a> <span title="<?= $this->translate->_("Unread messages") ?>" class="counter" id="msg-counter">0</span></li>
                 </ul>
             </div>
         </div>

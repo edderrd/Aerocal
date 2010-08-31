@@ -11,6 +11,9 @@ class MessageController extends App_Controller_Action
 	 */
 	public function indexAction()
     {
+    	// enable active menu on view
+    	$this->view->messagesActive = true;
+    	
     	$params = $this->_getAllParams();
     	if (isset($params['subaction']))
     	{
