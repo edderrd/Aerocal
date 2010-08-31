@@ -68,11 +68,15 @@
 }
 
 .button-option {
-    padding: 3px;
+    padding: 2px 5px;
+    margin: 2px;
+    display: block;
+    float: left;
     color: #fff;
     font-size: 10px;
     background-color: #82A4CB;
-    text-shadow: 1px 1px 1px #6B6B6B;
     -moz-border-radius: 22px;
     -webkit-border-radius: 22px;
+    border: 1px solid #4E73A0;
+    font-weight: bold;
 }
