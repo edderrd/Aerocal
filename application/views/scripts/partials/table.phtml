@@ -23,7 +23,7 @@
             <?php if($this->showEdit): ?>
                 <td>
                     <?php if($this->acl()->isValid($this->showEdit['controller'], $this->showEdit['action'])):?>
-                        <a class="edit-icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/<?= $this->showEdit['controller'] ?>/<?= $this->showEdit['action'] ?>/format/json/id/<?= $row['id'] ?>');">&nbsp;</a>
+                        <a class="edit-icon icon x-hidden" href="javascript: modalDialog('<?= $this->baseUrl ?>/<?= $this->showEdit['controller'] ?>/<?= $this->showEdit['action'] ?>/format/json/id/<?= $row['id'] ?>');">&nbsp;</a>
                     <?php else: ?>
                         &nbsp;
                     <?php endif; ?>
@@ -87,7 +87,7 @@
             <?php if($this->showDelete): ?>
                 <td>
                     <?php if($this->acl()->isValid($this->showDelete['controller'], $this->showDelete['action'])):?>
-                        <?= $this->confirmLink($this->baseUrl ."/{$this->showDelete['controller']}/{$this->showDelete['action']}/id/{$row['id']}", "&nbsp;", $this->showDelete['message'], array("class" => "delete-icon x-hidden")); ?>
+                        <?= $this->confirmLink($this->baseUrl ."/{$this->showDelete['controller']}/{$this->showDelete['action']}/id/{$row['id']}", "&nbsp;", $this->showDelete['message'], array("class" => "delete-icon icon x-hidden")); ?>
                     <?php else: ?>
                         &nbsp;
                     <?php endif; ?>

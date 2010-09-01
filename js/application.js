@@ -290,17 +290,17 @@ function tableHightlight(elementId)
 	var lookupElements = "#"+elementId+" tr";
 	
 	$(lookupElements).hover(
-		function() {
-			$(this).children("td").each(function() {
-				$(this).children("a").removeClass("x-hidden");
-			});
-		},
-		function() {
-			$(this).children("td").each(function() {
-				$(this).children("a").addClass("x-hidden");
-			});
-		}
-	);
+            function() {
+                $(this).children("td").each(function() {
+                    $(this).children("a.icon").removeClass("x-hidden");
+                });
+            },
+            function() {
+                $(this).children("td").each(function() {
+                    $(this).children("a.icon").addClass("x-hidden");
+                });
+            }
+        );
 }
 
 /**

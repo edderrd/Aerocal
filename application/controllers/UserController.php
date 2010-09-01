@@ -175,9 +175,7 @@ class UserController extends App_Controller_Action
     public function toggleAction()
     {
         $id = $this->_request->getParam("id");
-        $disable = $this->_request->getParam("disable");
-
-            User::toggleActiveById($id);
+        User::toggleActiveById($id);
         
         $this->_redirect($this->baseUrl."/user/list");
     }

@@ -27,7 +27,10 @@ class MessageController extends App_Controller_Action
     
     public function deleteAction()
     {
-    	
+        $id = $this->_request->getParam("id");
+        Message::DeleteById($id);
+
+        $this->_redirect($this->baseUrl."/message/");
     }
 }
 ?>

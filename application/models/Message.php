@@ -97,4 +97,17 @@ class Message extends BaseMessage
     	return false;
     }
 
+    /**
+     * Delete a message by his id
+     * @param intr $id
+     * @return int
+     */
+    public function deleteById($id)
+    {
+        return Doctrine_Query::create()
+                ->delete(__CLASS__ . " m")
+                ->where("m.id = $id")
+                ->execute();
+    }
+
 }

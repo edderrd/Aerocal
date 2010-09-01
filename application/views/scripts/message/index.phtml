@@ -1,42 +1,44 @@
-<?php if($this->acl()->isValid("aircraft", "create")): ?>
-    <?php $this->toolbar()
-            ->addOnLoad()
-            ->setButtonset(false)
-            ->addButton("create-btn", $this->translate->_("Delete all"), array('onclick' => "alert('Not implemented')"))?>
-<?php endif; ?>
-
 <?php if (empty($this->data)): ?>
 	<div class="no-data"><?= $this->translate->_("There's no messages") ?></div>
 <?php else:?>
+        <?php $this->JQuery()->addOnLoad("tableHightlight('main-table');")?>
 	<table class="table-pane" id="main-table">
 	    <thead>
-	    	<tr>
-	    		<th style="width: 30px"></th>
-	    		<th><?= $this->translate->_("Message") ?></th>
-	    		<th><?= $this->translate->_("From") ?></th>
-	    		<th><?= $this->translate->_("Date")?></th>
-	        </tr>
+                <tr>
+                    <th style="width: 30px"></th>
+                    <th><?= $this->translate->_("Message") ?></th>
+                    <th><?= $this->translate->_("From") ?></th>
+                    <th><?= $this->translate->_("Date") ?></th>
+                    <th style="width: 30px;"><span class="delete-mono-icon">&nbsp;</span></th>
+                </tr>
 	    </thead>
 	    <?php foreach($this->data as $row): ?>
-	        <tr>
-	        	<td>
-	        		<?php if(!$row['is_read']):?>
-	        			<a href="<?= $this->baseUrl("/message/index/subaction/read/id/".$row['id']) ?>" title="<?= $this->translate->_("Mark as a read") ?>"><span class="unread-icon">&nbsp;</span></a>
-	        		<?php endif; ?>
-	        	</td>
-	        	<td class="align-left">
-	        		<?php 
-	        			$isRead = !$row['is_read'] ? 'class="bold"' : '';
-	        		?>
-	        		<span <?= $isRead ?>><?= $row['subject']?></span><br>
-	        		<span style="color: #888;"><?= $row['content']?></span>
-	        	</td>
-	        	<td>
-	        		<?= $row['FromUser']['first_name']?> 
-	        		<?= $row['FromUser']['last_name']?>
-	        	</td>
-	        	<td><?= $row['created_on'] ?></td>
-	        </tr>
+                <tr>
+                    <td>
+                        <?php if (!$row['is_read']): ?>
+                            <a href="<?= $this->baseUrl("/message/index/subaction/read/id/" . $row['id']) ?>" title="<?= $this->translate->_("Mark as a read") ?>"><img src="<?= $this->baseUrl("/img/unread.png") ?>" /></a>
+                        <?php endif; ?>
+                    </td>
+                    <td class="align-left">
+                        <?php
+                            $isRead = !$row['is_read'] ? 'class="bold"' : '';
+                        ?>
+                        <span <?= $isRead ?>><?= $row['subject'] ?></span><br>
+                        <span style="color: #888;"><?= $row['content'] ?></span>
+                    </td>
+                    <td>
+                        <?= $row['FromUser']['first_name'] ?>
+                        <?= $row['FromUser']['last_name'] ?>
+                    </td>
+                    <td><?= $row['created_on'] ?></td>
+                    <td>
+                        <?php if($this->acl()->isValid("message", "delete")):?>
+                            <?= $this->confirmLink($this->baseUrl ."/message/delete/id/{$row['id']}", "&nbsp;", "Are you sure to delete this message", array("class" => "delete-icon icon x-hidden")); ?>
+                        <?php else: ?>
+                            &nbsp;
+                        <?php endif; ?>
+                    </td>
+                </tr>
 	    <?php endforeach; ?>
 	</table>
 <?php endif; ?>
