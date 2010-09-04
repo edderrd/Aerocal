@@ -13,8 +13,16 @@
             },
             [render]);
     }
+
+    function viewCommand(data) {
+        var str = "";
+        $.each(data, function(i, item){
+            str += "[" + i + "]: " + item + "\n";
+        });
+        alert(str);
+    }
 </script>
-<?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd')) ?>
+<?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd', 'ViewCmdhandler' => 'viewCommand')) ?>
 <? $this->toolbar()
         ->addOnLoad()
         ->addButton("day-btn", $this->translate->_("Day"), array('onclick' => "changeCalendarView('mainCalendar', $(this), 'day');"))

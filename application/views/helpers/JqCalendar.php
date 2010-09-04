@@ -24,8 +24,11 @@ class My_View_Helper_JqCalendar
         $rv[] = "var op = $jsonOptions;";
         $rv[] = "op.showday = new Date();";
         $rv[] = "op.height = document.documentElement.clientHeight - 50;";
-        if (isset($options['quickAddCallback']) && $canAdd)
-            $rv[] = "op.quickAddCallback = {$options['quickAddCallback']};";
+        if (!empty($options))
+        {
+            foreach($options as $optionName => $option)
+                $rv[] = "op.$optionName = $option;";
+        }
         $rv[] = "function $name() {";
         $rv[] = "\t var $name = $('#$name')";
         $rv[] = "\t\t\t.bcalendar(op).BcalGetOp();";
