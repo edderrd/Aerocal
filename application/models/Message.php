@@ -43,6 +43,10 @@ class Message extends BaseMessage
         {
             foreach($admins as $admin)
             {
+                // don't notify if it's the same user
+                if($admin['id'] == $fromUser)
+                    continue;
+                
                 $message = new Message();
                 $message->from_user_id = $fromUser;
                 $message->to_user_id = $admin['id'];
@@ -102,12 +106,45 @@ class Message extends BaseMessage
      * @param intr $id
      * @return int
      */
-    public function deleteById($id)
+    public static function deleteById($id)
     {
         return Doctrine_Query::create()
                 ->delete(__CLASS__ . " m")
                 ->where("m.id = $id")
                 ->execute();
+    }
+
+    public static function notifyCancelReservation($reservation, $userId)
+    {
+        $t = Zend_Registry::get("translate");
+
+        if (empty($reservation))
+            throw new Exception("Reservation is empty");
+
+        if (!isset($reservation['user_id']))
+            throw new Exception("User id in reservation is empty");
+
+        if (empty($userId))
+            throw new Exception("From user id is empty");
+
+        $dateFormat = Zend_Registry::get("date");
+        $startDate = date($dateFormat['fullformat'], strtotime($reservation['start_date']));
+        $endDate = date($dateFormat['fullformat'], strtotime($reservation['end_date']));
+        $contentMsg = $t->_("Your reservation from %s to %s has been cancelled");
+
+        // do not send notification to same user
+        if ($reservation['user_id'] == $userId)
+            return;
+
+        $message = new Message();
+        $message->from_user_id = $userId;
+        $message->to_user_id = $reservation['user_id'];
+        $message->subject = $t->_("You reservation has been cancelled");
+        $message->content = sprintf($contentMsg, $startDate, $endDate);
+        $message->is_read = false;
+        $message->created_on = date("Y-m-d G:i:s", time());
+        $message->save();
+
     }
 
 }

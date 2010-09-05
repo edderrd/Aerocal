@@ -65,12 +65,12 @@ class IndexController extends App_Controller_Action
                 {
                     Reservation::addReservation($params);
                     $this->reservationNotifyAdmins($user, $params);
-                    $this->view->redirect = $this->baseUrl."/index/index";
-                    $this->view->message = self::$_translate->_("Reservation added");
+//                    $this->view->redirect = $this->baseUrl."/index/index";
+                    $this->setMessage($this->_("Reservation added"));
                 }
                 else
                 {
-                    $this->view->message = self::$_translate->_("You reservation is not valid");
+                    $this->setMessage($this->_("You reservation is not valid"));
                     $this->createAjaxButton("Close", "close");
                 }
                 break;
@@ -82,6 +82,7 @@ class IndexController extends App_Controller_Action
                 $this->createAjaxButton("Add", "submit", $params, "/index/reserve/format/json/subaction/submit");
                 break;
         }
+        $this->view->messages = $this->getMessages();
     }
 
     public function reservationNotifyAdmins($user, $params)
@@ -101,13 +102,27 @@ class IndexController extends App_Controller_Action
     public function viewAction()
     {
         $params = $this->_getAllParams();
+        $identity = Zend_Auth::getInstance()->getIdentity();
         $reservation = Reservation::findById($params["reservation_id"]);
+        $form = new Form_Reservation_View();
+
+        $form->start_date->setValue(App_Utils::formatDate($reservation['start_date']));
+        $form->end_date->setValue(App_Utils::formatDate($reservation['end_date']));
+        $form->aircraft->setValue($reservation['Aircraft']['name']);
+        $form->status->setValue($reservation['ReservationStatus']['status']);
+        
         $this->view->content = array(
             'id' => 'testing',
             'elements' => array("html" => "<h1>{$params['title']}</h1>")
         );
         $this->view->title = $this->_("Reservation"). ": ". $reservation['Aircraft']['name'];
-        $this->createAjaxButton("Cancel reservation", "custom", null, $this->baseUrl."/index/cancel/format/json/id/{$reservation['id']}");
+
+        if (strtolower($reservation['ReservationStatus']['status']) == 'accepted' && $identity->isValidResource('index', 'cancel'))
+            $this->createAjaxButton("Cancel reservation", "custom", null, $this->baseUrl."/index/cancel/format/json/id/{$reservation['id']}");
+        else
+            $this->createAjaxButton("Close", "close");
+
+        $this->view->form = $form->toArray();
     }
 
     /**
@@ -124,7 +139,12 @@ class IndexController extends App_Controller_Action
         else
         {
             $this->setMessage($this->_("Reservation cancelled"));
+
+            $reservation = Reservation::findById($id);
+            $user = Zend_Auth::getInstance()->getIdentity()->user;
+
             Reservation::cancelById($id);
+            Message::notifyCancelReservation($reservation, $user->id);
         }
         $this->view->messages = $this->getMessages();
     }

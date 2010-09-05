@@ -2,7 +2,7 @@
 <?php $this->JQuery()->addJavascriptFile($this->baseUrl("/js/plugins/jquery.calendar.js")) ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl("/css/calendar.css")) ?>
 <script type="text/javascript">
-    function quickAdd(start, end, isAllDay, pos, render)
+    function quickAdd(start, end, isAllDay, pos, render, populate)
     {
         modalDialog(
             '<?= $this->baseUrl ?>/index/reserve/format/json',
@@ -11,15 +11,15 @@
                 'endDate': formatDate(end),
                 'isAllDay':isAllDay
             },
-            [render]);
+            [populate, render]);
     }
 
     function viewCommand(data, render, populate) {
         var params = {
             'reservation_id': data[0],
             'title': data[1],
-            'start_date': data[2],
-            'end_date': data[3],
+            'start_date': formatDate(data[2]),
+            'end_date': formatDate(data[3]),
             'color': data[6]
         };
         modalDialog('<?= $this->baseUrl("/index/view/format/json") ?>',params, [populate, render]);

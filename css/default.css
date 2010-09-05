@@ -10,6 +10,9 @@ html, body {
     font-size: 0.9em;
     overflow-x: hidden;
 }
+img {
+    border: none;
+}
 
 a {
     color: #232AF5;
@@ -57,11 +60,6 @@ span.login a {
     padding-left: 12px;
 }
 
-.unread-mono-icon {
-    background: url('../img/unread-mono.png') no-repeat center left;
-    padding-left: 12px;
-}
-
 .delete-icon {
     background: url('../img/delete.png') no-repeat center left;
     padding-left: 15px;
@@ -85,12 +83,14 @@ span.login a {
 .helicopter-icon {
     background: url('../img/helicopter.png') no-repeat center left;
     background-size: 16px;
+    -moz-background-size: 16px;
     padding-left: 15px;
 }
 
 .airplane-icon {
     background: url('../img/airplane.png') no-repeat center left;
     background-size: 16px;
+    -moz-background-size: 16px;
     padding-left: 15px;
 }
 

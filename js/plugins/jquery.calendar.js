@@ -1751,7 +1751,7 @@
                 
                 if (option.quickAddCallback)
                 {
-                    return option.quickAddCallback(start, end, isallday, pos, render);
+                    return option.quickAddCallback(start, end, isallday, pos, render, populate);
                 }
                 else
                 {

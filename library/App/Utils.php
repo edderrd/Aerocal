@@ -40,5 +40,21 @@ class App_Utils {
         asort($rv);
         return $rv;
     }
+
+    /**
+     * Format a date based on application configuration date format
+     * only support fullformat entry
+     * @param string $date
+     * @return string
+     */
+    public static function formatDate($date)
+    {
+        $dateFormat = Zend_Registry::get('date');
+
+        if (!isset($dateFormat['fullformat']))
+            $dateFormat['fullformat'] = "d-m-Y H:m:s";
+
+        return date($dateFormat['fullformat'], strtotime($date));
+    }
 }
 ?>

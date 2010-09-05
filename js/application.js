@@ -145,7 +145,7 @@ function parseJsonButtons(buttons, dialogElement)
                                 }
                                 else
                                 {
-                                    alert(data.message);
+                                    showNotifications(data.title, data.messages);
                                     if (data.redirect)
                                         window.location = data.redirect;
                                     else
@@ -329,7 +329,6 @@ function getMessages(loadUrl)
         success: function(response) {
             if (response.messages)
                 $("#msg-counter").html(response.messages.count);
-
             if (response.notification)
             {
                 $.each(response.notification, function(index, message) {
@@ -342,4 +341,5 @@ function getMessages(loadUrl)
             }
         }
     });
+    setTimeout( "getMessages('"+loadUrl+"')", 15000 );
 }
