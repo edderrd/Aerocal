@@ -1567,7 +1567,7 @@
                             }
                             else {
                                 if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
-                                    option.ViewCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"));
+                                    option.ViewCmdhandler.call(this, $("#bbit-cs-buddle").data("cdata"), render, populate);
                                 }
                             }
                             $("#bbit-cs-buddle").css("visibility", "hidden");
@@ -1623,7 +1623,7 @@
                     }
                     else {
                         if (option.ViewCmdhandler && $.isFunction(option.ViewCmdhandler)) {
-                            option.ViewCmdhandler.call(this, data);
+                            option.ViewCmdhandler.call(this, data, render, populate);
                         }
                     }
                 }

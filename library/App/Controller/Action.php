@@ -192,17 +192,19 @@ class App_Controller_Action extends Zend_Controller_Action
      */
     public function createAjaxButton($name, $action, $params = null, $url = null)
     {
+        $button = array();
         $name = self::$_translate->_($name);
+        $buttons = empty($this->view->buttons) ? array() : $this->view->buttons;
         
-        $buttons[$name]['action'] = $action;
+        $button[$name]['action'] = $action;
         
         if(!empty($params))
-            $buttons[$name]['params'] = $params;
+            $button[$name]['params'] = $params;
 
         if(!empty($url))
-            $buttons[$name]['url'] = $this->baseUrl.$url;
+            $button[$name]['url'] = $this->baseUrl.$url;
             
-        $this->view->buttons = $buttons;
+        $this->view->buttons = array_merge($buttons, $button);
         
         return $this;
     }

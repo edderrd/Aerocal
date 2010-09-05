@@ -219,4 +219,21 @@ class Reservation extends BaseReservation
                     ->fetchOne()
                     ->toArray(true);
     }
+
+    /**
+     * Cancel a reservation by his id
+     * @param int $id reservation id
+     * @return int number of rows affected
+     */
+    public static function cancelById($id)
+    {
+        if (empty($id))
+            return 0;
+
+        return Doctrine_Query::create()
+                    ->update(__CLASS__ . " r")
+                    ->set("r.status_id", 2)
+                    ->where("r.id = $id")
+                    ->execute();
+    }
 }

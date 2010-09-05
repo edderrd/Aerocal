@@ -157,8 +157,22 @@ function parseJsonButtons(buttons, dialogElement)
                     break;
                 default:
                     $rv[name] = function() {
-                        alert("No action selected")
-                        };
+                        if (!button.url)
+                            alert("No url defined");
+
+                        var params = button.params == undefined ? new Object() : button.params;
+
+                        $.ajax({
+                            url: button.url,
+                            data: params,
+                            success: function(data) {
+                                if (data.messages != undefined)
+                                    showNotifications(data.title, data.messages);
+
+                                dialogElement.dialog("close");
+                            }
+                        });
+                    };
                     break;
             }
         });

@@ -14,7 +14,7 @@
             [render]);
     }
 
-    function viewCommand(data) {
+    function viewCommand(data, render, populate) {
         var params = {
             'reservation_id': data[0],
             'title': data[1],
@@ -22,7 +22,7 @@
             'end_date': data[3],
             'color': data[6]
         };
-        modalDialog('<?= $this->baseUrl("/index/view/format/json") ?>',params);
+        modalDialog('<?= $this->baseUrl("/index/view/format/json") ?>',params, [populate, render]);
     }
 </script>
 <?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd', 'ViewCmdhandler' => 'viewCommand')) ?>

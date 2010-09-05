@@ -107,7 +107,25 @@ class IndexController extends App_Controller_Action
             'elements' => array("html" => "<h1>{$params['title']}</h1>")
         );
         $this->view->title = $this->_("Reservation"). ": ". $reservation['Aircraft']['name'];
-        $this->createAjaxButton("Close", "close");
-        $this->createAjaxButton("Cancel reservation", "cancel");
+        $this->createAjaxButton("Cancel reservation", "custom", null, $this->baseUrl."/index/cancel/format/json/id/{$reservation['id']}");
+    }
+
+    /**
+     * Cancel a reservation action
+     * receive a id param
+     */
+    public function cancelAction()
+    {
+        $id = $this->_request->getParam('id');
+        $this->view->title = $this->_("Reservation");
+
+        if (empty($id))
+            $this->setMessage($this->_("Empty given reservation id"));
+        else
+        {
+            $this->setMessage($this->_("Reservation cancelled"));
+            Reservation::cancelById($id);
+        }
+        $this->view->messages = $this->getMessages();
     }
 }
