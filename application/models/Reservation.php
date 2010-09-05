@@ -12,7 +12,29 @@
  */
 class Reservation extends BaseReservation
 {
+    /**
+     * Return a color number to be used on calendar.jquery plugin
+     * @param int $statusId
+     * @return int
+     */
+    protected static function _getColorByStatus($statusId)
+    {
+        switch ($statusId)
+        {
+            case 1:
+                return 6; // blue
+            case 2:
+                return 1; //red
+            default:
+                return 8; // dunno
+        }
+    }
 
+    /**
+     * Return all data
+     * @param bool $now
+     * @return array
+     */
     public static function findAll($now = true)
     {
         $date = date("Y-m-d G:i:s", time());
@@ -30,6 +52,11 @@ class Reservation extends BaseReservation
         return $r->fetchArray(true);
     }
 
+    /**
+     * Get all reservation by a user id
+     * @param int $userId
+     * @return array
+     */
     public static function findByUser($userId)
     {
         $now = date("Y-m-d G:i:s", time());
@@ -46,13 +73,14 @@ class Reservation extends BaseReservation
     }
 
     /**
-     * Converts reservations array into Fullcalendar events
+     * Converts reservations array into jquery.calendar events
      * @param array $reservations
      * @param bool addNames add names to title?
      * @return array
      */
     public static function toEvents($reservations, $addName = false)
     {
+        $translate = Zend_Registry::get("translate");
         $rv = array();
 
         if (!empty($reservations))
@@ -62,19 +90,19 @@ class Reservation extends BaseReservation
                 $tmp = array();
 
                 $tmp["id"] = $reservation['id'];
+                $status = $reservation['status_id'] == 2 ? "<strong>{$translate->_("Cancelled")}</strong><br>" : "";
+                $tmp['title'] = $status;
                 if($addName)
-                    $tmp['title'] = $reservation['User']['first_name'] ." "
-                                    .$reservation['User']['last_name'] .": "
-                                    .$reservation['Aircraft']['name'];
-                else
-                    $tmp['title'] = $reservation['Aircraft']['name'];
-                $tmp['title'] .= " - " . $reservation['Aircraft']['AircraftType']['type'];
+                    $tmp['title'] .= "{$reservation['User']['first_name']} {$reservation['User']['last_name']}<br>";
+
+                $tmp['title'] .= "<span class='".strtolower($reservation['Aircraft']['AircraftType']['type'])."-icon'>&nbsp;</span>";
+                $tmp['title'] .= "{$reservation['Aircraft']['name']}";
                 $tmp['start_date'] = date("m/d/Y H:i:s", strtotime($reservation['start_date']));
                 $tmp['end_date'] = date("m/d/Y H:i:s", strtotime($reservation['end_date']));
                 $tmp['is_all_day'] = 0;
                 $tmp['recurrent'] = 0;
                 $tmp['relation'] = 0;
-                $tmp['color'] = 6;
+                $tmp['color'] = self::_getColorByStatus($reservation['status_id']);
                 $tmp['extra'] = 0;
                 $tmp['location'] = "";
 
@@ -107,6 +135,11 @@ class Reservation extends BaseReservation
         }
     }
 
+    /**
+     * Check if a reservation is available to be stored
+     * @param array $params
+     * @return boolean
+     */
     public static function isAvailable($params)
     {
         $rv = false;
@@ -165,5 +198,25 @@ class Reservation extends BaseReservation
         }
 
         return $count;
+    }
+
+    /**
+     * Get a reservation and his relations from a reservation_id
+     * @param int $id
+     * @return array
+     */
+    public static function findById($id)
+    {
+        if (empty($id))
+            return array();
+        
+        return Doctrine_Query::create()
+                    ->from(__CLASS__ . " r")
+                    ->leftJoin("r.ReservationStatus rs")
+                    ->leftJoin("r.User u")
+                    ->leftJoin("r.Aircraft a")
+                    ->where("r.id = $id")
+                    ->fetchOne()
+                    ->toArray(true);
     }
 }

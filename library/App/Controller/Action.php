@@ -44,6 +44,16 @@ class App_Controller_Action extends Zend_Controller_Action
     }
 
     /**
+     * Translate function
+     * @param string $msg
+     * @return string
+     */
+    protected function _($msg)
+    {
+        return self::$_translate->_("$msg");
+    }
+
+    /**
      * Validate if the current controller -> action is a exception
      * @param string $controller
      * @param string $action

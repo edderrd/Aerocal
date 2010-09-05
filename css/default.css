@@ -82,6 +82,18 @@ span.login a {
     padding-left: 15px;
 }
 
+.helicopter-icon {
+    background: url('../img/helicopter.png') no-repeat center left;
+    background-size: 16px;
+    padding-left: 15px;
+}
+
+.airplane-icon {
+    background: url('../img/airplane.png') no-repeat center left;
+    background-size: 16px;
+    padding-left: 15px;
+}
+
 /** panels **/
 table.table-pane {
     width: 100%;

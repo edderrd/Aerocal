@@ -94,4 +94,20 @@ class IndexController extends App_Controller_Action
 
         Message::notifyAllAdmins($user->id, $subject, $msg);
     }
+
+    /**
+     * View details action
+     */
+    public function viewAction()
+    {
+        $params = $this->_getAllParams();
+        $reservation = Reservation::findById($params["reservation_id"]);
+        $this->view->content = array(
+            'id' => 'testing',
+            'elements' => array("html" => "<h1>{$params['title']}</h1>")
+        );
+        $this->view->title = $this->_("Reservation"). ": ". $reservation['Aircraft']['name'];
+        $this->createAjaxButton("Close", "close");
+        $this->createAjaxButton("Cancel reservation", "cancel");
+    }
 }

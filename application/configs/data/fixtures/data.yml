@@ -67,7 +67,13 @@ AclResource:
     description: "List user related messages"
   AclResource_23:
     name: mvc:default.message.delete
-    description: "Delete user messages"
+    description: "Delete a message"
+  AclResource_24:
+    name: mvc:default.index.view
+    description: "View details on a reservation"
+  AclResource_25:
+    name: mvc:default.index.cancel
+    description: "Cancel a reservation"
 
 AclRole:
   AclRole_1:
@@ -163,6 +169,18 @@ AclPermission:
   AclPermission_28:
     resource_id: 22
     role_id: 1
+  AclPermission_29:
+    resource_id: 24
+    role_id: 1
+  AclPermission_30:
+    resource_id: 24
+    role_id: 2
+  AclPermission_31:
+    resource_id: 25
+    role_id: 1
+  AclPermission_32:
+    resource_id: 25
+    role_id: 2
 
 User:
   User_1:

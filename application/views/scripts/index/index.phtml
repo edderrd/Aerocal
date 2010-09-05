@@ -15,11 +15,14 @@
     }
 
     function viewCommand(data) {
-        var str = "";
-        $.each(data, function(i, item){
-            str += "[" + i + "]: " + item + "\n";
-        });
-        alert(str);
+        var params = {
+            'reservation_id': data[0],
+            'title': data[1],
+            'start_date': data[2],
+            'end_date': data[3],
+            'color': data[6]
+        };
+        modalDialog('<?= $this->baseUrl("/index/view/format/json") ?>',params);
     }
 </script>
 <?= $this->jqCalendar("mainCalendar", $this->jqCalendar, array('quickAddCallback' => 'quickAdd', 'ViewCmdhandler' => 'viewCommand')) ?>
