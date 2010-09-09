@@ -181,6 +181,8 @@ table.table-pane td {
 
 .modal-form input[type="text"], .modal-form input[type="password"], .modal-form textarea {
     width: 90%;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
 }
 
 .modal-form input[type="text"], .modal-form input[type="password"] {

@@ -244,7 +244,9 @@
              * @description {Config} enableDrag  
              * {Boolean} Whether end user can drag event item by mouse. 
              */
-            enableDrag: true, 
+            enableDrag: true,
+            // enable all day select
+            allday: false,
             loadDateR: [] 
         };
         var eventDiv = $("#gridEvent");
@@ -2034,7 +2036,8 @@
                     $("td.tg-col", gridcontainer).each(function(i) {
                         $(this).mousedown(function(e) { dragStart.call(this, "dw1", e); return false; });
                     });
-                    $("#weekViewAllDaywk").mousedown(function(e) { dragStart.call(this, "dw2", e); return false; });
+                    if (option.allday == true)
+                        $("#weekViewAllDaywk").mousedown(function(e) { dragStart.call(this, "dw2", e); return false; });
                 }
 
                 if (viewtype == "week") {
@@ -2063,8 +2066,11 @@
                         moreshow.call(this, $(this).parent().parent().parent().parent()[0]); return false;
                     }).mousedown(function() { return false; });
                 });
-                if (option.readonly == false) {
+                if (option.readonly == false && option.allday == true) {
                     $("#mvEventContainer").mousedown(function(e) { dragStart.call(this, "m1", e); return false; });
+                }
+                else {
+                    return false;
                 }
             }
 

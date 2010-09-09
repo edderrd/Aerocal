@@ -18,6 +18,7 @@ class IndexController extends App_Controller_Action
         $calendar = new App_JqCalendar();
         $calendar->defaultView();
         $calendar->currentFirstDay(true);
+        $calendar->canAddAllDay(false);
         
         // add reservations only if the user have aircrafts
         

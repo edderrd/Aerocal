@@ -88,6 +88,17 @@ class App_JqCalendar
     }
 
     /**
+     * Enable add in all day fields
+     * @param bool $option
+     * @return App_JqCalendar
+     */
+    public function canAddAllDay($option)
+    {
+        $this->options->setOption("allday", $option);
+        return $this;
+    }
+
+    /**
      * Load url in json
      * @param string $url
      * @return App_JqCalendar
