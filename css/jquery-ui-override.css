@@ -1,3 +1,7 @@
+.ui-buttonset {
+    font-size: 1.1em;
+}
+
 /** dialog buttons **/
 .ui-dialog .ui-dialog-buttonpane button {
     background: -webkit-gradient(
@@ -15,6 +19,8 @@
     border: none;
     color: #fff;
     text-shadow: 1px 1px 1px black;
+    -moz-box-shadow: 2px 2px 4px #696969;
+    -webkit-box-shadow: 2px 2px 4px #696969;
 }
 
 .ui-dialog .ui-dialog-buttonpane .ui-state-hover {
@@ -87,4 +93,23 @@
         rgb(207,207,207) 100%
     );
     text-shadow: 1px 1px 1px #ddd;
+}
+
+/** calendar event boxes */
+
+div.chip {
+    -moz-box-shadow: 2px 2px 5px #696969;
+    -webkit-box-shadow: 2px 2px 5px #696969;
+}
+
+/** pnotify message */
+.ui-pnotify-container {
+    font-size: 0.9em;
+    filter:alpha(opacity=80);
+    opacity:0.8;
+}
+
+.ui-pnotify-container .ui-pnotify-icon, .ui-pnotify-container .ui-pnotify-text, .ui-pnotify-container .ui-pnotify-title {
+    filter:alpha(opacity=100);
+    opacity:1.0;
 }
