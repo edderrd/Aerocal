@@ -192,9 +192,9 @@ class App_Controller_Action extends Zend_Controller_Action
      */
     public function createAjaxButton($name, $action, $params = null, $url = null)
     {
+        $this->view->buttons = empty($this->view->buttons) ? array() : $this->view->buttons;
         $button = array();
         $name = self::$_translate->_($name);
-        $buttons = empty($this->view->buttons) ? array() : $this->view->buttons;
         
         $button[$name]['action'] = $action;
         
@@ -204,7 +204,7 @@ class App_Controller_Action extends Zend_Controller_Action
         if(!empty($url))
             $button[$name]['url'] = $this->baseUrl.$url;
             
-        $this->view->buttons = array_merge($buttons, $button);
+        $this->view->buttons = array_merge($this->view->buttons, $button);
         
         return $this;
     }
@@ -235,7 +235,7 @@ class App_Controller_Action extends Zend_Controller_Action
                     // persist method
                     call_user_func(array($modelClass, $modelMethod), $params);
                     
-                    $this->view->message = self::$_translate->_($options['success']['message']);
+                    $this->setMessage(self::$_translate->_($options['success']['message']));
                     $this->createAjaxButton(
                         $options['success']['button']['title'], 
                         $options['success']['button']['action']);

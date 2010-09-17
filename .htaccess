@@ -1,3 +1,4 @@
+#php_value memory_limit 60M
 Options +FollowSymLinks
 
 RewriteEngine On

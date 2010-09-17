@@ -122,7 +122,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->getApplication()->getAutoloader()
              ->pushAutoloader(array('Doctrine', 'autoload'));
         spl_autoload_register(array('Doctrine', 'modelsAutoload'));
-
+	
         //get doctrine configuration section
         $doctrineConfig = $this->getOption('doctrine');
 
@@ -137,6 +137,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $conn = Doctrine_Manager::connection($doctrineConfig['dsn'], 'doctrine');
         $conn->setAttribute(Doctrine::ATTR_USE_NATIVE_ENUM, true);
 
+        if (extension_loaded("apc"))
+        {
+            $cacheDriver = new Doctrine_Cache_Apc();
+            $conn->setAttribute(Doctrine::ATTR_QUERY_CACHE, $cacheDriver);
+        }
         return $conn;
     }
 

@@ -145,7 +145,8 @@ function parseJsonButtons(buttons, dialogElement)
                                 }
                                 else
                                 {
-                                    showNotifications(data.title, data.messages);
+                                    if (data.messages)
+                                        showNotifications(data.title, data.messages);
                                     if (data.redirect)
                                         window.location = data.redirect;
                                     else

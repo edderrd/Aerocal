@@ -48,24 +48,6 @@ class UserController extends App_Controller_Action
             )
         );
         $this->ajaxFormProcessor($form, $options);
-
-        /*if ($this->getRequest()->isPost() &&
-                $this->view->form->isValid($this->_getAllParams()))
-        {
-            $user = Zend_Auth::getInstance()->getIdentity()->user;
-            $user->first_name = $this->_request->getParam("firstname");
-            $user->last_name = $this->_request->getParam("lastname");
-            $user->language = $this->_request->getParam("language");
-            $user->save();
-            
-            $this->setMessage(array(self::$_translate->_("Preferences saved successfully")));
-            $this->_redirect($this->baseUrl."/user/index");
-        }
-        $user = Zend_Auth::getInstance()->getIdentity()->user;
-        $this->view->form->firstname->setValue($user->first_name);
-        $this->view->form->lastname->setValue($user->last_name);
-        //TODO: Implement password change
-        $this->view->form->language->setValue($user->language);*/
     }
     
     /**
